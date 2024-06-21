@@ -1,8 +1,9 @@
 {
   "name": "ui-galary",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
+  "main": "components.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
