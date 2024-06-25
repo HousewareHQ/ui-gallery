@@ -1,4 +1,3 @@
-"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -21,16 +20,13 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Button = void 0;
-var jsx_runtime_1 = require("react/jsx-runtime");
-require("./button.css");
+import * as React from 'react';
+import './button.css';
 /**
  * Primary UI component for user interaction
  */
-var Button = function (_a) {
+export var Button = function (_a) {
     var _b = _a.primary, primary = _b === void 0 ? false : _b, _c = _a.size, size = _c === void 0 ? 'medium' : _c, backgroundColor = _a.backgroundColor, label = _a.label, props = __rest(_a, ["primary", "size", "backgroundColor", "label"]);
     var mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
-    return ((0, jsx_runtime_1.jsx)("button", __assign({ type: "button", className: ['storybook-button', "storybook-button--".concat(size), mode].join(' '), style: { backgroundColor: backgroundColor } }, props, { children: label })));
+    return (React.createElement("button", __assign({ type: "button", className: ['storybook-button', "storybook-button--".concat(size), mode].join(' '), style: { backgroundColor: backgroundColor } }, props), label));
 };
-exports.Button = Button;
