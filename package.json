@@ -6,12 +6,12 @@
   "files": [
     "package-dist"
   ],
-  "main": "./package-dist/my-lib.umd.cjs",
-  "module": "./package-dist/my-lib.js",
+  "main": "./package-dist/ui-galary.umd.cjs",
+  "module": "./package-dist/ui-galary.js",
   "exports": {
     ".": {
-      "import": "./package-dist/my-lib.js",
-      "require": "./package-dist/my-lib.umd.cjs"
+      "import": "./package-dist/ui-galary.js",
+      "require": "./package-dist/ui-galary.umd.cjs"
     }
   },
   "scripts": {
