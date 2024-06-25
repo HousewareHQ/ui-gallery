@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { TextInput, TextInputProps } from "./TextInput";
+import { TextInput, TextInputProps } from "../components/TextInput";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta: Meta<TextInputProps> = {
