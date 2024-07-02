@@ -7,9 +7,9 @@ export default defineConfig({
     lib: {
       // Could also be a dictionary or array of multiple entry points
       entry: resolve(__dirname, "src/components/index.ts"),
-      name: "ui-galary",
+      name: "ui-gallery",
       // the proper extensions will be added
-      fileName: "ui-galary",
+      fileName: "ui-gallery",
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled

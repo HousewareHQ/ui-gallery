@@ -12,7 +12,7 @@ export interface ChatInputProps {
   isFollowupDisabled?: boolean;
 }
 
-const ChatInput: React.FC<ChatInputProps> = ({
+export const ChatInput: React.FC<ChatInputProps> = ({
   inputRef,
   placeholder = "Ask me anything about your product data",
   userQuery,
@@ -119,5 +119,3 @@ const ChatInput: React.FC<ChatInputProps> = ({
     </Flex>
   );
 };
-
-export default ChatInput;

@@ -1,17 +1,17 @@
 {
-  "name": "ui-galary",
+  "name": "ui-gallery",
   "private": true,
   "version": "0.0.1",
   "type": "module",
   "files": [
     "package-dist"
   ],
-  "main": "./package-dist/ui-galary.umd.cjs",
-  "module": "./package-dist/ui-galary.js",
+  "main": "./package-dist/ui-gallery.umd.cjs",
+  "module": "./package-dist/ui-gallery.js",
   "exports": {
     ".": {
-      "import": "./package-dist/ui-galary.js",
-      "require": "./package-dist/ui-galary.umd.cjs"
+      "import": "./package-dist/ui-gallery.js",
+      "require": "./package-dist/ui-gallery.umd.cjs"
     }
   },
   "scripts": {
