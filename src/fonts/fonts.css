@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "Sedan";
+  src:
+    local("Sedan-Regular"),
+    url("./Sedan-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "HousewareFont";
+  src:
+    local("Raleway"),
+    url("./Raleway.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "ChartsFont";
+  src:
+    local("Recursive"),
+    url("./Recursive.ttf") format("truetype");
+}
