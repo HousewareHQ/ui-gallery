@@ -8,12 +8,14 @@
   "main": "./package-dist/ui-gallery.umd.cjs",
   "module": "./package-dist/ui-gallery.es.js",
   "types": "./package-dist/index.d.ts",
+  "style": "./package-dist/assets/style-BfyGbg8N.css",
   "exports": {
     ".": {
       "import": "./package-dist/ui-gallery.es.js",
       "require": "./package-dist/ui-gallery.umd.cjs",
       "types": "./package-dist/index.d.ts"
-    }
+    },
+    "./styles": "./package-dist/assets/style.css"
   },
   "scripts": {
     "dev": "vite",
