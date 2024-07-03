@@ -1,28 +1,36 @@
-// vite.config.js
-import { resolve } from "path";
 import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import dts from "vite-plugin-dts";
+import { resolve } from "path";
 
 export default defineConfig({
+  plugins: [
+    react(),
+    dts({
+      insertTypesEntry: true,
+      include: ["src/components"],
+      exclude: ["**/*.css"],
+    }),
+  ],
   build: {
     lib: {
-      // Could also be a dictionary or array of multiple entry points
       entry: resolve(__dirname, "src/components/index.ts"),
       name: "ui-gallery",
-      // the proper extensions will be added
       fileName: "ui-gallery",
     },
     rollupOptions: {
-      // make sure to externalize deps that shouldn't be bundled
-      // into your library
-      external: ["react"],
+      external: ["react", "react-dom"],
       output: {
-        dir: "package-dist",
-        // Provide global variables to use in the UMD build
-        // for externalized deps
         globals: {
-          vue: "React",
+          react: "React",
+          "react-dom": "ReactDOM",
         },
       },
     },
+    cssCodeSplit: false,
+    outDir: "package-dist",
+  },
+  resolve: {
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
 });

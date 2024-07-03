@@ -1,6 +1,5 @@
 {
   "name": "ui-gallery",
-  "private": true,
   "version": "0.0.1",
   "type": "module",
   "files": [
@@ -8,15 +7,17 @@
   ],
   "main": "./package-dist/ui-gallery.umd.cjs",
   "module": "./package-dist/ui-gallery.js",
+  "types": "./package-dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./package-dist/ui-gallery.js",
-      "require": "./package-dist/ui-gallery.umd.cjs"
+      "require": "./package-dist/ui-gallery.umd.cjs",
+      "types": "./package-dist/index.d.ts"
     }
   },
   "scripts": {
     "dev": "vite",
-    "build-package": "vite build --config vite-package.config.ts",
+    "build-package": "rimraf package-dist && tsc -p tsconfig.app.json && vite build --config vite-package.config.ts",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
@@ -28,7 +29,8 @@
     "@storybook/addon-a11y": "^8.1.11",
     "antd": "^5.19.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "vite-plugin-dts": "^3.9.1"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.5.0",
@@ -49,6 +51,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "eslint-plugin-storybook": "^0.8.0",
+    "rimraf": "^5.0.7",
     "storybook": "^8.1.10",
     "typescript": "^5.2.2",
     "vite": "^5.3.1"

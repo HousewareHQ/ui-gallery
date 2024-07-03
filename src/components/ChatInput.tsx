@@ -1,3 +1,4 @@
+import * as React from "react";
 import { PaperPlaneTilt } from "@phosphor-icons/react";
 import { Button, Card, Flex, InputRef, Typography } from "antd";
 import TextArea from "antd/es/input/TextArea";
