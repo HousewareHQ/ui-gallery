@@ -6,11 +6,11 @@
     "package-dist"
   ],
   "main": "./package-dist/ui-gallery.umd.cjs",
-  "module": "./package-dist/ui-gallery.js",
+  "module": "./package-dist/ui-gallery.es.js",
   "types": "./package-dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./package-dist/ui-gallery.js",
+      "import": "./package-dist/ui-gallery.es.js",
       "require": "./package-dist/ui-gallery.umd.cjs",
       "types": "./package-dist/index.d.ts"
     }
