@@ -24,10 +24,13 @@ export default defineConfig({
           react: "React",
           "react-dom": "ReactDOM",
         },
-        assetFileNames: `assets/[name]-[hash][extname]`,
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name === "index.css") return "index.css";
+          return `assets/[name]-[hash][extname]`;
+        },
       },
     },
-    cssCodeSplit: false,
+    cssCodeSplit: true,
     outDir: "package-dist",
   },
   resolve: {
