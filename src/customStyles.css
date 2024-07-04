@@ -1,0 +1,66 @@
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.three-line-ellipsis {
+  width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.hoverable-card:hover {
+  border-color: var(--primary-color);
+  transition: 0.5s ease-in-out;
+}
+
+/* Hide the scrollbar for all elements */
+*::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Style the scrollbar for the * element */
+*::-webkit-scrollbar {
+  display: block !important; /* Enable the scrollbar for the * element */
+  width: 6px !important; /* Set the width of the scrollbar track */
+  height: 6px !important; /* Set the height of the scrollbar thumb */
+  background-color: transparent !important; /* Set the background color of the scrollbar track */
+  border-radius: 4px !important; /* Set the border radius of the scrollbar thumb */
+  cursor: pointer !important; /* Change the cursor on hover */
+}
+
+/* Style the scrollbar thumb */
+*::-webkit-scrollbar-thumb {
+  background-color: var(
+    --border
+  ) !important; /* Set the background color of the scrollbar thumb */
+  border-radius: 4px !important; /* Set the border radius of the scrollbar thumb */
+  cursor: pointer !important; /* Change the cursor on hover */
+}
+
+/* Change the scrollbar thumb color on hover */
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--border) !important;
+  cursor: pointer !important; /* Set the background color of the scrollbar thumb on hover */
+}
+
+.ai-icon-rotate {
+  animation: rotate 4s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
