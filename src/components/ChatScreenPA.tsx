@@ -1,5 +1,5 @@
 import { Flex } from "antd";
-import { ElementType, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AILoader from "./AILoader";
 import { AIMessageTrendsFunnels } from "./AIMessageTrendsFunnels";
 import { ChatInput } from "./ChatInput";
@@ -15,9 +15,6 @@ export interface ChatScreenPAProps<T> {
   messages: T[];
   // eslint-disable-next-line no-unused-vars
   handleSendFollowupMessage: (userQuery: string) => void;
-  AIMessage: ElementType;
-  UserMessage: ElementType;
-  AILoader: ElementType;
   isMessageLoading: boolean;
 }
 
