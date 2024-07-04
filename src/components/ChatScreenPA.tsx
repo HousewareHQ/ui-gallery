@@ -8,7 +8,7 @@ import { UserMessage } from "./UserMessage";
 export interface BaseMessage {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   content: any;
-  type: "ai" | "user";
+  type: string;
 }
 
 export interface ChatScreenPAProps<T> {

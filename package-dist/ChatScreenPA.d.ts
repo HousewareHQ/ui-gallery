@@ -2,7 +2,7 @@ import { ElementType } from 'react';
 
 export interface BaseMessage {
     content: any;
-    type: "ai" | "user";
+    type: string;
 }
 export interface ChatScreenPAProps<T> {
     messages: T[];
