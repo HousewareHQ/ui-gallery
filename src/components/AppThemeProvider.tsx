@@ -1,9 +1,20 @@
 import { ConfigProvider } from "antd";
 import { ReactNode, useEffect, useState } from "react";
 import { createContext } from "use-context-selector";
-import { appTheme, Theme } from "./theme";
+import { defaultAppTheme } from "./theme";
 
 export type AppThemeModeType = "light" | "dark";
+
+type Theme = {
+  "--primary-color": string;
+  "--cta-text": string;
+  "--background": string;
+  "--primary-text": string;
+  "--border": string;
+  "--secondary-text": string;
+  "--foreground": string;
+  "--chart-colors": Array<string>;
+};
 
 export interface AppThemeContext {
   appThemeMode: AppThemeModeType;
@@ -11,14 +22,17 @@ export interface AppThemeContext {
   setAppThemeMode: (themeMode: AppThemeModeType) => void;
   themeColors: Theme;
 }
+
 export const ThemeContext = createContext<AppThemeContext | undefined>(
   undefined
 );
 
 export default function AppThemeProvider({
   children,
+  appTheme = defaultAppTheme,
 }: {
   children: ReactNode;
+  appTheme: Record<AppThemeModeType, Theme>;
 }) {
   const initialThemeMode =
     (localStorage?.getItem("appThemeMode") as AppThemeModeType) || "light";

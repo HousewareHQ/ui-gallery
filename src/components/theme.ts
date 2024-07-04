@@ -1,24 +1,4 @@
-export type Theme = {
-  "--primary-color": string;
-  "--cta-text": string;
-  "--background": string;
-  "--primary-text": string;
-  "--border": string;
-  "--secondary-text": string;
-  "--foreground": string;
-  "--chart-colors": Array<string>;
-};
-
-// Claude
-// "--primary-color": "#ba5a38",
-//     "--cta-text": "white",
-//     "--background": "#fef6ed",
-//     "--primary-text": "#3c3838",
-//     "--border": "#e9e0d6",
-//     "--secondary-text": "#9e9b9b",
-//     "--foreground": "#fffcfa",
-
-export const appTheme = {
+export const defaultAppTheme = {
   light: {
     "--primary-color": "#49a5aa", // Always keep this in hex format
     "--cta-text": "white",
