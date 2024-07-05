@@ -19,6 +19,6 @@ export interface AppThemeContext {
 export declare const ThemeContext: import('use-context-selector').Context<AppThemeContext | undefined>;
 export default function AppThemeProvider({ children, appTheme, }: {
     children: ReactNode;
-    appTheme: Record<AppThemeModeType, Theme>;
+    appTheme?: Record<AppThemeModeType, Theme>;
 }): import("react/jsx-runtime").JSX.Element;
 export {};

@@ -32,7 +32,7 @@ export default function AppThemeProvider({
   appTheme = defaultAppTheme,
 }: {
   children: ReactNode;
-  appTheme: Record<AppThemeModeType, Theme>;
+  appTheme?: Record<AppThemeModeType, Theme>;
 }) {
   const initialThemeMode =
     (localStorage?.getItem("appThemeMode") as AppThemeModeType) || "light";
