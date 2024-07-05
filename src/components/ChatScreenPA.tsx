@@ -1,4 +1,4 @@
-import { Flex } from "antd";
+import { Button, Flex } from "antd";
 import { useEffect, useRef, useState } from "react";
 import AILoader from "./AILoader";
 import { AIMessageTrendsFunnels } from "./AIMessageTrendsFunnels";
@@ -13,15 +13,22 @@ export interface BaseMessage {
 
 export interface ChatScreenPAProps<T> {
   messages: T[];
-  // eslint-disable-next-line no-unused-vars
-  handleSendFollowupMessage: (userQuery: string) => void;
+
+  handleSendFollowupMessage: (
+    // eslint-disable-next-line no-unused-vars
+    userQuery: string,
+    // eslint-disable-next-line no-unused-vars
+    regenerateResponse?: boolean
+  ) => void;
   isMessageLoading: boolean;
+  setMessages: React.Dispatch<React.SetStateAction<T[]>>;
 }
 
 export function ChatScreenPA<T extends BaseMessage>({
   messages,
   handleSendFollowupMessage,
   isMessageLoading,
+  setMessages,
 }: ChatScreenPAProps<T>) {
   const [userQuery, setUserQuery] = useState("");
   const chatsContainerRef = useRef<HTMLDivElement | null>(null);
@@ -48,6 +55,19 @@ export function ChatScreenPA<T extends BaseMessage>({
       align="center"
       justify="flex-start"
     >
+      <Button
+        type="primary"
+        onClick={() => {
+          setMessages([]);
+        }}
+        style={{
+          position: "absolute",
+          top: 16,
+          right: 32,
+        }}
+      >
+        Start new chat
+      </Button>
       <Flex
         ref={chatsContainerRef}
         vertical
@@ -66,7 +86,11 @@ export function ChatScreenPA<T extends BaseMessage>({
       >
         {messages.map((message, index) =>
           message && message?.type === "ai" ? (
-            <AIMessageTrendsFunnels<T> index={index} messages={messages} />
+            <AIMessageTrendsFunnels<T>
+              index={index}
+              messages={messages}
+              handleRegenerateResponse={handleSendFollowupMessage}
+            />
           ) : (
             <UserMessage<T> message={message} />
           )

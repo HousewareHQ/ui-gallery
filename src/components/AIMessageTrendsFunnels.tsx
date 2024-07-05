@@ -1,5 +1,6 @@
-import { Flex, Image, Typography } from "antd";
+import { Button, Flex, Image, Tooltip, Typography } from "antd";
 
+import { ArrowsClockwise } from "@phosphor-icons/react";
 import { Funnels } from "./charts/Funnels";
 import { Trends } from "./charts/Trends";
 import { BaseMessage } from "./ChatScreenPA";
@@ -7,12 +8,17 @@ import { BaseMessage } from "./ChatScreenPA";
 export function AIMessageTrendsFunnels<T extends BaseMessage>({
   index,
   messages,
+  handleRegenerateResponse,
 }: {
   index: number;
   messages: T[];
+  handleRegenerateResponse: (
+    userQuery: string,
+    regenerateResponse?: boolean
+  ) => void;
 }) {
   const content = messages[index]?.content;
-  // const isLastMessage = messages?.length - 1 === index;
+  const isLastMessage = messages?.length - 1 === index;
 
   const aiChatMessage = () => {
     const responseType = content?.query_response?.type;
@@ -69,20 +75,20 @@ export function AIMessageTrendsFunnels<T extends BaseMessage>({
         >
           <Typography>{aiChatMessage()}</Typography>
         </Flex>
-        {/* {isLastMessage && (
+        {isLastMessage && (
           <Tooltip title="Regenerate" placement="bottom">
             <Button
               onClick={() => {
-                handleRegenerateResponse({
-                  customMessage: messages.slice(0, messages.length - 1),
-                  customUserQuery: messages[messages.length - 2]?.content,
-                });
+                handleRegenerateResponse(
+                  messages[messages.length - 2]?.content || ("" as string),
+                  true
+                );
               }}
               type="text"
               icon={<ArrowsClockwise size={16} />}
             />
           </Tooltip>
-        )} */}
+        )}
       </Flex>
     </Flex>
   );
