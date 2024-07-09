@@ -4,6 +4,7 @@ import { ChatScreenPA } from "../components/ChatScreenPA";
 
 const ActionsData = {
   handleSendFollowupMessage: fn(),
+  setMessages: fn(),
 };
 
 const meta: Meta<typeof ChatScreenPA> = {

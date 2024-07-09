@@ -1,4 +1,4 @@
-import { Button, Flex } from "antd";
+import { Button, Flex, Popconfirm } from "antd";
 import { useEffect, useRef, useState } from "react";
 import AILoader from "./AILoader";
 import { AIMessageTrendsFunnels } from "./AIMessageTrendsFunnels";
@@ -55,19 +55,27 @@ export function ChatScreenPA<T extends BaseMessage>({
       align="center"
       justify="flex-start"
     >
-      <Button
-        type="primary"
-        onClick={() => {
+      <Popconfirm
+        title="You'll lose your current chat history."
+        description="Are you sure you want to start a new chat?"
+        placement="bottomLeft"
+        okText="Yes"
+        cancelText="No"
+        onConfirm={() => {
           setMessages([]);
         }}
-        style={{
-          position: "absolute",
-          top: 16,
-          right: 32,
-        }}
       >
-        Start new chat
-      </Button>
+        <Button
+          type="primary"
+          style={{
+            position: "absolute",
+            top: 16,
+            right: 32,
+          }}
+        >
+          Start new chat
+        </Button>
+      </Popconfirm>
       <Flex
         ref={chatsContainerRef}
         vertical
