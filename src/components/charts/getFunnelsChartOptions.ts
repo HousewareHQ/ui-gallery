@@ -1,4 +1,7 @@
 import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
+
+dayjs.extend(advancedFormat);
 
 function getSeriesKey(funnelData: any, funnelsConfiguration: any) {
   const conversionCriteriaLabel = `Overall Conversion (${
