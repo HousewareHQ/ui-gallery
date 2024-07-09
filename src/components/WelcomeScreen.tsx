@@ -9,7 +9,10 @@ import { useThemeManager } from "./useThemeManager";
 export interface WelcomeScreenProps {
   // eslint-disable-next-line no-unused-vars
   handleSendMessage: (userQuery: string) => void;
-  suggestions: string[];
+  suggestions: Array<{
+    title: string;
+    content: string;
+  }>;
   heading: string;
   subHeading: string;
 }
@@ -69,26 +72,28 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
           style={{
             position: "absolute",
             top: "-0.7rem",
-            left: "43%",
+            left: 0,
+            right: 0,
+            marginLeft: "auto",
+            marginRight: "auto",
             width: "max-content",
             borderColor: themeColors["--primary-color"],
             backgroundColor: themeColors["--background"],
             color: themeColors["--primary-color"],
           }}
         >
-          {" "}
-          Getting Started
+          Suggestions
         </Tag>
         <Flex vertical align="center" gap={18}>
-          <Typography.Title
-            level={5}
+          <Typography.Text
             style={{
               marginTop: 0,
               fontFamily: "Sedan",
             }}
+            type="secondary"
           >
-            Suggested Questions
-          </Typography.Title>
+            Get started with an example below
+          </Typography.Text>
           <Flex
             gap={12}
             style={{
@@ -97,14 +102,14 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
           >
             {suggestions.map((suggestion) => (
               <Card
-                key={suggestion}
+                key={suggestion.title}
                 style={{
-                  width: "33%",
+                  width: `calc(100% / ${suggestions.length})`,
                   overflow: "hidden",
                   cursor: "pointer",
                 }}
                 onClick={() => {
-                  setUserQuery(suggestion);
+                  setUserQuery(suggestion.content);
                   inputRef?.current?.focus();
                 }}
                 rootClassName="hoverable-card"
@@ -115,14 +120,14 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
                 }}
               >
                 <Typography.Text
-                  type="secondary"
+                  // type="secondary"
                   rootClassName="three-line-ellipsis"
                   style={{
                     textAlign: "center",
                   }}
                 >
                   {" "}
-                  {suggestion}
+                  {suggestion.title}
                 </Typography.Text>
               </Card>
             ))}
