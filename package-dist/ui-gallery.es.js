@@ -67449,7 +67449,7 @@ Zn.extend(T4);
 function Xb(t, e) {
   var s;
   const r = `Overall Conversion (${((s = e == null ? void 0 : e.conversion) == null ? void 0 : s.criteria) || "Uniques"})`;
-  let n = `${t != null && t.cohort ? t.cohort_value ? `${t.cohort}` : `Not in ${t.cohort}` : (t == null ? void 0 : t.value) || r}`;
+  let n = `${t != null && t.cohort ? t != null && t.cohort_value ? `${t.cohort}` : `Not in ${t.cohort}` : (t == null ? void 0 : t.value) === "$all" ? r : t.value}`;
   const a = t != null && t.cohort ? t.cohort_value ? `${t.cohort}` : `Not in ${t.cohort}` : "", i = [...(t == null ? void 0 : t.dimensions) ?? []], o = i != null && i.length ? i.map((l) => `${l.name} is ${l.value}`).join(" & ") : "";
   return (a || o) && (n = `${a}${a && o ? ", " : ""}${o}`), { conversionCriteriaLabel: r, seriesNameToGroupBy: n };
 }

@@ -2,7 +2,7 @@ export default function getFunnelsChartOptions({ chartData, queryConfiguration, 
     chartData: any;
     queryConfiguration: any;
     themeColors: any;
-    themeMode: "light" | "dark";
+    themeMode: 'light' | 'dark';
 }): {
     grid: {
         left: number;
