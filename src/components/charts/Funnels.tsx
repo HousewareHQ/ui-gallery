@@ -1,6 +1,7 @@
 import { Card, Flex, Typography } from "antd";
 import ReactECharts from "echarts-for-react";
 
+import Markdown from "react-markdown";
 import { useThemeManager } from "../useThemeManager";
 import getFunnelsChartOptions from "./getFunnelsChartOptions";
 
@@ -20,7 +21,13 @@ export function Funnels({
   });
 
   return (
-    <Flex vertical gap={16}>
+    <Flex
+      vertical
+      gap={16}
+      style={{
+        width: "100%",
+      }}
+    >
       <Card
         size="small"
         style={{
@@ -38,7 +45,9 @@ export function Funnels({
           opts={{ renderer: "canvas" }}
         />
       </Card>
-      <Typography>{chartResponse.summary}</Typography>
+      <Typography>
+        <Markdown>{chartResponse.summary}</Markdown>
+      </Typography>
     </Flex>
   );
 }

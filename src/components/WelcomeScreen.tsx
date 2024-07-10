@@ -88,7 +88,6 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
           <Typography.Text
             style={{
               marginTop: 0,
-              fontFamily: "Sedan",
             }}
             type="secondary"
           >

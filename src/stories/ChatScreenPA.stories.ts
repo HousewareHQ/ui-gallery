@@ -35,7 +35,14 @@ export const TextResponse: Story = {
         type: "user",
       },
       {
-        content: "Hey",
+        content: {
+          query_configuration: null,
+          query_response: {
+            data: "Hello! How can I assist you with your product usage data today? I can help you analyze trends and funnels related to your product events. Do you have any specific events or sequences of events in mind?",
+            summary: "",
+            type: "efwoei",
+          },
+        },
         type: "ai",
       },
     ],

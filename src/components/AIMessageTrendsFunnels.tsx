@@ -1,6 +1,9 @@
-import { Button, Flex, Image, Tooltip, Typography } from "antd";
+import { Button, Card, Flex, Image, Typography } from "antd";
 
-import { ArrowsClockwise } from "@phosphor-icons/react";
+import { ArrowClockwise, CheckCircle, Clipboard } from "@phosphor-icons/react";
+import { useState } from "react";
+import Markdown from "react-markdown";
+import "../customStyles.css";
 import { Funnels } from "./charts/Funnels";
 import { Trends } from "./charts/Trends";
 import { BaseMessage } from "./ChatScreenPA";
@@ -19,6 +22,7 @@ export function AIMessageTrendsFunnels<T extends BaseMessage>({
 }) {
   const content = messages[index]?.content;
   const isLastMessage = messages?.length - 1 === index;
+  const [isCopied, setIsCopied] = useState(false);
 
   const aiChatMessage = () => {
     const responseType = content?.query_response?.type;
@@ -27,7 +31,11 @@ export function AIMessageTrendsFunnels<T extends BaseMessage>({
 
     switch (responseType) {
       case "text":
-        return data;
+        return (
+          <Typography>
+            <Markdown>{data}</Markdown>
+          </Typography>
+        );
       case "trend":
         return (
           <Trends
@@ -43,12 +51,43 @@ export function AIMessageTrendsFunnels<T extends BaseMessage>({
           />
         );
       default:
-        return "I am not sure how to respond to that, can you please click the regenerate button and try again?";
+        return (
+          <Typography>
+            I am not sure how to respond to that, can you please try again?
+          </Typography>
+        );
     }
   };
 
+  const handleCopyToClipboard = () => {
+    let toBeSavedContent = "";
+
+    const responseType = content?.query_response?.type;
+    const data = content?.query_response?.data;
+
+    if (responseType === "text") {
+      toBeSavedContent = data;
+    } else if (responseType === "trend" || responseType === "funnel") {
+      toBeSavedContent = content?.query_response?.summary || "";
+    } else {
+      toBeSavedContent =
+        "I am not sure how to respond to that, can you please try again?";
+    }
+
+    navigator.clipboard.writeText(toBeSavedContent);
+    setIsCopied(true);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 2000);
+  };
+
   return (
-    <Flex style={{ width: "90%" }} align="flex-start" gap={8}>
+    <Flex
+      style={{ width: "90%" }}
+      align="flex-start"
+      gap={8}
+      className="ai-message-wrapper"
+    >
       <Image
         src="/ai-icon.svg"
         height={40}
@@ -63,31 +102,65 @@ export function AIMessageTrendsFunnels<T extends BaseMessage>({
       <Flex
         vertical
         style={{
-          maxWidth: "100%",
+          width: "100%",
         }}
-        gap={2}
-        align="flex-end"
+        gap={14}
       >
-        <Flex
-          style={{
-            borderTopLeftRadius: 0,
-          }}
-        >
-          <Typography>{aiChatMessage()}</Typography>
-        </Flex>
+        {aiChatMessage()}
+
         {isLastMessage && (
-          <Tooltip title="Regenerate" placement="bottom">
-            <Button
-              onClick={() => {
-                handleRegenerateResponse(
-                  messages[messages.length - 2]?.content || ("" as string),
-                  true
-                );
-              }}
-              type="text"
-              icon={<ArrowsClockwise size={16} />}
-            />
-          </Tooltip>
+          <Card
+            className="ai-message-actions"
+            size="small"
+            style={{
+              width: "max-content",
+              backgroundColor: "var(--background)",
+              alignSelf: "flex-end",
+            }}
+            styles={{
+              body: {
+                padding: 3,
+              },
+            }}
+          >
+            <Flex>
+              <Button
+                size="small"
+                onClick={handleCopyToClipboard}
+                type="text"
+                icon={
+                  isCopied ? (
+                    <CheckCircle size={"0.7rem"} />
+                  ) : (
+                    <Clipboard size={"0.7rem"} />
+                  )
+                }
+                style={{
+                  fontSize: "0.7rem",
+                  color: "var(--secondary-text)",
+                }}
+              >
+                Copy
+              </Button>
+              <Button
+                size="small"
+                onClick={() => {
+                  handleRegenerateResponse(
+                    messages[messages.length - 2]?.content || ("" as string),
+                    true
+                  );
+                }}
+                type="text"
+                icon={<ArrowClockwise size={"0.7rem"} />}
+                style={{
+                  fontSize: "0.7rem",
+                  color: "var(--secondary-text)",
+                }}
+              >
+                Retry
+              </Button>
+            </Flex>
+          </Card>
         )}
       </Flex>
     </Flex>
