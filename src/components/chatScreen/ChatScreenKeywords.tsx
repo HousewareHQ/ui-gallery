@@ -1,3 +1,4 @@
+import { GlobeHemisphereWest, Translate } from "@phosphor-icons/react";
 import { Button, Flex, Popconfirm, TableColumnsType, Typography } from "antd";
 import { useState } from "react";
 import { ChatInput } from "../common/ChatInput";
@@ -17,36 +18,41 @@ interface DataType {
   competition: string;
   lowBid: string;
   highBid: string;
+  key: string;
 }
 
 export interface ChatScreenKeywordsProps {
   handleStartFresh: () => void;
   keywordsData: Array<DataType>;
   pageHeading: string;
-  handleProceed: () => void;
+  // eslint-disable-next-line no-unused-vars
+  handleProceed: (selectedRows: DataType[]) => void;
+  productCampaign: string;
 }
 
-const rowSelection = {
-  onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      "selectedRows: ",
-      selectedRows
-    );
-  },
-  //   getCheckboxProps: (record: DataType) => ({
-  //     disabled: record.name === "Disabled User", // Column configuration not to be checked
-  //     name: record.name,
-  //   }),
-};
+// const rowSelection = {
+//   onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
+//     console.log(
+//       `selectedRowKeys: ${selectedRowKeys}`,
+//       "selectedRows: ",
+//       selectedRows
+//     );
+//   },
+//   //   getCheckboxProps: (record: DataType) => ({
+//   //     disabled: record.name === "Disabled User", // Column configuration not to be checked
+//   //     name: record.name,
+//   //   }),
+// };
 
 export function ChatScreenKeywords({
   pageHeading,
   keywordsData,
   handleStartFresh,
   handleProceed,
+  productCampaign,
 }: ChatScreenKeywordsProps) {
   const [userQuery, setUserQuery] = useState("");
+  const [selectedRows, setSelectedRows] = useState<DataType[]>([]);
 
   const columns: TableColumnsType<DataType> = [
     {
@@ -56,26 +62,31 @@ export function ChatScreenKeywords({
     {
       title: "Monthly Search Volume",
       dataIndex: "monthlySearchVolume",
+      align: "center",
     },
-    {
-      title: "Avg Monthly Searches",
-      dataIndex: "avgMonthlySearches",
-    },
+    // {
+    //   title: "Avg Monthly Searches",
+    //   dataIndex: "avgMonthlySearches",
+    // },
     {
       title: "CPC",
       dataIndex: "cpc",
+      align: "center",
     },
     {
       title: "Competition",
       dataIndex: "competition",
+      align: "center",
     },
     {
       title: "Low Bid",
       dataIndex: "lowBid",
+      align: "center",
     },
     {
       title: "High Bid",
       dataIndex: "highBid",
+      align: "center",
     },
   ];
   return (
@@ -92,7 +103,7 @@ export function ChatScreenKeywords({
           height: "100%",
           width: "60vw",
           padding: 16,
-          overflow: "hidden",
+          overflow: "auto",
         }}
         vertical
         align="center"
@@ -109,6 +120,41 @@ export function ChatScreenKeywords({
         >
           {pageHeading}
         </Typography.Title>
+
+        <Flex
+          justify="space-between"
+          style={{
+            width: "100%",
+          }}
+        >
+          <Typography.Title level={5} style={{ marginBottom: 0 }}>
+            {productCampaign}
+          </Typography.Title>
+
+          <Flex gap={4} align="center">
+            <Button
+              type="text"
+              style={{
+                fontSize: "0.8rem",
+              }}
+              size="small"
+              icon={<GlobeHemisphereWest />}
+            >
+              India
+            </Button>
+
+            <Button
+              type="text"
+              style={{
+                fontSize: "0.8rem",
+              }}
+              size="small"
+              icon={<Translate />}
+            >
+              English
+            </Button>
+          </Flex>
+        </Flex>
         <CustomTable
           style={{
             width: "100%",
@@ -117,16 +163,35 @@ export function ChatScreenKeywords({
           columns={columns}
           rowSelection={{
             type: "checkbox",
-            ...rowSelection,
+            onChange: (
+              _selectedRowKeys: React.Key[],
+              selectedRows: DataType[]
+            ) => {
+              setSelectedRows(selectedRows);
+            },
           }}
         />
         <Flex
-          justify="flex-end"
+          justify="space-between"
           style={{
             width: "100%",
           }}
         >
-          <Button type="primary" onClick={handleProceed}>
+          <Typography.Text
+            type="secondary"
+            style={{
+              marginTop: "-4px",
+              fontSize: "0.7rem",
+            }}
+          >
+            Powered by Google Ads, Semrush
+          </Typography.Text>
+          <Button
+            type="primary"
+            onClick={() => {
+              handleProceed(selectedRows);
+            }}
+          >
             Proceed
           </Button>
         </Flex>

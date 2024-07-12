@@ -1,4 +1,4 @@
-import { CaretDown } from "@phosphor-icons/react";
+import { CaretDown, Globe } from "@phosphor-icons/react";
 import {
   Button,
   Card,
@@ -78,21 +78,26 @@ export function ChatScreenAdsPreview({
   const [descriptionsSelected, setDescriptionsSelected] =
     useState<string[]>(descriptions);
 
+  const previewHeadline = headingsSelected[0] || "Headline";
+  const previewDescription = descriptionsSelected[0] || "Description";
+
   return (
     <Flex
       style={{
         width: "100vw",
         height: "100vh",
+        overflow: "auto",
+        padding: 16,
+        // paddingBottom: "5vh",
       }}
-      align="center"
       justify="center"
     >
       <Flex
         style={{
-          height: "100%",
-          width: "50vw",
-          padding: 16,
-          overflow: "hidden",
+          height: "100vh",
+          width: "65vw",
+
+          // overflow: "auto",
         }}
         vertical
         align="center"
@@ -187,8 +192,8 @@ export function ChatScreenAdsPreview({
           align="flex-start"
           style={{
             width: "100%",
-            height: "100%",
-            overflow: "hidden",
+            // height: "100%",
+            // overflow: "hidden",
           }}
           gap={4}
         >
@@ -221,57 +226,86 @@ export function ChatScreenAdsPreview({
                   margin: 0,
                 }}
               />
-              <Flex vertical gap={8}>
-                <Typography.Text>Final URL</Typography.Text>
-                <Input
-                  defaultValue={finalURL}
-                  style={{
-                    width: "100%",
-                  }}
-                />
-              </Flex>
-              <Flex vertical gap={8}>
-                <Typography.Text>Display Link</Typography.Text>
-                <Input
-                  defaultValue={displayLink}
-                  style={{
-                    width: "100%",
-                  }}
-                />
-              </Flex>
-              <Flex vertical gap={8}>
-                <Typography.Text>Headlines</Typography.Text>
-                <Select
-                  mode="tags"
-                  maxCount={15}
-                  style={{ width: "100%" }}
-                  value={headingsSelected}
-                  onChange={setHeadingsSelected}
-                  suffixIcon={<CaretDown />}
-                  placeholder="Choose your headlines"
-                  options={headings.map((heading) => ({
-                    label: heading,
-                    value: heading,
-                  }))}
-                />
-                <SuffixForSelect maxCount={15} data={headingsSelected} />
-              </Flex>
-              <Flex vertical gap={8}>
-                <Typography.Text>Descriptions</Typography.Text>
-                <Select
-                  mode="tags"
-                  maxCount={4}
-                  value={descriptionsSelected}
-                  onChange={setDescriptionsSelected}
-                  suffixIcon={<CaretDown />}
-                  style={{ width: "100%" }}
-                  placeholder="Choose your descriptions"
-                  options={descriptions.map((description) => ({
-                    label: description,
-                    value: description,
-                  }))}
-                />
-                <SuffixForSelect maxCount={4} data={descriptionsSelected} />
+              <Flex gap={24}>
+                <Flex vertical flex={0.5}>
+                  <Flex vertical gap={8}>
+                    <Typography.Text>Final URL</Typography.Text>
+                    <Input
+                      defaultValue={finalURL}
+                      style={{
+                        width: "100%",
+                      }}
+                    />
+                  </Flex>
+                  <Flex vertical gap={8}>
+                    <Typography.Text>Display Link</Typography.Text>
+                    <Input
+                      defaultValue={displayLink}
+                      style={{
+                        width: "100%",
+                      }}
+                    />
+                  </Flex>
+                  <Flex vertical gap={8}>
+                    <Typography.Text>Headlines</Typography.Text>
+                    <Select
+                      mode="tags"
+                      maxCount={15}
+                      style={{ width: "100%" }}
+                      value={headingsSelected}
+                      onChange={setHeadingsSelected}
+                      suffixIcon={<CaretDown />}
+                      placeholder="Choose your headlines"
+                      options={headings.map((heading) => ({
+                        label: heading,
+                        value: heading,
+                      }))}
+                    />
+                    <SuffixForSelect maxCount={15} data={headingsSelected} />
+                  </Flex>
+                  <Flex vertical gap={8}>
+                    <Typography.Text>Descriptions</Typography.Text>
+                    <Select
+                      mode="tags"
+                      maxCount={4}
+                      value={descriptionsSelected}
+                      onChange={setDescriptionsSelected}
+                      suffixIcon={<CaretDown />}
+                      style={{ width: "100%" }}
+                      placeholder="Choose your descriptions"
+                      options={descriptions.map((description) => ({
+                        label: description,
+                        value: description,
+                      }))}
+                    />
+                    <SuffixForSelect maxCount={4} data={descriptionsSelected} />
+                  </Flex>
+                </Flex>
+                <Flex flex={0.5} vertical>
+                  <Typography.Title level={5}>Preview</Typography.Title>
+                  <Card
+                    style={{
+                      width: "100%",
+                      height: "max-content",
+                      background: "var(--background)",
+                    }}
+                  >
+                    <Flex vertical>
+                      <Typography.Title level={5}>Sponsored</Typography.Title>
+                      <Typography.Text>
+                        <Globe /> {finalURL}
+                      </Typography.Text>
+
+                      <Typography.Title
+                        level={4}
+                        style={{ color: "var(--primary-color)", margin: 0 }}
+                      >
+                        {previewHeadline}
+                      </Typography.Title>
+                      <Typography.Text>{previewDescription}</Typography.Text>
+                    </Flex>
+                  </Card>
+                </Flex>
               </Flex>
             </Flex>
           </Card>

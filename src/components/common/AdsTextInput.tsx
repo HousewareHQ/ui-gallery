@@ -18,7 +18,7 @@ export interface AdsTextInputProps {
 
 export const AdsTextInput: React.FC<AdsTextInputProps> = ({
   inputRef,
-  placeholder = "Keywords related to your products separated by commas...",
+  placeholder = "Describe your product campaign here...",
   userQuery,
   setUserQuery,
   handleSendMessage,

@@ -10,12 +10,14 @@ interface DataType {
     competition: string;
     lowBid: string;
     highBid: string;
+    key: string;
 }
 export interface ChatScreenKeywordsProps {
     handleStartFresh: () => void;
     keywordsData: Array<DataType>;
     pageHeading: string;
-    handleProceed: () => void;
+    handleProceed: (selectedRows: DataType[]) => void;
+    productCampaign: string;
 }
-export declare function ChatScreenKeywords({ pageHeading, keywordsData, handleStartFresh, handleProceed, }: ChatScreenKeywordsProps): import("react/jsx-runtime").JSX.Element;
+export declare function ChatScreenKeywords({ pageHeading, keywordsData, handleStartFresh, handleProceed, productCampaign, }: ChatScreenKeywordsProps): import("react/jsx-runtime").JSX.Element;
 export {};
