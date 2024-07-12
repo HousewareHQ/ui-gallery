@@ -20,5 +20,9 @@ export interface ChatScreenAdsPreviewProps<T> {
         language: string;
     };
     keywords: string[];
+    headings: string[];
+    descriptions: string[];
+    finalURL: string;
+    displayLink: [string, string];
 }
-export declare function ChatScreenAdsPreview<T extends BaseMessage>({ messages, setMessages, pageHeading, forecast, keywords, }: ChatScreenAdsPreviewProps<T>): import("react/jsx-runtime").JSX.Element;
+export declare function ChatScreenAdsPreview<T extends BaseMessage>({ messages, setMessages, pageHeading, forecast, keywords, headings, descriptions, finalURL, displayLink, }: ChatScreenAdsPreviewProps<T>): import("react/jsx-runtime").JSX.Element;
