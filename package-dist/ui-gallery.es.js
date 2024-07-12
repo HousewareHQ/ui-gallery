@@ -80707,30 +80707,35 @@ function HVe({
   customMessageComponent: o,
   customMessageActionCardItem: a
 }) {
-  var f;
-  const s = (f = t[e]) == null ? void 0 : f.content, u = (t == null ? void 0 : t.length) - 1 === e && r, c = o == null ? void 0 : o.component, d = ({
-    messages: p,
-    index: g,
-    handleRegenerateResponse: v
+  var p;
+  const s = (p = t[e]) == null ? void 0 : p.content, u = (t == null ? void 0 : t.length) - 1 === e && r, c = o == null ? void 0 : o.component, d = c && (o == null ? void 0 : o.type);
+  console.log("isCustomComponentValid:", d), console.log("content:", s);
+  debugger;
+  const h = ({
+    messages: g,
+    index: v,
+    handleRegenerateResponse: m
   }) => c ? /* @__PURE__ */ ie.jsx(
     c,
     {
-      messages: p,
-      index: g,
-      handleSendFollowupMessage: v
+      messages: g,
+      index: v,
+      handleSendFollowupMessage: m
     }
-  ) : null, h = () => {
-    var m, y;
-    const p = ((m = s == null ? void 0 : s.query_response) == null ? void 0 : m.type) || (s == null ? void 0 : s.type), g = ((y = s == null ? void 0 : s.query_response) == null ? void 0 : y.data) || (s == null ? void 0 : s.data), v = s == null ? void 0 : s.query_configuration;
-    switch (p) {
+  ) : null, f = () => {
+    var y, C;
+    const g = s.type || ((y = s == null ? void 0 : s.query_response) == null ? void 0 : y.type), v = (s == null ? void 0 : s.data) || ((C = s == null ? void 0 : s.query_response) == null ? void 0 : C.data), m = s == null ? void 0 : s.query_configuration;
+    console.log("content:", s);
+    debugger;
+    switch (g) {
       case "text":
-        return /* @__PURE__ */ ie.jsx(xr, { children: /* @__PURE__ */ ie.jsx(HS, { children: g }) });
+        return /* @__PURE__ */ ie.jsx(xr, { children: /* @__PURE__ */ ie.jsx(HS, { children: v }) });
       case "trend":
         return /* @__PURE__ */ ie.jsx(
           BVe,
           {
             chartResponse: s.query_response,
-            queryConfiguration: v
+            queryConfiguration: m
           }
         );
       case "funnel":
@@ -80738,7 +80743,7 @@ function HVe({
           NVe,
           {
             chartResponse: s.query_response,
-            queryConfiguration: v
+            queryConfiguration: m
           }
         );
       default:
@@ -80776,11 +80781,11 @@ function HVe({
             },
             gap: 14,
             children: [
-              c ? d({
+              d ? h({
                 messages: t,
                 index: e,
                 handleRegenerateResponse: i
-              }) : h(),
+              }) : f(),
               u && /* @__PURE__ */ ie.jsx(
                 $Ve,
                 {
