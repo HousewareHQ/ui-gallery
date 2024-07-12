@@ -86,18 +86,18 @@ export function ChatScreenAdsPreview({
       style={{
         width: "100vw",
         height: "100vh",
-        overflow: "auto",
+        overflow: "scroll",
         padding: 16,
-        // paddingBottom: "5vh",
       }}
-      justify="center"
+      justify="flex-start"
+      vertical
+      align="center"
     >
       <Flex
         style={{
-          height: "100vh",
-          width: "65vw",
+          width: "75vw",
 
-          // overflow: "auto",
+          overflow: "auto",
         }}
         vertical
         align="center"
@@ -227,7 +227,13 @@ export function ChatScreenAdsPreview({
                 }}
               />
               <Flex gap={24}>
-                <Flex vertical flex={0.5}>
+                <Flex
+                  vertical
+                  flex={0.5}
+                  style={{
+                    maxWidth: "50%",
+                  }}
+                >
                   <Flex vertical gap={8}>
                     <Typography.Text>Final URL</Typography.Text>
                     <Input
