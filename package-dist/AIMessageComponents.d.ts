@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { BaseMessage, CustomMessageComponentProp } from './ChatScreenPA';
+import { BaseMessage, CustomMessageComponentProp } from './chatScreen/ChatScreenPA';
 
 export declare function AIMessageComponents<T extends BaseMessage>({ index, messages, showMessageActionCard, hideActionCardItems, handleRegenerateResponse, customMessageComponent, customMessageActionCardItem, }: {
     index: number;

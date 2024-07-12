@@ -4,8 +4,10 @@ export { WelcomeScreenConversations } from './welcomeScreen/WelcomeScreenConvers
 export type { WelcomeScreenConversationsProps } from './welcomeScreen/WelcomeScreenConversations';
 export { WelcomeScreenAds } from './welcomeScreen/WelcomeScreenAds';
 export type { WelcomeScreenAdsProps } from './welcomeScreen/WelcomeScreenAds';
-export { ChatScreenPA } from './ChatScreenPA';
-export type { ChatScreenPAProps } from './ChatScreenPA';
+export { ChatScreenPA } from './chatScreen/ChatScreenPA';
+export type { ChatScreenPAProps } from './chatScreen/ChatScreenPA';
+export { ChatScreenAdsPreview } from './chatScreen/ChatScreenAdsPreview';
+export type { ChatScreenAdsPreviewProps } from './chatScreen/ChatScreenAdsPreview';
 export { default as AiMessageTable } from './AiMessageTable';
 export type { AiMessageTableProps } from './AiMessageTable';
 export { HousewareBranding } from './common/HousewareBranding';
