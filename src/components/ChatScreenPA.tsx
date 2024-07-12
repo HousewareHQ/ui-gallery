@@ -124,7 +124,11 @@ export function ChatScreenPA<T extends BaseMessage>({
               messages={messages}
               hideActionCardItems={hideActionCardItems}
               showMessageActionCard={showMessageActionCard}
-              customMessageComponent={customMessageComponent}
+              customMessageComponent={
+                customMessageComponent?.type === message.type
+                  ? customMessageComponent
+                  : undefined
+              }
               handleRegenerateResponse={handleSendFollowupMessage}
               customMessageActionCardItem={customMessageActionCardItem}
             />;
@@ -133,7 +137,11 @@ export function ChatScreenPA<T extends BaseMessage>({
               key={index}
               index={index}
               messages={messages}
-              customMessageComponent={customMessageComponent}
+              customMessageComponent={
+                customMessageComponent?.type === message.type
+                  ? customMessageComponent
+                  : undefined
+              }
             />;
           }
           return null;
