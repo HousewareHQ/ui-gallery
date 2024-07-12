@@ -8,6 +8,8 @@ export { ChatScreenPA } from './chatScreen/ChatScreenPA';
 export type { ChatScreenPAProps } from './chatScreen/ChatScreenPA';
 export { ChatScreenAdsPreview } from './chatScreen/ChatScreenAdsPreview';
 export type { ChatScreenAdsPreviewProps } from './chatScreen/ChatScreenAdsPreview';
+export { ChatScreenKeywords } from './chatScreen/ChatScreenKeywords';
+export type { ChatScreenKeywordsProps } from './chatScreen/ChatScreenKeywords';
 export { default as AiMessageTable } from './AiMessageTable';
 export type { AiMessageTableProps } from './AiMessageTable';
 export { HousewareBranding } from './common/HousewareBranding';

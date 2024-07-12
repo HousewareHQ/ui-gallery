@@ -6,7 +6,7 @@ import { TableProps } from "antd/es/table";
 export default function CustomTable({
   dataSource,
   columns,
-  onRowClick,
+onRowClick,
   rowKey,
   size = "large",
   ...rest
