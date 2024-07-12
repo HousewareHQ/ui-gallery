@@ -12,25 +12,11 @@ import {
   Tag,
   Typography,
 } from "antd";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
-export interface BaseMessage {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  content: any;
-  type: "ai" | "human";
-}
-
-export interface ChatScreenAdsPreviewProps<T> {
-  messages: T[];
-
-  handleSendFollowupMessage: (
-    // eslint-disable-next-line no-unused-vars
-    userQuery: string,
-    // eslint-disable-next-line no-unused-vars
-    regenerateResponse?: boolean
-  ) => void;
-  isMessageLoading: boolean;
-  setMessages: React.Dispatch<React.SetStateAction<T[]>>;
+export interface ChatScreenAdsPreviewProps {
+  handleGoBack: () => void;
+  handleStartFresh: () => void;
 
   pageHeading: string;
   forecast: {
@@ -77,9 +63,7 @@ const SuffixForSelect = ({
     </Flex>
   );
 };
-export function ChatScreenAdsPreview<T extends BaseMessage>({
-  messages,
-  setMessages,
+export function ChatScreenAdsPreview({
   pageHeading,
   forecast,
   keywords,
@@ -87,18 +71,12 @@ export function ChatScreenAdsPreview<T extends BaseMessage>({
   descriptions,
   finalURL,
   displayLink,
-}: ChatScreenAdsPreviewProps<T>) {
-  const chatsContainerRef = useRef<HTMLDivElement | null>(null);
+  handleGoBack,
+  handleStartFresh,
+}: ChatScreenAdsPreviewProps) {
   const [headingsSelected, setHeadingsSelected] = useState<string[]>(headings);
   const [descriptionsSelected, setDescriptionsSelected] =
     useState<string[]>(descriptions);
-
-  useEffect(() => {
-    const element = chatsContainerRef.current;
-    if (element) {
-      element.scrollTop = element.scrollHeight;
-    }
-  }, [messages]);
 
   return (
     <Flex
@@ -306,27 +284,28 @@ export function ChatScreenAdsPreview<T extends BaseMessage>({
         >
           <Button type="primary">Create Campaign</Button>
         </Flex>
-        <Popconfirm
-          title="You'll lose your current chat history."
-          description="Are you sure you want to start a new chat?"
-          placement="bottomLeft"
-          okText="Yes"
-          cancelText="No"
-          onConfirm={() => {
-            setMessages([]);
+        <Flex
+          style={{
+            position: "absolute",
+            top: 16,
+            right: 32,
           }}
+          gap={12}
         >
-          <Button
-            type="primary"
-            style={{
-              position: "absolute",
-              top: 16,
-              right: 32,
+          <Button onClick={handleGoBack}>Go Back</Button>
+          <Popconfirm
+            title="You'll lose your current progress"
+            description="Are you sure you want to start from fresh?"
+            placement="bottomLeft"
+            okText="Yes"
+            cancelText="No"
+            onConfirm={() => {
+              handleStartFresh();
             }}
           >
-            Start fresh
-          </Button>
-        </Popconfirm>
+            <Button type="primary">Start fresh</Button>
+          </Popconfirm>
+        </Flex>
       </Flex>
     </Flex>
   );

@@ -3,8 +3,8 @@ import { fn } from "@storybook/test";
 import { ChatScreenAdsPreview } from "../components/chatScreen/ChatScreenAdsPreview";
 
 const ActionsData = {
-  handleSendFollowupMessage: fn(),
-  setMessages: fn(),
+  handleGoBack: fn(),
+  handleStartFresh: fn(),
 };
 
 const meta: Meta<typeof ChatScreenAdsPreview> = {
@@ -29,23 +29,6 @@ type Story = StoryObj<typeof ChatScreenAdsPreview>;
 
 export const Default: Story = {
   args: {
-    messages: [
-      {
-        content: "Hey",
-        type: "human",
-      },
-      {
-        content: {
-          query_configuration: null,
-          query_response: {
-            data: "Hello! How can I assist you with your product usage data today? I can help you analyze trends and funnels related to your product events. Do you have any specific events or sequences of events in mind?",
-            summary: "",
-            type: "efwoei",
-          },
-        },
-        type: "ai",
-      },
-    ],
     pageHeading: "Campagin on Sustainable Products",
     forecast: {
       dateRange: "2021-01-01 to 2021-12-31",

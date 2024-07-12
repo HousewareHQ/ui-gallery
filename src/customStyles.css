@@ -73,3 +73,19 @@ body {
 .ai-message-wrapper:hover .ai-message-actions {
   opacity: 1;
 }
+
+.custom-table-row {
+  cursor: pointer;
+}
+
+.custom-table-row:hover .custom-table-row-name {
+  color: var(--primary-90);
+}
+
+.custom-table-row .custom-table-actions {
+  visibility: hidden;
+}
+
+.custom-table-row:hover .custom-table-actions {
+  visibility: visible;
+}
