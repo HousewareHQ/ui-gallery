@@ -96,14 +96,18 @@ export function ChatScreenKeywords({
         height: "100vh",
       }}
       align="center"
-      justify="center"
+      justify="flex-start"
+      vertical
     >
       <Flex
         style={{
-          height: "100%",
+          height: "86vh",
           width: "60vw",
-          padding: 16,
+
           overflow: "auto",
+          overflowY: "scroll",
+          overflowX: "hidden",
+          padding: "0 24px 10vh",
         }}
         vertical
         align="center"
@@ -191,6 +195,7 @@ export function ChatScreenKeywords({
             onClick={() => {
               handleProceed(selectedRows);
             }}
+            disabled={selectedRows.length === 0}
           >
             Proceed
           </Button>
