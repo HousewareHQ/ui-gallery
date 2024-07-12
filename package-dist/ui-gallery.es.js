@@ -636,25 +636,7 @@ React keys must be passed directly to JSX without using spread:
 }
 process.env.NODE_ENV === "production" ? KS.exports = H9() : KS.exports = j9();
 var ve = KS.exports;
-const CTe = ({
-  primary: e = !1,
-  size: t = "medium",
-  backgroundColor: r,
-  label: n,
-  ...a
-}) => {
-  const i = e ? "storybook-button--primary" : "storybook-button--secondary";
-  return /* @__PURE__ */ ve.jsx(
-    "button",
-    {
-      type: "button",
-      className: ["storybook-button", `storybook-button--${t}`, i].join(" "),
-      style: { backgroundColor: r },
-      ...a,
-      children: n
-    }
-  );
-}, G9 = /* @__PURE__ */ new Map([
+const G9 = /* @__PURE__ */ new Map([
   [
     "bold",
     /* @__PURE__ */ H.createElement(H.Fragment, null, /* @__PURE__ */ H.createElement("path", { d: "M244,56v48a12,12,0,0,1-12,12H184a12,12,0,1,1,0-24H201.1l-19-17.38c-.13-.12-.26-.24-.38-.37A76,76,0,1,0,127,204h1a75.53,75.53,0,0,0,52.15-20.72,12,12,0,0,1,16.49,17.45A99.45,99.45,0,0,1,128,228h-1.37A100,100,0,1,1,198.51,57.06L220,76.72V56a12,12,0,0,1,24,0Z" }))
@@ -22678,7 +22660,7 @@ const zte = {
 }, V3 = kte(
   void 0
 );
-function ETe({
+function CTe({
   children: e,
   appTheme: t = zte
 }) {
@@ -22790,7 +22772,7 @@ const Bte = () => {
       window.removeEventListener("mousemove", f), window.removeEventListener("resize", d);
     };
   }, [e, i]), /* @__PURE__ */ ve.jsx("div", { style: { position: "absolute", top: 0, left: 0 }, children: /* @__PURE__ */ ve.jsx("canvas", { ref: r, className: "absolute inset-0" }) });
-}, TTe = ({
+}, ETe = ({
   suggestions: e,
   handleSendMessage: t,
   heading: r,
@@ -74981,7 +74963,7 @@ function xTe({
     }
   ) });
 }
-function MTe({
+function TTe({
   messages: e,
   handleSendFollowupMessage: t,
   isMessageLoading: r,
@@ -75166,7 +75148,7 @@ function MTe({
     }
   );
 }
-const ATe = () => /* @__PURE__ */ ve.jsxs(ve.Fragment, { children: [
+const MTe = () => /* @__PURE__ */ ve.jsxs(ve.Fragment, { children: [
   /* @__PURE__ */ ve.jsxs(
     br,
     {
@@ -75274,7 +75256,7 @@ const ATe = () => /* @__PURE__ */ ve.jsxs(ve.Fragment, { children: [
       ]
     }
   )
-] }), ITe = () => {
+] }), ATe = () => {
   const { currentTheme: e, toggleTheme: t } = hv(), r = () => {
     const n = e === "light" ? "dark" : "light";
     localStorage == null || localStorage.setItem("appThemeMode", n), t();
@@ -75448,12 +75430,11 @@ const ATe = () => /* @__PURE__ */ ve.jsxs(ve.Fragment, { children: [
   );
 };
 export {
-  ETe as AppThemeProvider,
-  CTe as Button,
+  CTe as AppThemeProvider,
   k3 as ChatInput,
-  MTe as ChatScreenPA,
-  ATe as HousewareBranding,
-  ITe as ThemeToggle,
-  TTe as WelcomeScreen,
+  TTe as ChatScreenPA,
+  MTe as HousewareBranding,
+  ATe as ThemeToggle,
+  ETe as WelcomeScreen,
   hv as useThemeManager
 };

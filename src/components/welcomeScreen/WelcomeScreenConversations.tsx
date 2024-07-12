@@ -2,9 +2,9 @@ import { Card, Flex, InputRef, Tag, Typography } from "antd";
 
 import React, { useRef, useState } from "react";
 
-import { ChatInput } from "./ChatInput";
+import { ChatInput } from "../common/ChatInput";
+import { useThemeManager } from "../useThemeManager";
 import { SpotlightGrid } from "./SpotlightGrid";
-import { useThemeManager } from "./useThemeManager";
 
 export interface WelcomeScreenProps {
   // eslint-disable-next-line no-unused-vars

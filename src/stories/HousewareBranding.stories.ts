@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { HousewareBranding } from "../components/HousewareBranding";
+import { HousewareBranding } from "../components/common/HousewareBranding";
 
 const meta: Meta<typeof HousewareBranding> = {
   title: "Native App/HousewareBranding",

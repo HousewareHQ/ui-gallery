@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useThemeManager } from "./useThemeManager";
+import { useThemeManager } from "../useThemeManager";
 
 export const SpotlightGrid: React.FC = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });

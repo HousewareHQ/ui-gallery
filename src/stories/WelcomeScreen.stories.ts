@@ -1,13 +1,13 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { WelcomeScreen } from "../components/WelcomeScreen";
+import { WelcomeScreen } from "../components/welcomeScreen/WelcomeScreenConversations";
 
 const ActionsData = {
   handleSendMessage: fn(),
 };
 
 const meta: Meta<typeof WelcomeScreen> = {
-  title: "Native App/WelcomeScreen",
+  title: "Native App/WelcomeScreen/Conversations",
   component: WelcomeScreen,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout

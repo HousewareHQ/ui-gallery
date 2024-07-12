@@ -2,10 +2,10 @@ import { ReactNode } from 'react';
 
 export interface BaseMessage {
     content: any;
-    type: 'ai' | 'human';
+    type: "ai" | "human";
 }
 export interface CustomMessageComponentProp<T> {
-    type: 'ai' | 'human';
+    type: "ai" | "human";
     component: ({ index, message, handleSendFollowupMessage, }: {
         message: T;
         index?: number;
@@ -18,7 +18,7 @@ export interface ChatScreenPAProps<T> {
     isMessageLoading: boolean;
     setMessages: React.Dispatch<React.SetStateAction<T[]>>;
     showMessageActionCard?: boolean;
-    hideActionCardItems?: ('copy' | 'regenerate')[];
+    hideActionCardItems?: ("copy" | "regenerate")[];
     customMessageComponent?: CustomMessageComponentProp<T>;
     customMessageActionCardItem?: ReactNode[];
 }
