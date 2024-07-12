@@ -25,8 +25,6 @@ export function UserMessage<T extends BaseMessage>({
       <CustomComponent messages={messages} index={index} />
     ) : null;
 
-  console.log('customMessageComponent: ', customMessageComponent);
-  debugger;
   return (
     <Flex style={{ width: '100%' }} justify="flex-end" gap={12}>
       <Flex

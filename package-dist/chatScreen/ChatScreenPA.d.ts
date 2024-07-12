@@ -8,7 +8,7 @@ export interface CustomMessageComponentProp<T> {
     type: 'ai' | 'human';
     component: ({ index, messages, handleSendFollowupMessage, }: {
         messages: T[];
-        index?: number;
+        index: number;
         handleSendFollowupMessage?: (userQuery: string, regenerateResponse?: boolean) => void;
     }) => ReactNode;
 }

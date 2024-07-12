@@ -80708,10 +80708,7 @@ function HVe({
   customMessageActionCardItem: a
 }) {
   var f;
-  const s = (f = t[e]) == null ? void 0 : f.content, u = (t == null ? void 0 : t.length) - 1 === e && r, c = o == null ? void 0 : o.component;
-  console.log("customMessageComponent: ", o);
-  debugger;
-  const d = ({
+  const s = (f = t[e]) == null ? void 0 : f.content, u = (t == null ? void 0 : t.length) - 1 === e && r, c = o == null ? void 0 : o.component, d = ({
     messages: p,
     index: g,
     handleRegenerateResponse: v
@@ -80724,7 +80721,7 @@ function HVe({
     }
   ) : null, h = () => {
     var m, y;
-    const p = (m = s == null ? void 0 : s.query_response) == null ? void 0 : m.type, g = (y = s == null ? void 0 : s.query_response) == null ? void 0 : y.data, v = s == null ? void 0 : s.query_configuration;
+    const p = ((m = s == null ? void 0 : s.query_response) == null ? void 0 : m.type) || (s == null ? void 0 : s.type), g = ((y = s == null ? void 0 : s.query_response) == null ? void 0 : y.data) || (s == null ? void 0 : s.data), v = s == null ? void 0 : s.query_configuration;
     switch (p) {
       case "text":
         return /* @__PURE__ */ ie.jsx(xr, { children: /* @__PURE__ */ ie.jsx(HS, { children: g }) });
@@ -80812,8 +80809,6 @@ function GVe({
     messages: a,
     index: s
   }) => n ? /* @__PURE__ */ ie.jsx(n, { messages: a, index: s }) : null;
-  console.log("customMessageComponent: ", r);
-  debugger;
   return /* @__PURE__ */ ie.jsx(Zt, { style: { width: "100%" }, justify: "flex-end", gap: 12, children: /* @__PURE__ */ ie.jsx(
     Zt,
     {
@@ -80911,31 +80906,27 @@ function z7e({
             rootClassName: "chat-container",
             gap: 48,
             children: [
-              e.filter(Boolean).map((h, f) => {
-                console.log("message UI: ", h), console.log("message.type: ", h.type);
-                debugger;
-                return h.type === "ai" ? /* @__PURE__ */ ie.jsx(
-                  HVe,
-                  {
-                    index: f,
-                    messages: e,
-                    hideActionCardItems: o,
-                    showMessageActionCard: i,
-                    customMessageComponent: (a == null ? void 0 : a.type) === h.type ? a : void 0,
-                    handleRegenerateResponse: t,
-                    customMessageActionCardItem: s
-                  },
-                  f
-                ) : /* @__PURE__ */ ie.jsx(
-                  GVe,
-                  {
-                    index: f,
-                    messages: e,
-                    customMessageComponent: (a == null ? void 0 : a.type) === h.type ? a : void 0
-                  },
-                  f
-                );
-              }),
+              e.filter(Boolean).map((h, f) => h.type === "ai" ? /* @__PURE__ */ ie.jsx(
+                HVe,
+                {
+                  index: f,
+                  messages: e,
+                  hideActionCardItems: o,
+                  showMessageActionCard: i,
+                  customMessageComponent: (a == null ? void 0 : a.type) === h.type ? a : void 0,
+                  handleRegenerateResponse: t,
+                  customMessageActionCardItem: s
+                },
+                f
+              ) : /* @__PURE__ */ ie.jsx(
+                GVe,
+                {
+                  index: f,
+                  messages: e,
+                  customMessageComponent: (a == null ? void 0 : a.type) === h.type ? a : void 0
+                },
+                f
+              )),
               d && /* @__PURE__ */ ie.jsx(lpe, {})
             ]
           }

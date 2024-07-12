@@ -18,7 +18,7 @@ export interface CustomMessageComponentProp<T> {
     handleSendFollowupMessage,
   }: {
     messages: T[];
-    index?: number;
+    index: number;
     handleSendFollowupMessage?: (
       userQuery: string,
       regenerateResponse?: boolean,
@@ -116,9 +116,6 @@ export function ChatScreenPA<T extends BaseMessage>({
         gap={48}
       >
         {messages.filter(Boolean).map((message, index) => {
-          console.log('message UI: ', message);
-          console.log('message.type: ', message.type);
-          debugger;
           if (message.type === 'ai') {
             return (
               <AIMessageComponents<T>

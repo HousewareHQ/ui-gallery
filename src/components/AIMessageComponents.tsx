@@ -35,8 +35,6 @@ export function AIMessageComponents<T extends BaseMessage>({
   const isLastMessage = messages?.length - 1 === index;
   const shouldShowActionCardItems = isLastMessage && showMessageActionCard;
   const CustomComponent = customMessageComponent?.component;
-  console.log('customMessageComponent: ', customMessageComponent);
-  debugger;
 
   const renderCustomMessageComponent = ({
     messages,
@@ -59,8 +57,8 @@ export function AIMessageComponents<T extends BaseMessage>({
     ) : null;
 
   const aiChatMessage = () => {
-    const responseType = content?.query_response?.type;
-    const data = content?.query_response?.data;
+    const responseType = content?.query_response?.type || content?.type;
+    const data = content?.query_response?.data || content?.data;
     const queryConfiguration = content?.query_configuration;
 
     switch (responseType) {
