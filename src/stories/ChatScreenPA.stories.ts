@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { ChatScreenPA } from "../components/ChatScreenPA";
+import { ChatScreenPA } from "../components/chatScreen/ChatScreenPA";
 
 const ActionsData = {
   handleSendFollowupMessage: fn(),
@@ -8,7 +8,7 @@ const ActionsData = {
 };
 
 const meta: Meta<typeof ChatScreenPA> = {
-  title: "Native App/ChatScreenPA",
+  title: "Native App/ChatScreen/ChatScreenPA",
   component: ChatScreenPA,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
@@ -32,7 +32,7 @@ export const TextResponse: Story = {
     messages: [
       {
         content: "Hey",
-        type: "user",
+        type: "human",
       },
       {
         content: {
@@ -54,7 +54,7 @@ export const TrendsChart: Story = {
     messages: [
       {
         content: "Hey",
-        type: "user",
+        type: "human",
       },
       {
         content: {
@@ -134,7 +134,7 @@ export const FunnelsChart: Story = {
   args: {
     messages: [
       {
-        type: "user",
+        type: "human",
         content: "Hey",
       },
       {

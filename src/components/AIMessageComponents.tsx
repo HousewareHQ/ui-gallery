@@ -1,12 +1,15 @@
-import { Flex, Image, Typography } from 'antd';
+import { Flex, Image, Typography } from "antd";
 
-import { ReactNode } from 'react';
-import Markdown from 'react-markdown';
-import '../customStyles.css';
-import { Funnels } from './charts/Funnels';
-import { Trends } from './charts/Trends';
-import { BaseMessage, CustomMessageComponentProp } from './ChatScreenPA';
-import MessageActionCard from './MessageActionCard';
+import { ReactNode } from "react";
+import Markdown from "react-markdown";
+import "../customStyles.css";
+import { Funnels } from "./charts/Funnels";
+import { Trends } from "./charts/Trends";
+import {
+  BaseMessage,
+  CustomMessageComponentProp,
+} from "./chatScreen/ChatScreenPA";
+import MessageActionCard from "./MessageActionCard";
 
 export function AIMessageComponents<T extends BaseMessage>({
   index,
@@ -19,13 +22,13 @@ export function AIMessageComponents<T extends BaseMessage>({
 }: {
   index: number;
   messages: T[];
-  hideActionCardItems?: ('copy' | 'regenerate')[];
+  hideActionCardItems?: ("copy" | "regenerate")[];
   showMessageActionCard?: boolean;
   customMessageComponent?: CustomMessageComponentProp<T>;
   customMessageActionCardItem?: ReactNode[];
   handleRegenerateResponse: (
     userQuery: string,
-    regenerateResponse?: boolean,
+    regenerateResponse?: boolean
   ) => void;
 }) {
   const content = messages[index]?.content;
@@ -42,7 +45,7 @@ export function AIMessageComponents<T extends BaseMessage>({
     index: number;
     handleRegenerateResponse: (
       userQuery: string,
-      regenerateResponse?: boolean,
+      regenerateResponse?: boolean
     ) => void;
   }) =>
     CustomComponent ? (
@@ -59,20 +62,20 @@ export function AIMessageComponents<T extends BaseMessage>({
     const queryConfiguration = content?.query_configuration;
 
     switch (responseType) {
-      case 'text':
+      case "text":
         return (
           <Typography>
             <Markdown>{data}</Markdown>
           </Typography>
         );
-      case 'trend':
+      case "trend":
         return (
           <Trends
             chartResponse={content.query_response}
             queryConfiguration={queryConfiguration}
           />
         );
-      case 'funnel':
+      case "funnel":
         return (
           <Funnels
             chartResponse={content.query_response}
@@ -90,7 +93,7 @@ export function AIMessageComponents<T extends BaseMessage>({
 
   return (
     <Flex
-      style={{ width: '90%' }}
+      style={{ width: "90%" }}
       align="flex-start"
       gap={8}
       className="ai-message-wrapper"
@@ -100,8 +103,8 @@ export function AIMessageComponents<T extends BaseMessage>({
         height={40}
         width={40}
         style={{
-          height: '2rem',
-          width: '2rem',
+          height: "2rem",
+          width: "2rem",
         }}
         preview={false}
       />
@@ -109,7 +112,7 @@ export function AIMessageComponents<T extends BaseMessage>({
       <Flex
         vertical
         style={{
-          width: '100%',
+          width: "100%",
         }}
         gap={14}
       >

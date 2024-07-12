@@ -1,8 +1,8 @@
-import '../customStyles.css';
-import { ArrowClockwise, CheckCircle, Clipboard } from '@phosphor-icons/react';
-import { Button, Card, Flex } from 'antd';
-import { Fragment, ReactNode, useMemo, useState } from 'react';
-import { BaseMessage } from './ChatScreenPA';
+import { ArrowClockwise, CheckCircle, Clipboard } from "@phosphor-icons/react";
+import { Button, Card, Flex } from "antd";
+import { Fragment, ReactNode, useMemo, useState } from "react";
+import "../customStyles.css";
+import { BaseMessage } from "./chatScreen/ChatScreenPA";
 
 export default function MessageActionCard<T extends BaseMessage>({
   index,
@@ -15,9 +15,9 @@ export default function MessageActionCard<T extends BaseMessage>({
   messages: T[];
   handleRegenerateResponse: (
     userQuery: string,
-    regenerateResponse?: boolean,
+    regenerateResponse?: boolean
   ) => void;
-  hideActionCardItems?: ('copy' | 'regenerate')[];
+  hideActionCardItems?: ("copy" | "regenerate")[];
   customMessageActionCardItem?: ReactNode[];
 }) {
   const content = messages[index]?.content;
@@ -29,13 +29,13 @@ export default function MessageActionCard<T extends BaseMessage>({
       const data = content?.query_response?.data;
 
       switch (responseType) {
-        case 'text':
+        case "text":
           return data;
-        case 'trend':
-        case 'funnel':
-          return content?.query_response?.summary || '';
+        case "trend":
+        case "funnel":
+          return content?.query_response?.summary || "";
         default:
-          return 'I am not sure how to respond to that, can you please try again?';
+          return "I am not sure how to respond to that, can you please try again?";
       }
     })();
 
@@ -55,14 +55,14 @@ export default function MessageActionCard<T extends BaseMessage>({
           type="text"
           icon={
             isCopied ? (
-              <CheckCircle size={'0.7rem'} />
+              <CheckCircle size={"0.7rem"} />
             ) : (
-              <Clipboard size={'0.7rem'} />
+              <Clipboard size={"0.7rem"} />
             )
           }
           style={{
-            fontSize: '0.7rem',
-            color: 'var(--secondary-text)',
+            fontSize: "0.7rem",
+            color: "var(--secondary-text)",
           }}
         >
           Copy
@@ -73,22 +73,22 @@ export default function MessageActionCard<T extends BaseMessage>({
           size="small"
           onClick={() => {
             handleRegenerateResponse(
-              messages[messages.length - 2]?.content || '',
-              true,
+              messages[messages.length - 2]?.content || "",
+              true
             );
           }}
           type="text"
-          icon={<ArrowClockwise size={'0.7rem'} />}
+          icon={<ArrowClockwise size={"0.7rem"} />}
           style={{
-            fontSize: '0.7rem',
-            color: 'var(--secondary-text)',
+            fontSize: "0.7rem",
+            color: "var(--secondary-text)",
           }}
         >
           Regenerate
         </Button>
       ),
     }),
-    [isCopied, handleRegenerateResponse, messages],
+    [isCopied, handleRegenerateResponse, messages]
   );
 
   return (
@@ -96,9 +96,9 @@ export default function MessageActionCard<T extends BaseMessage>({
       className="ai-message-actions"
       size="small"
       style={{
-        width: 'max-content',
-        backgroundColor: 'var(--background)',
-        alignSelf: 'flex-end',
+        width: "max-content",
+        backgroundColor: "var(--background)",
+        alignSelf: "flex-end",
       }}
       styles={{
         body: {
@@ -109,11 +109,11 @@ export default function MessageActionCard<T extends BaseMessage>({
       <Flex>
         {Object.keys(defaultActionCardItem).map(
           (item) =>
-            !hideActionCardItems.includes(item as 'copy' | 'regenerate') && (
+            !hideActionCardItems.includes(item as "copy" | "regenerate") && (
               <Fragment key={item}>
-                {defaultActionCardItem[item as 'copy' | 'regenerate']}
+                {defaultActionCardItem[item as "copy" | "regenerate"]}
               </Fragment>
-            ),
+            )
         )}
         {customMessageActionCardItem}
       </Flex>

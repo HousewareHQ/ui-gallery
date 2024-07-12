@@ -1,5 +1,8 @@
-import { Card, Flex, Typography } from 'antd';
-import { BaseMessage, CustomMessageComponentProp } from './ChatScreenPA';
+import { Card, Flex, Typography } from "antd";
+import {
+  BaseMessage,
+  CustomMessageComponentProp,
+} from "./chatScreen/ChatScreenPA";
 
 export function UserMessage<T extends BaseMessage>({
   messages,
@@ -22,11 +25,11 @@ export function UserMessage<T extends BaseMessage>({
       <CustomComponent messages={messages} index={index} />
     ) : null;
   return (
-    <Flex style={{ width: '100%' }} justify="flex-end" gap={12}>
+    <Flex style={{ width: "100%" }} justify="flex-end" gap={12}>
       <Flex
         vertical
         style={{
-          minWidth: '30%',
+          minWidth: "30%",
         }}
         gap={2}
         align="flex-end"

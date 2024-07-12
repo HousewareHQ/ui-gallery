@@ -1,7 +1,7 @@
-import * as React from "react";
 import { PaperPlaneTilt } from "@phosphor-icons/react";
 import { Button, Card, Flex, InputRef, Typography } from "antd";
 import TextArea from "antd/es/input/TextArea";
+import * as React from "react";
 import { KeyboardEvent, LegacyRef } from "react";
 
 export interface ChatInputProps {
@@ -11,6 +11,7 @@ export interface ChatInputProps {
   setUserQuery: React.Dispatch<React.SetStateAction<string>>;
   handleSendMessage: () => void;
   isFollowupDisabled?: boolean;
+  width?: string | number;
 }
 
 export const ChatInput: React.FC<ChatInputProps> = ({
@@ -19,6 +20,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
   userQuery,
   setUserQuery,
   handleSendMessage,
+  width = "60vw",
 
   isFollowupDisabled = false,
 }: ChatInputProps) => {
@@ -44,7 +46,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
         right: 0,
         marginLeft: "auto",
         marginRight: "auto",
-        width: "60vw",
+        width: width,
       }}
     >
       <div
