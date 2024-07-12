@@ -3,7 +3,6 @@ import { ReactNode, useEffect, useRef, useState } from 'react';
 import AILoader from './AILoader';
 import { AIMessageComponents } from './AIMessageComponents';
 import { ChatInput } from './common/ChatInput';
-import MessageActionCard from './MessageActionCard';
 import { UserMessage } from './UserMessage';
 
 export interface BaseMessage {

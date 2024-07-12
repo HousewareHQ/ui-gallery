@@ -6,6 +6,8 @@ export { WelcomeScreenAds } from './welcomeScreen/WelcomeScreenAds';
 export type { WelcomeScreenAdsProps } from './welcomeScreen/WelcomeScreenAds';
 export { ChatScreenPA } from './ChatScreenPA';
 export type { ChatScreenPAProps } from './ChatScreenPA';
+export { default as AiMessageTable } from './AiMessageTable';
+export type { AiMessageTableProps } from './AiMessageTable';
 export { HousewareBranding } from './common/HousewareBranding';
 export { ThemeToggle } from './common/ThemeToggle';
 export { default as AppThemeProvider } from './AppThemeProvider';
