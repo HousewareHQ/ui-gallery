@@ -23,11 +23,7 @@ export default function CustomTable({
     title: (column?.title as string)?.toUpperCase(),
   }));
 
-  const paginationItemRender: PaginationProps["itemRender"] = (
-    _,
-    type,
-    originalElement
-  ) => {
+  const paginationItemRender: PaginationProps["itemRender"] = (_, type) => {
     if (type === "prev") {
       return (
         <Typography.Link>

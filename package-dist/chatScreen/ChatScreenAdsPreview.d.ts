@@ -1,12 +1,6 @@
-export interface BaseMessage {
-    content: any;
-    type: "ai" | "human";
-}
-export interface ChatScreenAdsPreviewProps<T> {
-    messages: T[];
-    handleSendFollowupMessage: (userQuery: string, regenerateResponse?: boolean) => void;
-    isMessageLoading: boolean;
-    setMessages: React.Dispatch<React.SetStateAction<T[]>>;
+export interface ChatScreenAdsPreviewProps {
+    handleGoBack: () => void;
+    handleStartFresh: () => void;
     pageHeading: string;
     forecast: {
         dateRange: string;
@@ -25,4 +19,4 @@ export interface ChatScreenAdsPreviewProps<T> {
     finalURL: string;
     displayLink: [string, string];
 }
-export declare function ChatScreenAdsPreview<T extends BaseMessage>({ messages, setMessages, pageHeading, forecast, keywords, headings, descriptions, finalURL, displayLink, }: ChatScreenAdsPreviewProps<T>): import("react/jsx-runtime").JSX.Element;
+export declare function ChatScreenAdsPreview({ pageHeading, forecast, keywords, headings, descriptions, finalURL, displayLink, handleGoBack, handleStartFresh, }: ChatScreenAdsPreviewProps): import("react/jsx-runtime").JSX.Element;
