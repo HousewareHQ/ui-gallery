@@ -1,8 +1,8 @@
 export { ChatInput } from "./common/ChatInput";
 export type { ChatInputProps } from "./common/ChatInput";
 
-export { WelcomeScreen } from "./welcomeScreen/WelcomeScreenConversations";
-export type { WelcomeScreenProps } from "./welcomeScreen/WelcomeScreenConversations";
+export { WelcomeScreenConversations } from "./welcomeScreen/WelcomeScreenConversations";
+export type { WelcomeScreenConversationsProps } from "./welcomeScreen/WelcomeScreenConversations";
 
 export { ChatScreenPA } from "./ChatScreenPA";
 export type { ChatScreenPAProps } from "./ChatScreenPA";

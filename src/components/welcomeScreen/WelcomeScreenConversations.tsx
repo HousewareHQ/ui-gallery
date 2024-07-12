@@ -6,7 +6,7 @@ import { ChatInput } from "../common/ChatInput";
 import { useThemeManager } from "../useThemeManager";
 import { SpotlightGrid } from "./SpotlightGrid";
 
-export interface WelcomeScreenProps {
+export interface WelcomeScreenConversationsProps {
   // eslint-disable-next-line no-unused-vars
   handleSendMessage: (userQuery: string) => void;
   suggestions: Array<{
@@ -17,12 +17,14 @@ export interface WelcomeScreenProps {
   subHeading: string;
 }
 
-export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
+export const WelcomeScreenConversations: React.FC<
+  WelcomeScreenConversationsProps
+> = ({
   suggestions,
   handleSendMessage,
   heading,
   subHeading,
-}: WelcomeScreenProps) => {
+}: WelcomeScreenConversationsProps) => {
   const [userQuery, setUserQuery] = useState("");
   const { themeColors } = useThemeManager();
   const inputRef = useRef<InputRef | null>(null);

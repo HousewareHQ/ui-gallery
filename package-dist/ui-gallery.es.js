@@ -75435,6 +75435,6 @@ export {
   TTe as ChatScreenPA,
   MTe as HousewareBranding,
   ATe as ThemeToggle,
-  ETe as WelcomeScreen,
+  ETe as WelcomeScreenConversations,
   hv as useThemeManager
 };

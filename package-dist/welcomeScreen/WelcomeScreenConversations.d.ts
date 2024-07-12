@@ -1,6 +1,6 @@
 import { default as React } from 'react';
 
-export interface WelcomeScreenProps {
+export interface WelcomeScreenConversationsProps {
     handleSendMessage: (userQuery: string) => void;
     suggestions: Array<{
         title: string;
@@ -9,4 +9,4 @@ export interface WelcomeScreenProps {
     heading: string;
     subHeading: string;
 }
-export declare const WelcomeScreen: React.FC<WelcomeScreenProps>;
+export declare const WelcomeScreenConversations: React.FC<WelcomeScreenConversationsProps>;
