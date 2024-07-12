@@ -116,36 +116,40 @@ export function ChatScreenPA<T extends BaseMessage>({
         gap={48}
       >
         {messages.filter(Boolean).map((message, index) => {
-          console.log('messages: ', messages);
+          console.log('message UI: ', message);
+          console.log('message.type: ', message.type);
           debugger;
           if (message.type === 'ai') {
-            <AIMessageComponents<T>
-              key={index}
-              index={index}
-              messages={messages}
-              hideActionCardItems={hideActionCardItems}
-              showMessageActionCard={showMessageActionCard}
-              customMessageComponent={
-                customMessageComponent?.type === message.type
-                  ? customMessageComponent
-                  : undefined
-              }
-              handleRegenerateResponse={handleSendFollowupMessage}
-              customMessageActionCardItem={customMessageActionCardItem}
-            />;
-          } else if (message.type === 'human') {
-            <UserMessage<T>
-              key={index}
-              index={index}
-              messages={messages}
-              customMessageComponent={
-                customMessageComponent?.type === message.type
-                  ? customMessageComponent
-                  : undefined
-              }
-            />;
+            return (
+              <AIMessageComponents<T>
+                key={index}
+                index={index}
+                messages={messages}
+                hideActionCardItems={hideActionCardItems}
+                showMessageActionCard={showMessageActionCard}
+                customMessageComponent={
+                  customMessageComponent?.type === message.type
+                    ? customMessageComponent
+                    : undefined
+                }
+                handleRegenerateResponse={handleSendFollowupMessage}
+                customMessageActionCardItem={customMessageActionCardItem}
+              />
+            );
+          } else {
+            return (
+              <UserMessage<T>
+                key={index}
+                index={index}
+                messages={messages}
+                customMessageComponent={
+                  customMessageComponent?.type === message.type
+                    ? customMessageComponent
+                    : undefined
+                }
+              />
+            );
           }
-          return <Typography>Please try again</Typography>;
         })}
         {shouldShowLoader && <AILoader />}
       </Flex>

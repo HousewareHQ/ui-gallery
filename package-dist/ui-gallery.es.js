@@ -8755,38 +8755,38 @@ var bre = function(t) {
   }))));
 };
 L$.displayName = "Dialog";
-var rc = "RC_FORM_INTERNAL_HOOKS", Pr = function() {
+var rc = "RC_FORM_INTERNAL_HOOKS", Tr = function() {
   gr(!1, "Can not find FormContext. Please make sure you wrap Field under Form.");
 }, Dh = /* @__PURE__ */ _.createContext({
-  getFieldValue: Pr,
-  getFieldsValue: Pr,
-  getFieldError: Pr,
-  getFieldWarning: Pr,
-  getFieldsError: Pr,
-  isFieldsTouched: Pr,
-  isFieldTouched: Pr,
-  isFieldValidating: Pr,
-  isFieldsValidating: Pr,
-  resetFields: Pr,
-  setFields: Pr,
-  setFieldValue: Pr,
-  setFieldsValue: Pr,
-  validateFields: Pr,
-  submit: Pr,
+  getFieldValue: Tr,
+  getFieldsValue: Tr,
+  getFieldError: Tr,
+  getFieldWarning: Tr,
+  getFieldsError: Tr,
+  isFieldsTouched: Tr,
+  isFieldTouched: Tr,
+  isFieldValidating: Tr,
+  isFieldsValidating: Tr,
+  resetFields: Tr,
+  setFields: Tr,
+  setFieldValue: Tr,
+  setFieldsValue: Tr,
+  validateFields: Tr,
+  submit: Tr,
   getInternalHooks: function() {
-    return Pr(), {
-      dispatch: Pr,
-      initEntityValue: Pr,
-      registerField: Pr,
-      useSubscribe: Pr,
-      setInitialValues: Pr,
-      destroyForm: Pr,
-      setCallbacks: Pr,
-      registerWatch: Pr,
-      getFields: Pr,
-      setValidateMessages: Pr,
-      setPreserve: Pr,
-      getInitialValue: Pr
+    return Tr(), {
+      dispatch: Tr,
+      initEntityValue: Tr,
+      registerField: Tr,
+      useSubscribe: Tr,
+      setInitialValues: Tr,
+      destroyForm: Tr,
+      setCallbacks: Tr,
+      registerWatch: Tr,
+      getFields: Tr,
+      setValidateMessages: Tr,
+      setPreserve: Tr,
+      getInitialValue: Tr
     };
   }
 }), I0 = /* @__PURE__ */ _.createContext(null);
@@ -12632,7 +12632,7 @@ function Oie(e, t, r, n, i, o, a) {
       typeof so == "number" && (xe < be.left && (Kt -= xe - be.left - Pe, L.x + Z < be.left + so && (Kt += L.x - be.left + Z - so)), Ke > be.right && (Kt -= Ke - be.right - Pe, L.x > be.right - so && (Kt += L.x - be.right + so)));
       var Uo = jn === !0 ? 0 : jn;
       typeof Uo == "number" && (q < be.top && ($t -= q - be.top - Le, L.y + ee < be.top + Uo && ($t += L.y - be.top + ee - Uo)), me > be.bottom && ($t -= me - be.bottom - Le, L.y > be.bottom - Uo && ($t += L.y - be.bottom + Uo)));
-      var ol = M.x + Kt, us = ol + J, Ra = M.y + $t, cs = Ra + X, du = L.x, ds = du + Z, Ko = L.y, Pf = Ko + ee, Mf = Math.max(ol, du), Df = Math.min(us, ds), od = (Mf + Df) / 2, Lr = od - ol, ur = Math.max(Ra, Ko), Tr = Math.min(cs, Pf), Tn = (ur + Tr) / 2, Ln = Tn - Ra;
+      var ol = M.x + Kt, us = ol + J, Ra = M.y + $t, cs = Ra + X, du = L.x, ds = du + Z, Ko = L.y, Pf = Ko + ee, Mf = Math.max(ol, du), Df = Math.min(us, ds), od = (Mf + Df) / 2, Lr = od - ol, ur = Math.max(Ra, Ko), _r = Math.min(cs, Pf), Tn = (ur + _r) / 2, Ln = Tn - Ra;
       a == null || a(t, xr);
       var _a = ze.right - M.x - (Kt + M.width), Ta = ze.bottom - M.y - ($t + M.height);
       Ve === 1 && (Kt = Math.round(Kt), _a = Math.round(_a)), $e === 1 && ($t = Math.round($t), Ta = Math.round(Ta));
@@ -12781,7 +12781,7 @@ function Bie() {
         forceAlign: Ko
       };
     });
-    var Df = _.useState(0), od = de(Df, 2), Lr = od[0], ur = od[1], Tr = _.useState(0), Tn = de(Tr, 2), Ln = Tn[0], _a = Tn[1], Ta = function() {
+    var Df = _.useState(0), od = de(Df, 2), Lr = od[0], ur = od[1], _r = _.useState(0), Tn = de(_r, 2), Ln = Tn[0], _a = Tn[1], Ta = function() {
       if (G && De) {
         var Ft = De.getBoundingClientRect();
         ur(Ft.width), _a(Ft.height);
@@ -14910,11 +14910,11 @@ var cae = ["prefixCls", "rootClassName", "style", "className", "tabIndex", "item
       return ur || fu;
     }
   }), ut = de(Tt, 2), tt = ut[0], Oe = ut[1], je = function(ur) {
-    var Tr = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : !1;
+    var _r = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : !1;
     function Tn() {
       Oe(ur), Se == null || Se(ur);
     }
-    Tr ? Fq(Tn) : Tn();
+    _r ? Fq(Tn) : Tn();
   }, gt = _.useState(tt), bt = de(gt, 2), Yr = bt[0], xr = bt[1], Kt = _.useRef(!1), $t = _.useMemo(function() {
     return (m === "inline" || m === "vertical") && y ? ["vertical", y] : [m, !1];
   }, [m, y]), Lt = de($t, 2), vt = Lt[0], nt = Lt[1], Jt = vt === "inline", Vr = _.useState(vt), Yt = de(Vr, 2), qt = Yt[0], vr = Yt[1], Hr = _.useState(nt), yn = de(Hr, 2), jn = yn[0], oi = yn[1];
@@ -14955,9 +14955,9 @@ var cae = ["prefixCls", "rootClassName", "style", "className", "tabIndex", "item
     return {
       list: De.current,
       focus: function(ur) {
-        var Tr, Tn = sn(), Ln = CR(Tn, qe), _a = Ln.elements, Ta = Ln.key2element, Af = Ln.element2key, li = AP(De.current, _a), hu = si ?? (li[0] ? Af.get(li[0]) : (Tr = Q.find(function(al) {
+        var _r, Tn = sn(), Ln = CR(Tn, qe), _a = Ln.elements, Ta = Ln.key2element, Af = Ln.element2key, li = AP(De.current, _a), hu = si ?? (li[0] ? Af.get(li[0]) : (_r = Q.find(function(al) {
           return !al.props.disabled;
-        })) === null || Tr === void 0 ? void 0 : Tr.key), ui = Ta.get(hu);
+        })) === null || _r === void 0 ? void 0 : _r.key), ui = Ta.get(hu);
         if (hu && ui) {
           var Yo;
           ui == null || (Yo = ui.focus) === null || Yo === void 0 || Yo.call(ui, ur);
@@ -14973,10 +14973,10 @@ var cae = ["prefixCls", "rootClassName", "style", "className", "tabIndex", "item
     }
   }), ol = de(Uo, 2), us = ol[0], Ra = ol[1], cs = function(ur) {
     if (O) {
-      var Tr = ur.key, Tn = us.includes(Tr), Ln;
+      var _r = ur.key, Tn = us.includes(_r), Ln;
       N ? Tn ? Ln = us.filter(function(Ta) {
-        return Ta !== Tr;
-      }) : Ln = [].concat(rt(us), [Tr]) : Ln = [Tr], Ra(Ln);
+        return Ta !== _r;
+      }) : Ln = [].concat(rt(us), [_r]) : Ln = [_r], Ra(Ln);
       var _a = te(te({}, ur), {}, {
         selectedKeys: Ln
       });
@@ -14986,20 +14986,20 @@ var cae = ["prefixCls", "rootClassName", "style", "className", "tabIndex", "item
   }, du = xp(function(Lr) {
     oe == null || oe(L0(Lr)), cs(Lr);
   }), ds = xp(function(Lr, ur) {
-    var Tr = tt.filter(function(Ln) {
+    var _r = tt.filter(function(Ln) {
       return Ln !== Lr;
     });
     if (ur)
-      Tr.push(Lr);
+      _r.push(Lr);
     else if (qt !== "inline") {
       var Tn = ai(Lr);
-      Tr = Tr.filter(function(Ln) {
+      _r = _r.filter(function(Ln) {
         return !Tn.has(Ln);
       });
     }
-    Eh(tt, Tr, !0) || je(Tr, !0);
-  }), Ko = function(ur, Tr) {
-    var Tn = Tr ?? !tt.includes(ur);
+    Eh(tt, _r, !0) || je(_r, !0);
+  }), Ko = function(ur, _r) {
+    var Tn = _r ?? !tt.includes(ur);
     ds(ur, Tn);
   }, Pf = Voe(qt, si, ht, qe, De, sn, Ot, il, Ko, Te);
   _.useEffect(function() {
@@ -15037,12 +15037,12 @@ var cae = ["prefixCls", "rootClassName", "style", "className", "tabIndex", "item
       return ur;
     },
     renderRawRest: function(ur) {
-      var Tr = ur.length, Tn = Tr ? Q.slice(-Tr) : null;
+      var _r = ur.length, Tn = _r ? Q.slice(-_r) : null;
       return /* @__PURE__ */ _.createElement(mS, {
         eventKey: SR,
         title: Y,
         disabled: mt,
-        internalPopupClose: Tr === 0,
+        internalPopupClose: _r === 0,
         popupClassName: he
       }, Tn);
     },
@@ -23933,11 +23933,11 @@ const jF = [1, 2, 3, 4, 5], qce = /* @__PURE__ */ _.forwardRef((e, t) => {
   }, n, {
     component: i
   }));
-}), Rr = WP;
-Rr.Text = Kce;
-Rr.Link = $ce;
-Rr.Title = qce;
-Rr.Paragraph = Wce;
+}), Pr = WP;
+Pr.Text = Kce;
+Pr.Link = $ce;
+Pr.Title = qce;
+Pr.Paragraph = Wce;
 const R8 = ({
   inputRef: e,
   placeholder: t = "Ask me anything about your product data",
@@ -24016,7 +24016,7 @@ const R8 = ({
                 )
               ] }),
               /* @__PURE__ */ ie.jsx(Zt, { align: "flex-end", justify: "flex-end", children: /* @__PURE__ */ ie.jsxs(
-                Rr.Text,
+                Pr.Text,
                 {
                   type: "secondary",
                   style: {
@@ -24028,7 +24028,7 @@ const R8 = ({
                     "Use",
                     " ",
                     /* @__PURE__ */ ie.jsx(
-                      Rr.Text,
+                      Pr.Text,
                       {
                         type: "secondary",
                         style: {
@@ -24825,7 +24825,7 @@ const sde = () => {
             },
             children: [
               /* @__PURE__ */ ie.jsx(
-                Rr.Title,
+                Pr.Title,
                 {
                   level: 2,
                   style: {
@@ -24837,7 +24837,7 @@ const sde = () => {
                 }
               ),
               /* @__PURE__ */ ie.jsx(
-                Rr.Text,
+                Pr.Text,
                 {
                   style: {
                     width: "40vw",
@@ -24877,7 +24877,7 @@ const sde = () => {
               ),
               /* @__PURE__ */ ie.jsxs(Zt, { vertical: !0, align: "center", gap: 18, children: [
                 /* @__PURE__ */ ie.jsx(
-                  Rr.Text,
+                  Pr.Text,
                   {
                     style: {
                       marginTop: 0
@@ -24912,7 +24912,7 @@ const sde = () => {
                           }
                         },
                         children: /* @__PURE__ */ ie.jsxs(
-                          Rr.Text,
+                          Pr.Text,
                           {
                             rootClassName: "three-line-ellipsis",
                             style: {
@@ -24987,7 +24987,7 @@ const sde = () => {
                 },
                 children: [
                   /* @__PURE__ */ ie.jsx(
-                    Rr.Text,
+                    Pr.Text,
                     {
                       type: "secondary",
                       style: {
@@ -25014,7 +25014,7 @@ const sde = () => {
             /* @__PURE__ */ ie.jsxs(Zt, { align: "center", justify: "space-between", children: [
               /* @__PURE__ */ ie.jsxs(Zt, { gap: 4, align: "center", children: [
                 /* @__PURE__ */ ie.jsx(
-                  Rr.Text,
+                  Pr.Text,
                   {
                     type: "secondary",
                     style: {
@@ -25036,7 +25036,7 @@ const sde = () => {
                   }
                 ),
                 /* @__PURE__ */ ie.jsx(
-                  Rr.Text,
+                  Pr.Text,
                   {
                     type: "secondary",
                     style: {
@@ -25101,7 +25101,7 @@ const sde = () => {
             },
             children: [
               /* @__PURE__ */ ie.jsx(
-                Rr.Title,
+                Pr.Title,
                 {
                   level: 2,
                   style: {
@@ -25113,7 +25113,7 @@ const sde = () => {
                 }
               ),
               /* @__PURE__ */ ie.jsx(
-                Rr.Text,
+                Pr.Text,
                 {
                   style: {
                     width: "40vw",
@@ -43003,7 +43003,7 @@ function D_(e) {
     return n;
   }
 }
-var _r = (
+var Rr = (
   /** @class */
   function() {
     function e() {
@@ -43022,8 +43022,8 @@ var _r = (
     }, e;
   }()
 );
-xM(_r);
-BS(_r);
+xM(Rr);
+BS(Rr);
 function gf() {
   var e = zt();
   return function(t) {
@@ -44943,7 +44943,7 @@ var Pd, x1, Zm, hl, E1, R1, _1, np, ip, ek, tk, T1, rk, Qm, nk, E7, fo, ik, vC =
           w.__requireNewView = !1;
           var E = "_ec_" + w.id + "_" + w.type, R = !x && v[E];
           if (!R) {
-            var T = Wa(w.type), P = h ? _r.getClass(T.main, T.sub) : (
+            var T = Wa(w.type), P = h ? Rr.getClass(T.main, T.sub) : (
               // FIXME:TS
               // (ChartView as ChartViewConstructor).getClass('series', classType.sub)
               // For backward compat, still support a chart type declared as only subType
@@ -45541,7 +45541,7 @@ var Kwe = {}, ak = [], Ywe = {
   registerImpl: Swe,
   PRIORITY: y7,
   ComponentModel: Rt,
-  ComponentView: _r,
+  ComponentView: Rr,
   SeriesModel: fr,
   ChartView: sr,
   // TODO Use ComponentModel and SeriesModel instead of Constructor
@@ -45549,7 +45549,7 @@ var Kwe = {}, ak = [], Ywe = {
     Rt.registerClass(e);
   },
   registerComponentView: function(e) {
-    _r.registerClass(e);
+    Rr.registerClass(e);
   },
   registerSeriesModel: function(e) {
     fr.registerClass(e);
@@ -47970,8 +47970,8 @@ function y1e(e) {
   return Rt.registerClass(t), t;
 }
 function C1e(e) {
-  var t = _r.extend(e);
-  return _r.registerClass(t), t;
+  var t = Rr.extend(e);
+  return Rr.registerClass(t), t;
 }
 function S1e(e) {
   var t = fr.extend(e);
@@ -53658,7 +53658,7 @@ var q1 = {}, Qc = (
     }, t.getAxisPointerClass = function(r) {
       return r && q1[r];
     }, t.type = "axis", t;
-  }(_r)
+  }(Rr)
 ), q_ = zt();
 function q9(e, t, r, n) {
   var i = r.axis;
@@ -53827,7 +53827,7 @@ var VEe = ["axisLine", "axisTickLabel", "axisName"], BEe = ["splitArea", "splitL
         z2: -1
       }));
     }, t.type = "grid", t;
-  }(_r)
+  }(Rr)
 ), cV = {
   // gridIndex: 0,
   // gridId: '',
@@ -54234,7 +54234,7 @@ var YEe = (
         }));
       }, this);
     }, t.type = "radar", t;
-  }(_r)
+  }(Rr)
 ), ZEe = (
   /** @class */
   function(e) {
@@ -56089,7 +56089,7 @@ var VRe = (
     }, t.prototype.dispose = function() {
       this._mapDraw && this._mapDraw.remove();
     }, t.type = "geo", t;
-  }(_r)
+  }(Rr)
 );
 function BRe(e, t, r) {
   qs.registerMap(e, t, r);
@@ -60562,7 +60562,7 @@ var KTe = 5, YTe = (
         type: "parallelAxisExpand"
       }, r));
     }, t.type = "parallel", t;
-  }(_r)
+  }(Rr)
 ), qTe = {
   mousedown: function(e) {
     vx(this, "click") && (this._mouseDownPoint = [e.offsetX, e.offsetY]);
@@ -61442,7 +61442,7 @@ var SPe = ["axisLine", "axisTickLabel", "axisName"], wPe = (
     }, t.prototype.dispose = function() {
       this._brushController.dispose();
     }, t.type = "parallelAxis", t;
-  }(_r)
+  }(Rr)
 );
 function bPe(e, t, r) {
   return r && r.type === "axisAreaSelect" && t.findComponents({
@@ -66062,7 +66062,7 @@ var hAe = (
     }, t.prototype.dispose = function(r, n) {
       hT("axisPointer", n);
     }, t.type = "axisPointer", t;
-  }(_r)
+  }(Rr)
 );
 function TU(e, t) {
   var r = [], n = e.seriesIndex, i;
@@ -67001,7 +67001,7 @@ var jAe = {
       return r.type = t.type, r;
     }
     return t.type = "polar", t;
-  }(_r)
+  }(Rr)
 );
 function YAe(e) {
   _t(qv), Qc.registerAxisPointerClass("PolarAxisPointer", bAe), e.registerCoordinateSystem("polar", LAe), e.registerComponentModel(RAe), e.registerComponentView(KAe), Bh(e, "angle", _Ae, jAe), Bh(e, "radius", TAe, UAe), e.registerComponentView(NAe), e.registerComponentView(GAe), e.registerLayout(dt($Ae, "bar"));
@@ -67336,7 +67336,7 @@ var aIe = (
       return r.type = t.type, r;
     }
     return t.type = "single", t;
-  }(_r)
+  }(Rr)
 );
 function sIe(e) {
   _t(qv), Qc.registerAxisPointerClass("SingleAxisPointer", iIe), e.registerComponentView(aIe), e.registerComponentView(ZAe), e.registerComponentModel(g0), Bh(e, "single", g0, g0.defaultOption), e.registerCoordinateSystem("single", rIe);
@@ -67594,7 +67594,7 @@ var uIe = (
         }
       }
     }, t.type = "calendar", t;
-  }(_r)
+  }(Rr)
 ), Lx = 864e5, cIe = (
   /** @class */
   function() {
@@ -67949,7 +67949,7 @@ var vIe = (
     }, t.prototype.dispose = function() {
       this._clear();
     }, t.type = "graphic", t;
-  }(_r)
+  }(Rr)
 );
 function pT(e) {
   process.env.NODE_ENV !== "production" && Qe(e, "graphic type MUST be set");
@@ -68270,7 +68270,7 @@ var EIe = (
     return t.prototype.render = function(r, n, i, o) {
       this.dataZoomModel = r, this.ecModel = n, this.api = i;
     }, t.type = "dataZoom", t;
-  }(_r)
+  }(Rr)
 ), RIe = (
   /** @class */
   function(e) {
@@ -68677,7 +68677,7 @@ var FIe = (
         i instanceof Ro && i.dispose && i.dispose(r, n);
       });
     }, t.type = "toolbox", t;
-  }(_r)
+  }(Rr)
 );
 function LIe(e) {
   return e.indexOf("my") === 0;
@@ -70163,7 +70163,7 @@ var S2e = new Gt({
     }, t.prototype.dispose = function(r, n) {
       kt.node || !n.getDom() || (Wg(this, "_updatePosition"), this._tooltipContent.dispose(), hT("itemTooltip", n));
     }, t.type = "tooltip", t;
-  }(_r)
+  }(Rr)
 );
 function pp(e, t, r) {
   var n = t.ecModel, i;
@@ -70579,7 +70579,7 @@ var V2e = (
         $from: n
       });
     }, t.type = "brush", t;
-  }(_r)
+  }(Rr)
 ), B2e = "#ddd", G2e = (
   /** @class */
   function(e) {
@@ -70818,7 +70818,7 @@ var W2e = (
         o.add(x);
       }
     }, t.type = "title", t;
-  }(_r)
+  }(Rr)
 );
 function U2e(e) {
   e.registerComponentModel(W2e), e.registerComponentView(j2e);
@@ -71009,7 +71009,7 @@ var K2e = (
       return r.type = t.type, r;
     }
     return t.type = "timeline", t;
-  }(_r)
+  }(Rr)
 ), Y2e = (
   /** @class */
   function(e) {
@@ -71632,7 +71632,7 @@ var Gx = zt(), wA = (
         }
       });
     }, t.type = "marker", t;
-  }(_r)
+  }(Rr)
 );
 function J4(e, t, r) {
   var n = t.coordinateSystem;
@@ -72479,7 +72479,7 @@ var bFe = function(e, t) {
     }, t.prototype.remove = function() {
       this.getContentGroup().removeAll(), this._isFirstRender = !0;
     }, t.type = "legend.plain", t;
-  }(_r)
+  }(Rr)
 );
 function xFe(e, t, r, n, i, o, a) {
   function s(v, m) {
@@ -73874,7 +73874,7 @@ var tK = (
       });
     }, t.prototype.doRender = function(r, n, i, o) {
     }, t.type = "visualMap", t;
-  }(_r)
+  }(Rr)
 ), gG = [["left", "right", "width"], ["top", "bottom", "height"]];
 function rK(e, t, r) {
   var n = e.option, i = n.align;
@@ -75032,7 +75032,7 @@ var LLe = (
       return r.type = "dataset", r;
     }
     return t.type = "dataset", t;
-  }(_r)
+  }(Rr)
 );
 function NLe(e) {
   e.registerComponentModel(LLe), e.registerComponentView(OLe);
@@ -76056,7 +76056,7 @@ const cOe = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty(
   Axis: jo,
   ChartView: sr,
   ComponentModel: Rt,
-  ComponentView: _r,
+  ComponentView: Rr,
   List: ti,
   Model: dr,
   PRIORITY: y7,
@@ -76681,7 +76681,7 @@ function kOe({
             )
           }
         ),
-        /* @__PURE__ */ ie.jsx(Rr, { children: /* @__PURE__ */ ie.jsx(TS, { children: e.summary }) })
+        /* @__PURE__ */ ie.jsx(Pr, { children: /* @__PURE__ */ ie.jsx(TS, { children: e.summary }) })
       ]
     }
   );
@@ -76981,7 +76981,7 @@ function GOe({
             )
           }
         ),
-        /* @__PURE__ */ ie.jsx(Rr, { children: /* @__PURE__ */ ie.jsx(TS, { children: e.summary }) })
+        /* @__PURE__ */ ie.jsx(Pr, { children: /* @__PURE__ */ ie.jsx(TS, { children: e.summary }) })
       ]
     }
   );
@@ -77103,7 +77103,7 @@ function zOe({
     const p = (m = s == null ? void 0 : s.query_response) == null ? void 0 : m.type, g = (y = s == null ? void 0 : s.query_response) == null ? void 0 : y.data, v = s == null ? void 0 : s.query_configuration;
     switch (p) {
       case "text":
-        return /* @__PURE__ */ ie.jsx(Rr, { children: /* @__PURE__ */ ie.jsx(TS, { children: g }) });
+        return /* @__PURE__ */ ie.jsx(Pr, { children: /* @__PURE__ */ ie.jsx(TS, { children: g }) });
       case "trend":
         return /* @__PURE__ */ ie.jsx(
           GOe,
@@ -77121,7 +77121,7 @@ function zOe({
           }
         );
       default:
-        return /* @__PURE__ */ ie.jsx(Rr, { children: "I am not sure how to respond to that, can you please try again?" });
+        return /* @__PURE__ */ ie.jsx(Pr, { children: "I am not sure how to respond to that, can you please try again?" });
     }
   };
   debugger;
@@ -77209,7 +77209,7 @@ function $Oe({
           children: n ? i({
             messages: e,
             index: t
-          }) : /* @__PURE__ */ ie.jsx(Rr, { children: (o = e[t]) == null ? void 0 : o.content })
+          }) : /* @__PURE__ */ ie.jsx(Pr, { children: (o = e[t]) == null ? void 0 : o.content })
         }
       )
     }
@@ -77288,9 +77288,29 @@ function W3e({
             gap: 48,
             children: [
               e.filter(Boolean).map((h, f) => {
-                console.log("messages: ", e);
+                console.log("message UI: ", h), console.log("message.type: ", h.type);
                 debugger;
-                return (h.type === "ai" || h.type === "human") && (a == null || a.type, h.type), /* @__PURE__ */ ie.jsx(Rr, { children: "Please try again" });
+                return h.type === "ai" ? /* @__PURE__ */ ie.jsx(
+                  zOe,
+                  {
+                    index: f,
+                    messages: e,
+                    hideActionCardItems: o,
+                    showMessageActionCard: i,
+                    customMessageComponent: (a == null ? void 0 : a.type) === h.type ? a : void 0,
+                    handleRegenerateResponse: t,
+                    customMessageActionCardItem: s
+                  },
+                  f
+                ) : /* @__PURE__ */ ie.jsx(
+                  $Oe,
+                  {
+                    index: f,
+                    messages: e,
+                    customMessageComponent: (a == null ? void 0 : a.type) === h.type ? a : void 0
+                  },
+                  f
+                );
               }),
               d && /* @__PURE__ */ ie.jsx(ude, {})
             ]
@@ -77339,7 +77359,7 @@ function j3e({
       gap: 24,
       children: [
         /* @__PURE__ */ ie.jsx(
-          Rr.Title,
+          Pr.Title,
           {
             level: 3,
             style: {
@@ -77374,7 +77394,7 @@ function j3e({
                     fontSize: "1.5rem"
                   },
                   title: /* @__PURE__ */ ie.jsxs(
-                    Rr.Title,
+                    Pr.Title,
                     {
                       level: 5,
                       style: {
@@ -77446,7 +77466,7 @@ function j3e({
             },
             gap: 4,
             children: [
-              /* @__PURE__ */ ie.jsx(Rr.Text, { type: "secondary", children: "Your Ad Group" }),
+              /* @__PURE__ */ ie.jsx(Pr.Text, { type: "secondary", children: "Your Ad Group" }),
               /* @__PURE__ */ ie.jsx(
                 Gi,
                 {
@@ -77462,10 +77482,10 @@ function j3e({
                         },
                         justify: "space-between",
                         children: [
-                          /* @__PURE__ */ ie.jsx(Rr.Title, { level: 5, children: "Ad Group 1" }),
+                          /* @__PURE__ */ ie.jsx(Pr.Title, { level: 5, children: "Ad Group 1" }),
                           /* @__PURE__ */ ie.jsxs(Zt, { gap: 8, children: [
                             /* @__PURE__ */ ie.jsx(m8, { type: "circle", percent: 75, size: 20 }),
-                            /* @__PURE__ */ ie.jsx(Rr.Text, { children: "Ad Strength" })
+                            /* @__PURE__ */ ie.jsx(Pr.Text, { children: "Ad Strength" })
                           ] })
                         ]
                       }
@@ -109962,7 +109982,7 @@ function X3e({
               }
             },
             title: /* @__PURE__ */ ie.jsxs(Zt, { justify: "space-between", style: { width: "100%" }, children: [
-              /* @__PURE__ */ ie.jsx(Rr, { children: e }),
+              /* @__PURE__ */ ie.jsx(Pr, { children: e }),
               /* @__PURE__ */ ie.jsx(k3e, { data: r, children: /* @__PURE__ */ ie.jsx(nu, { title: "download as CSV", children: /* @__PURE__ */ ie.jsx(NH, { size: 20 }) }) })
             ] }),
             children: /* @__PURE__ */ ie.jsx(
@@ -109977,7 +109997,7 @@ function X3e({
             )
           }
         ),
-        /* @__PURE__ */ ie.jsx(Rr, { children: /* @__PURE__ */ ie.jsx(TS, { children: t }) })
+        /* @__PURE__ */ ie.jsx(Pr, { children: /* @__PURE__ */ ie.jsx(TS, { children: t }) })
       ]
     }
   );
@@ -110000,7 +110020,7 @@ const Z3e = () => /* @__PURE__ */ ie.jsxs(ie.Fragment, { children: [
       children: [
         /* @__PURE__ */ ie.jsx(bv, { src: "/app-logo.png", height: 30, width: 30, preview: !1 }),
         /* @__PURE__ */ ie.jsx(
-          Rr.Title,
+          Pr.Title,
           {
             style: {
               fontFamily: "Libre Franklin, sans-serif",
