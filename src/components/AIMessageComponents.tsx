@@ -37,9 +37,6 @@ export function AIMessageComponents<T extends BaseMessage>({
   const CustomComponent = customMessageComponent?.component;
   const isCustomComponentValid =
     CustomComponent && customMessageComponent?.type;
-  console.log('isCustomComponentValid:', isCustomComponentValid);
-  console.log('content:', content);
-  debugger;
 
   const renderCustomMessageComponent = ({
     messages,
@@ -65,8 +62,6 @@ export function AIMessageComponents<T extends BaseMessage>({
     const responseType = content.type || content?.query_response?.type;
     const data = content?.data || content?.query_response?.data;
     const queryConfiguration = content?.query_configuration;
-    console.log('content:', content);
-    debugger;
 
     switch (responseType) {
       case 'text':
