@@ -88,6 +88,9 @@ export default function AppThemeProvider({
             Layout: {
               bodyBg: themeColors["--background"],
             },
+            Progress: {
+              defaultColor: themeColors["--primary-color"],
+            },
           },
         }}
       >

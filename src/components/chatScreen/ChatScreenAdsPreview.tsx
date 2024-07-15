@@ -9,6 +9,7 @@ import {
   Popconfirm,
   Progress,
   Select,
+  Space,
   Tag,
   Typography,
 } from "antd";
@@ -80,6 +81,7 @@ export function ChatScreenAdsPreview({
 
   const previewHeadline = headingsSelected[0] || "Headline";
   const previewDescription = descriptionsSelected[0] || "Description";
+  const [finalURLEntered, setFinalURLEntered] = useState(finalURL);
 
   return (
     <Flex
@@ -216,7 +218,7 @@ export function ChatScreenAdsPreview({
                   <Typography.Text>Ad Strength</Typography.Text>
                 </Flex>
               </Flex>
-              <Flex>
+              <Flex wrap gap={4}>
                 {keywords.map((keyword) => (
                   <Tag key={keyword}>{keyword}</Tag>
                 ))}
@@ -233,11 +235,13 @@ export function ChatScreenAdsPreview({
                   style={{
                     maxWidth: "50%",
                   }}
+                  gap={16}
                 >
                   <Flex vertical gap={8}>
                     <Typography.Text>Final URL</Typography.Text>
                     <Input
-                      defaultValue={finalURL}
+                      value={finalURLEntered}
+                      onChange={(e) => setFinalURLEntered(e.target.value)}
                       style={{
                         width: "100%",
                       }}
@@ -245,12 +249,19 @@ export function ChatScreenAdsPreview({
                   </Flex>
                   <Flex vertical gap={8}>
                     <Typography.Text>Display Link</Typography.Text>
-                    <Input
-                      defaultValue={displayLink}
-                      style={{
-                        width: "100%",
-                      }}
-                    />
+                    <Flex vertical gap={2}>
+                      <Typography.Text type="secondary">
+                        {finalURLEntered}
+                      </Typography.Text>
+                      <Space
+                        style={{
+                          width: "100%",
+                        }}
+                      >
+                        /<Input defaultValue={displayLink[0]} />/
+                        <Input defaultValue={displayLink[1]} />
+                      </Space>
+                    </Flex>
                   </Flex>
                   <Flex vertical gap={8}>
                     <Typography.Text>Headlines</Typography.Text>

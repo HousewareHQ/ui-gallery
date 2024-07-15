@@ -117,10 +117,10 @@ export function ChatScreenKeywords({
       <Flex
         style={{
           height: "100%",
-          width: "calc(60vw - 48px)",
+          width: "calc(60vw - 38px)",
 
           overflowY: "auto",
-          padding: "2vh 24px 20vh",
+          padding: "2vh 24px 20vh 0",
         }}
         vertical
         align="center"
