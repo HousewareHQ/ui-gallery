@@ -31,6 +31,11 @@ export const Default: Story = {
     heading: "Welcome to Houseware",
     subHeading:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-   
+
+    placeholders: {
+      inputPlaceholder: "Somethign",
+      language: "En",
+      country: "IN",
+    },
   },
 };

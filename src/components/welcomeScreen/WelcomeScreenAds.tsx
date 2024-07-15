@@ -10,12 +10,18 @@ export interface WelcomeScreenAdsProps {
   handleSendMessage: (userQuery: string) => void;
   heading: string;
   subHeading: string;
+  placeholders: {
+    inputPlaceholder: string;
+    country: string;
+    language: string;
+  };
 }
 
 export const WelcomeScreenAds: React.FC<WelcomeScreenAdsProps> = ({
   handleSendMessage,
   heading,
   subHeading,
+  placeholders,
 }: WelcomeScreenAdsProps) => {
   const [userQuery, setUserQuery] = useState("");
 
@@ -65,6 +71,7 @@ export const WelcomeScreenAds: React.FC<WelcomeScreenAdsProps> = ({
           handleSendMessage(userQuery);
           setUserQuery("");
         }}
+        placeholders={placeholders}
       />
     </Flex>
   );

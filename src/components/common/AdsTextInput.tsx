@@ -9,20 +9,28 @@ import { LegacyRef } from "react";
 
 export interface AdsTextInputProps {
   inputRef?: LegacyRef<InputRef> | null;
-  placeholder?: string;
+
   userQuery: string;
   setUserQuery: React.Dispatch<React.SetStateAction<string>>;
   handleSendMessage: () => void;
   isFollowupDisabled?: boolean;
+  placeholders?: {
+    inputPlaceholder: string;
+    country: string;
+    language: string;
+  };
 }
 
 export const AdsTextInput: React.FC<AdsTextInputProps> = ({
   inputRef,
-  placeholder = "Describe your product campaign here...",
   userQuery,
   setUserQuery,
   handleSendMessage,
-
+  placeholders = {
+    inputPlaceholder: "Describe your product campaign here...",
+    country: "United States",
+    language: "English",
+  },
   isFollowupDisabled = false,
 }: AdsTextInputProps) => {
   const isButtonDisabled = userQuery.trim().length === 0 || isFollowupDisabled;
@@ -70,7 +78,8 @@ export const AdsTextInput: React.FC<AdsTextInputProps> = ({
                 value={userQuery}
                 size="large"
                 variant="outlined"
-                placeholder={placeholder}
+                placeholder={placeholders.inputPlaceholder}
+                onPressEnter={handleSendMessage}
               />
             </Flex>
             <Flex align="center" justify="space-between">
@@ -91,7 +100,7 @@ export const AdsTextInput: React.FC<AdsTextInputProps> = ({
                   size="small"
                   icon={<GlobeHemisphereWest />}
                 >
-                  India
+                  {placeholders.country}
                 </Button>
                 <Typography.Text
                   type="secondary"
@@ -109,7 +118,7 @@ export const AdsTextInput: React.FC<AdsTextInputProps> = ({
                   size="small"
                   icon={<Translate />}
                 >
-                  English
+                  {placeholders.language}
                 </Button>
               </Flex>
               <Button
