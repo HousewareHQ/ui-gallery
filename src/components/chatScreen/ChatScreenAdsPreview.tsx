@@ -1,4 +1,9 @@
-import { CaretDown, Globe } from "@phosphor-icons/react";
+import {
+  CaretDown,
+  Globe,
+  PauseCircle,
+  PlayCircle,
+} from "@phosphor-icons/react";
 import {
   Button,
   Card,
@@ -11,9 +16,10 @@ import {
   Select,
   Space,
   Tag,
+  Tooltip,
   Typography,
 } from "antd";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export interface ChatScreenAdsPreviewProps {
   handleGoBack: () => void;
@@ -79,9 +85,37 @@ export function ChatScreenAdsPreview({
   const [descriptionsSelected, setDescriptionsSelected] =
     useState<string[]>(descriptions);
 
-  const previewHeadline = headingsSelected[0] || "Headline";
-  const previewDescription = descriptionsSelected[0] || "Description";
+  const [previewHeadline, setPreviewHeadline] = useState(
+    headingsSelected[0] || "Headline"
+  );
+  const [previewDescription, setPreviewDescription] = useState(
+    descriptionsSelected[0] || "Description"
+  );
+
   const [finalURLEntered, setFinalURLEntered] = useState(finalURL);
+  const [shouldStartPreview, setShouldStartPreview] = useState(false);
+
+  const handleRandomizePreview = useCallback(() => {
+    const randomHeading = headings[Math.floor(Math.random() * headings.length)];
+    const randomDescription =
+      descriptions[Math.floor(Math.random() * descriptions.length)];
+    setPreviewHeadline(randomHeading);
+    setPreviewDescription(randomDescription);
+  }, [headings, descriptions]);
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null;
+    if (shouldStartPreview) {
+      interval = setInterval(() => {
+        handleRandomizePreview();
+      }, 2000);
+    }
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [shouldStartPreview, handleRandomizePreview]);
 
   return (
     <Flex
@@ -298,8 +332,30 @@ export function ChatScreenAdsPreview({
                     <SuffixForSelect maxCount={4} data={descriptionsSelected} />
                   </Flex>
                 </Flex>
-                <Flex flex={0.5} vertical>
-                  <Typography.Title level={5}>Preview</Typography.Title>
+                <Flex flex={0.5} vertical gap={8}>
+                  <Flex justify="space-between" align="flex-start">
+                    <Typography.Title level={5}>Preview</Typography.Title>
+                    <Tooltip
+                      title={
+                        shouldStartPreview ? "Pause Preview" : "Play Preview"
+                      }
+                    >
+                      <Button
+                        type="text"
+                        size="middle"
+                        onClick={() => {
+                          setShouldStartPreview((prev) => !prev);
+                        }}
+                        icon={
+                          !shouldStartPreview ? (
+                            <PlayCircle size={"1.2rem"} fill="duotone" />
+                          ) : (
+                            <PauseCircle size={"1.2rem"} fill="duotone" />
+                          )
+                        }
+                      />
+                    </Tooltip>
+                  </Flex>
                   <Card
                     style={{
                       width: "100%",
@@ -310,7 +366,7 @@ export function ChatScreenAdsPreview({
                     <Flex vertical>
                       <Typography.Title level={5}>Sponsored</Typography.Title>
                       <Typography.Text>
-                        <Globe /> {finalURL}
+                        <Globe /> {finalURLEntered}
                       </Typography.Text>
 
                       <Typography.Title
