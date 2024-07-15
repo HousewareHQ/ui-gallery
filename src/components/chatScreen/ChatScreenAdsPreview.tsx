@@ -95,27 +95,27 @@ export function ChatScreenAdsPreview({
       vertical
       align="center"
     >
+      <Typography.Title
+        level={3}
+        style={{
+          width: "30vw",
+          textAlign: "center",
+          fontFamily: "Sedan",
+        }}
+      >
+        {pageHeading}
+      </Typography.Title>
       <Flex
         style={{
           width: "75vw",
-
-          overflow: "auto",
+          padding: "1vh 16px 5vh",
+          overflowY: "auto",
         }}
         vertical
         align="center"
         justify="flex-start"
         gap={24}
       >
-        <Typography.Title
-          level={3}
-          style={{
-            width: "30vw",
-            textAlign: "center",
-            fontFamily: "Sedan",
-          }}
-        >
-          {pageHeading}
-        </Typography.Title>
         <Card
           size="small"
           style={{

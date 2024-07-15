@@ -17,7 +17,11 @@ export interface ChatScreenKeywordsProps {
     keywordsData: Array<DataType>;
     pageHeading: string;
     handleProceed: (selectedRows: DataType[]) => void;
-    productCampaign: string;
+    productCampaign: {
+        description: string;
+        country: string;
+        language: string;
+    };
 }
 export declare function ChatScreenKeywords({ pageHeading, keywordsData, handleStartFresh, handleProceed, productCampaign, }: ChatScreenKeywordsProps): import("react/jsx-runtime").JSX.Element;
 export {};
