@@ -27,7 +27,11 @@ export interface ChatScreenKeywordsProps {
   pageHeading: string;
   // eslint-disable-next-line no-unused-vars
   handleProceed: (selectedRows: DataType[]) => void;
-  productCampaign: string;
+  productCampaign: {
+    description: string;
+    country: string;
+    language: string;
+  };
 }
 
 // const rowSelection = {
@@ -94,45 +98,44 @@ export function ChatScreenKeywords({
       style={{
         width: "100vw",
         height: "100vh",
+        overflow: "hidden",
       }}
       align="center"
       justify="flex-start"
       vertical
     >
+      <Typography.Title
+        level={3}
+        style={{
+          width: "30vw",
+          textAlign: "center",
+          fontFamily: "Sedan",
+        }}
+      >
+        {pageHeading}
+      </Typography.Title>
       <Flex
         style={{
-          height: "86vh",
-          width: "60vw",
+          height: "100%",
+          width: "calc(60vw - 48px)",
 
-          overflow: "auto",
-          overflowY: "scroll",
-          overflowX: "hidden",
-          padding: "0 24px 10vh",
+          overflowY: "auto",
+          padding: "2vh 24px 20vh",
         }}
         vertical
         align="center"
         justify="flex-start"
         gap={24}
       >
-        <Typography.Title
-          level={3}
-          style={{
-            width: "30vw",
-            textAlign: "center",
-            fontFamily: "Sedan",
-          }}
-        >
-          {pageHeading}
-        </Typography.Title>
-
         <Flex
           justify="space-between"
           style={{
             width: "100%",
           }}
+          align="flex-start"
         >
-          <Typography.Title level={5} style={{ marginBottom: 0 }}>
-            {productCampaign}
+          <Typography.Title level={5} style={{ margin: 0 }}>
+            {productCampaign.description}
           </Typography.Title>
 
           <Flex gap={4} align="center">
@@ -144,7 +147,7 @@ export function ChatScreenKeywords({
               size="small"
               icon={<GlobeHemisphereWest />}
             >
-              India
+              {productCampaign.country}
             </Button>
 
             <Button
@@ -155,7 +158,7 @@ export function ChatScreenKeywords({
               size="small"
               icon={<Translate />}
             >
-              English
+              {productCampaign.language}
             </Button>
           </Flex>
         </Flex>
@@ -174,22 +177,25 @@ export function ChatScreenKeywords({
               setSelectedRows(selectedRows);
             },
           }}
+          footer={() => {
+            return (
+              <Typography.Text
+                type="secondary"
+                style={{
+                  fontSize: "0.7rem",
+                }}
+              >
+                Powered by Google Ads, Semrush
+              </Typography.Text>
+            );
+          }}
         />
         <Flex
-          justify="space-between"
+          justify="flex-end"
           style={{
             width: "100%",
           }}
         >
-          <Typography.Text
-            type="secondary"
-            style={{
-              marginTop: "-4px",
-              fontSize: "0.7rem",
-            }}
-          >
-            Powered by Google Ads, Semrush
-          </Typography.Text>
           <Button
             type="primary"
             onClick={() => {
@@ -200,28 +206,29 @@ export function ChatScreenKeywords({
             Proceed
           </Button>
         </Flex>
-        <Flex
-          style={{
-            position: "absolute",
-            top: 16,
-            right: 32,
-          }}
-          gap={12}
-        >
-          <Popconfirm
-            title="You'll lose your current progress"
-            description="Are you sure you want to start from fresh?"
-            placement="bottomLeft"
-            okText="Yes"
-            cancelText="No"
-            onConfirm={() => {
-              handleStartFresh();
-            }}
-          >
-            <Button type="primary">Start fresh</Button>
-          </Popconfirm>
-        </Flex>
       </Flex>
+      <Flex
+        style={{
+          position: "absolute",
+          top: 16,
+          right: 32,
+        }}
+        gap={12}
+      >
+        <Popconfirm
+          title="You'll lose your current progress"
+          description="Are you sure you want to start from fresh?"
+          placement="bottomLeft"
+          okText="Yes"
+          cancelText="No"
+          onConfirm={() => {
+            handleStartFresh();
+          }}
+        >
+          <Button type="primary">Start fresh</Button>
+        </Popconfirm>
+      </Flex>
+
       <ChatInput
         inputRef={null}
         userQuery={userQuery}
