@@ -34,29 +34,7 @@ export function AIMessageComponents<T extends BaseMessage>({
   const content = messages[index]?.content;
   const isLastMessage = messages?.length - 1 === index;
   const shouldShowActionCardItems = isLastMessage && showMessageActionCard;
-  const CustomComponent = customMessageComponent?.component;
-  const isCustomComponentValid =
-    CustomComponent && customMessageComponent?.type;
-
-  const renderCustomMessageComponent = ({
-    messages,
-    index,
-    handleRegenerateResponse,
-  }: {
-    messages: T[];
-    index: number;
-    handleRegenerateResponse: (
-      userQuery: string,
-      regenerateResponse?: boolean,
-    ) => void;
-  }) =>
-    CustomComponent ? (
-      <CustomComponent
-        messages={messages}
-        index={index}
-        handleSendFollowupMessage={handleRegenerateResponse}
-      />
-    ) : null;
+  const customComponent = customMessageComponent?.component;
 
   const aiChatMessage = () => {
     const responseType = content.type || content?.query_response?.type;
@@ -119,13 +97,13 @@ export function AIMessageComponents<T extends BaseMessage>({
         }}
         gap={14}
       >
-        {isCustomComponentValid
-          ? renderCustomMessageComponent({
-              messages,
-              index,
-              handleRegenerateResponse,
-            })
-          : aiChatMessage()}
+        {(customComponent &&
+          customComponent({
+            messages,
+            index,
+            handleSendFollowupMessage: handleRegenerateResponse,
+          })) ||
+          aiChatMessage()}
 
         {shouldShowActionCardItems && (
           <MessageActionCard<T>
