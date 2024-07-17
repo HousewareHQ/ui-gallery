@@ -150,16 +150,6 @@ export default function AiMessageTable({
           </Card>
         </Modal>
         <Flex vertical gap={12}>
-          <Flex vertical>
-            <Paragraph
-              ellipsis={
-                ellipsis ? { rows: 2, expandable: true, symbol: 'more' } : false
-              }
-            >
-              Description: {description}
-            </Paragraph>
-            <Text>Segment size: {segmentSize}</Text>
-          </Flex>
           <div
             style={{
               width: '100%',
@@ -168,7 +158,18 @@ export default function AiMessageTable({
           >
             <AgGridReact rowData={rowData} columnDefs={columnDefs} />
           </div>
-          <Typography>{summary}</Typography>
+          <Flex vertical>
+            <Paragraph
+              ellipsis={
+                ellipsis ? { rows: 2, expandable: true, symbol: 'more' } : false
+              }
+            >
+              <strong>Description:</strong> {description}
+            </Paragraph>
+            <Text>
+              <strong>Segment size:</strong> {segmentSize ?? 128}
+            </Text>
+          </Flex>
         </Flex>
       </Card>
       <Typography>
