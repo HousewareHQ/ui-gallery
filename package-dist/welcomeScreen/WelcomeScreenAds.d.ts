@@ -4,10 +4,18 @@ export interface WelcomeScreenAdsProps {
     handleSendMessage: (userQuery: string) => void;
     heading: string;
     subHeading: string;
-    placeholders: {
-        inputPlaceholder: string;
-        country: string;
-        language: string;
-    };
+    inputPlaceholder?: string;
+    countries: Array<{
+        value: string;
+        label: string;
+    }>;
+    handleChangeCountry: (country: string) => void;
+    handleChangeLanguage: (language: string) => void;
+    countrySelected: string;
+    languageSelected: string;
+    languages: Array<{
+        value: string;
+        label: string;
+    }>;
 }
 export declare const WelcomeScreenAds: React.FC<WelcomeScreenAdsProps>;

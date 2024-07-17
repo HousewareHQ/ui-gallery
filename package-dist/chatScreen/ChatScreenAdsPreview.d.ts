@@ -3,14 +3,14 @@ export interface ChatScreenAdsPreviewProps {
     handleStartFresh: () => void;
     pageHeading: string;
     forecast: {
-        dateRange: string;
+        date_range: string;
         cost: string;
-        avgCPC: string;
-        dailyBudget: string;
+        average_cpc: string;
+        click_through_rate: string;
+        daily_budget: string;
         clicks: string;
         impressions: string;
-        ctr: string;
-        location: string;
+        country: string;
         language: string;
     };
     keywords: string[];
@@ -18,5 +18,8 @@ export interface ChatScreenAdsPreviewProps {
     descriptions: string[];
     finalURL: string;
     displayLink: [string, string];
+    handleChangeHeadings: (headings: string[]) => void;
+    handleChangeDescriptions: (descriptions: string[]) => void;
+    adStrength: number;
 }
-export declare function ChatScreenAdsPreview({ pageHeading, forecast, keywords, headings, descriptions, finalURL, displayLink, handleGoBack, handleStartFresh, }: ChatScreenAdsPreviewProps): import("react/jsx-runtime").JSX.Element;
+export declare function ChatScreenAdsPreview({ pageHeading, forecast, keywords, headings, descriptions, finalURL, displayLink, handleGoBack, handleStartFresh, handleChangeHeadings, handleChangeDescriptions, adStrength, }: ChatScreenAdsPreviewProps): import("react/jsx-runtime").JSX.Element;

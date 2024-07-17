@@ -27,14 +27,14 @@ export interface ChatScreenAdsPreviewProps {
 
   pageHeading: string;
   forecast: {
-    dateRange: string;
+    date_range: string;
     cost: string;
-    avgCPC: string;
-    dailyBudget: string;
+    average_cpc: string;
+    click_through_rate: string;
+    daily_budget: string;
     clicks: string;
     impressions: string;
-    ctr: string;
-    location: string;
+    country: string;
     language: string;
   };
   keywords: string[];
@@ -42,6 +42,9 @@ export interface ChatScreenAdsPreviewProps {
   descriptions: string[];
   finalURL: string;
   displayLink: [string, string];
+  handleChangeHeadings: (headings: string[]) => void;
+  handleChangeDescriptions: (descriptions: string[]) => void;
+  adStrength: number;
 }
 
 const SuffixForSelect = ({
@@ -80,16 +83,15 @@ export function ChatScreenAdsPreview({
   displayLink,
   handleGoBack,
   handleStartFresh,
+  handleChangeHeadings,
+  handleChangeDescriptions,
+  adStrength,
 }: ChatScreenAdsPreviewProps) {
-  const [headingsSelected, setHeadingsSelected] = useState<string[]>(headings);
-  const [descriptionsSelected, setDescriptionsSelected] =
-    useState<string[]>(descriptions);
-
   const [previewHeadline, setPreviewHeadline] = useState(
-    headingsSelected[0] || "Headline"
+    headings[0] || "Headline"
   );
   const [previewDescription, setPreviewDescription] = useState(
-    descriptionsSelected[0] || "Description"
+    descriptions[0] || "Description"
   );
 
   const [finalURLEntered, setFinalURLEntered] = useState(finalURL);
@@ -172,7 +174,7 @@ export function ChatScreenAdsPreview({
               }}
               title={
                 <Typography.Title level={5}>
-                  Forecast for {forecast.dateRange}
+                  Forecast for {forecast.date_range}
                 </Typography.Title>
               }
               items={[
@@ -189,16 +191,16 @@ export function ChatScreenAdsPreview({
                   children: forecast.cost,
                 },
                 {
-                  label: "Avg CPC",
-                  children: forecast.avgCPC,
+                  label: "Avg. CPC",
+                  children: forecast.average_cpc,
                 },
                 {
                   label: "Daily Budget",
-                  children: forecast.dailyBudget,
+                  children: forecast.daily_budget,
                 },
                 {
                   label: "CTR",
-                  children: forecast.ctr,
+                  children: forecast.click_through_rate,
                 },
               ]}
             />
@@ -213,7 +215,7 @@ export function ChatScreenAdsPreview({
               items={[
                 {
                   label: "Location",
-                  children: forecast.location,
+                  children: forecast.country,
                 },
                 {
                   label: "Language",
@@ -248,7 +250,7 @@ export function ChatScreenAdsPreview({
               >
                 <Typography.Title level={5}>Ad Group 1</Typography.Title>
                 <Flex gap={8}>
-                  <Progress type="circle" percent={75} size={20} />
+                  <Progress type="circle" percent={adStrength} size={20} />
                   <Typography.Text>Ad Strength</Typography.Text>
                 </Flex>
               </Flex>
@@ -303,8 +305,10 @@ export function ChatScreenAdsPreview({
                       mode="tags"
                       maxCount={15}
                       style={{ width: "100%" }}
-                      value={headingsSelected}
-                      onChange={setHeadingsSelected}
+                      value={headings}
+                      onChange={(values) => {
+                        handleChangeHeadings(values);
+                      }}
                       suffixIcon={<CaretDown />}
                       placeholder="Choose your headlines"
                       options={headings.map((heading) => ({
@@ -312,15 +316,17 @@ export function ChatScreenAdsPreview({
                         value: heading,
                       }))}
                     />
-                    <SuffixForSelect maxCount={15} data={headingsSelected} />
+                    <SuffixForSelect maxCount={15} data={headings} />
                   </Flex>
                   <Flex vertical gap={8}>
                     <Typography.Text>Descriptions</Typography.Text>
                     <Select
                       mode="tags"
                       maxCount={4}
-                      value={descriptionsSelected}
-                      onChange={setDescriptionsSelected}
+                      value={descriptions}
+                      onChange={(values) => {
+                        handleChangeDescriptions(values);
+                      }}
                       suffixIcon={<CaretDown />}
                       style={{ width: "100%" }}
                       placeholder="Choose your descriptions"
@@ -329,7 +335,7 @@ export function ChatScreenAdsPreview({
                         value: description,
                       }))}
                     />
-                    <SuffixForSelect maxCount={4} data={descriptionsSelected} />
+                    <SuffixForSelect maxCount={4} data={descriptions} />
                   </Flex>
                 </Flex>
                 <Flex flex={0.5} vertical gap={8}>

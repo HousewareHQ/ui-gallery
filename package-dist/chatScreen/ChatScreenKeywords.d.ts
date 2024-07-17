@@ -3,13 +3,12 @@ export interface BaseMessage {
     type: "ai" | "human";
 }
 interface DataType {
-    keyword: string;
-    monthlySearchVolume: string;
-    avgMonthlySearches: string;
-    cpc: string;
+    average_monthly_searches: number;
     competition: string;
-    lowBid: string;
-    highBid: string;
+    high_cpc: number;
+    keyword: string;
+    low_cpc: number;
+    cpc: number;
     key: string;
 }
 export interface ChatScreenKeywordsProps {
@@ -22,6 +21,7 @@ export interface ChatScreenKeywordsProps {
         country: string;
         language: string;
     };
+    handleSuggestChanges: (userQuery: string) => void;
 }
-export declare function ChatScreenKeywords({ pageHeading, keywordsData, handleStartFresh, handleProceed, productCampaign, }: ChatScreenKeywordsProps): import("react/jsx-runtime").JSX.Element;
+export declare function ChatScreenKeywords({ pageHeading, keywordsData, handleStartFresh, handleProceed, productCampaign, handleSuggestChanges, }: ChatScreenKeywordsProps): import("react/jsx-runtime").JSX.Element;
 export {};

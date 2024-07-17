@@ -34,20 +34,6 @@ export interface ChatScreenKeywordsProps {
   handleSuggestChanges: (userQuery: string) => void;
 }
 
-// const rowSelection = {
-//   onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
-//     console.log(
-//       `selectedRowKeys: ${selectedRowKeys}`,
-//       "selectedRows: ",
-//       selectedRows
-//     );
-//   },
-//   //   getCheckboxProps: (record: DataType) => ({
-//   //     disabled: record.name === "Disabled User", // Column configuration not to be checked
-//   //     name: record.name,
-//   //   }),
-// };
-
 export function ChatScreenKeywords({
   pageHeading,
   keywordsData,

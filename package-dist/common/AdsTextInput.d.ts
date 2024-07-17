@@ -8,10 +8,18 @@ export interface AdsTextInputProps {
     setUserQuery: React.Dispatch<React.SetStateAction<string>>;
     handleSendMessage: () => void;
     isFollowupDisabled?: boolean;
-    placeholders?: {
-        inputPlaceholder: string;
-        country: string;
-        language: string;
-    };
+    inputPlaceholder?: string;
+    countries: Array<{
+        value: string;
+        label: string;
+    }>;
+    handleChangeCountry: (country: string) => void;
+    handleChangeLanguage: (language: string) => void;
+    countrySelected: string;
+    languageSelected: string;
+    languages: Array<{
+        value: string;
+        label: string;
+    }>;
 }
 export declare const AdsTextInput: React.FC<AdsTextInputProps>;

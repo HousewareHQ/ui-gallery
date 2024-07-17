@@ -5,6 +5,8 @@ import { ChatScreenAdsPreview } from "../components/chatScreen/ChatScreenAdsPrev
 const ActionsData = {
   handleGoBack: fn(),
   handleStartFresh: fn(),
+  handleChangeHeadings: fn(),
+  handleChangeDescriptions: fn(),
 };
 
 const meta: Meta<typeof ChatScreenAdsPreview> = {
@@ -31,15 +33,15 @@ export const Default: Story = {
   args: {
     pageHeading: "Campagin on Sustainable Products",
     forecast: {
-      dateRange: "2021-01-01 to 2021-12-31",
-      ctr: "5.9%",
-      avgCPC: "$0.50",
-      clicks: "1k",
-      impressions: "17k",
-      dailyBudget: "$50",
-      location: "United States",
+      date_range: "2021-01-01 to 2021-12-31",
+      average_cpc: "32.89",
+      click_through_rate: "0.06456159055233002",
+      clicks: "611.7352294921875",
+      cost: "2",
+      impressions: "2324",
+      country: "United States",
       language: "English",
-      cost: "$500",
+      daily_budget: "211",
     },
     keywords: [
       "sustainable products",
@@ -80,5 +82,6 @@ export const Default: Story = {
     ],
     finalURL: "https://www.google.com",
     displayLink: ["www.google.com", "www.google.com"],
+    adStrength: 20,
   },
 };
