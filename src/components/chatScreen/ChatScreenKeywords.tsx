@@ -11,13 +11,12 @@ export interface BaseMessage {
 }
 
 interface DataType {
-  keyword: string;
-  monthlySearchVolume: string;
-  avgMonthlySearches: string;
-  cpc: string;
+  average_monthly_searches: number;
   competition: string;
-  lowBid: string;
-  highBid: string;
+  high_cpc: number;
+  keyword: string;
+  low_cpc: number;
+  cpc: number;
   key: string;
 }
 
@@ -32,6 +31,7 @@ export interface ChatScreenKeywordsProps {
     country: string;
     language: string;
   };
+  handleSuggestChanges: (userQuery: string) => void;
 }
 
 // const rowSelection = {
@@ -54,6 +54,7 @@ export function ChatScreenKeywords({
   handleStartFresh,
   handleProceed,
   productCampaign,
+  handleSuggestChanges,
 }: ChatScreenKeywordsProps) {
   const [userQuery, setUserQuery] = useState("");
   const [selectedRows, setSelectedRows] = useState<DataType[]>([]);
@@ -64,33 +65,40 @@ export function ChatScreenKeywords({
       dataIndex: "keyword",
     },
     {
-      title: "Monthly Search Volume",
-      dataIndex: "monthlySearchVolume",
+      title: "Avg. Monthly Searches",
+      dataIndex: "average_monthly_searches",
       align: "center",
+      sorter: (a, b) => a.average_monthly_searches - b.average_monthly_searches,
     },
-    // {
-    //   title: "Avg Monthly Searches",
-    //   dataIndex: "avgMonthlySearches",
-    // },
     {
       title: "CPC",
       dataIndex: "cpc",
       align: "center",
+      sorter: (a, b) => a.cpc - b.cpc,
     },
     {
       title: "Competition",
       dataIndex: "competition",
       align: "center",
+      sorter: (a, b) => {
+        const sortOrder = ["low", "medium", "high", "unknown"];
+        const aIndex = sortOrder.indexOf(a.competition.toLowerCase());
+        const bIndex = sortOrder.indexOf(b.competition.toLowerCase());
+
+        return aIndex - bIndex;
+      },
     },
     {
       title: "Low Bid",
-      dataIndex: "lowBid",
+      dataIndex: "low_cpc",
       align: "center",
+      sorter: (a, b) => a.low_cpc - b.low_cpc,
     },
     {
       title: "High Bid",
-      dataIndex: "highBid",
+      dataIndex: "high_cpc",
       align: "center",
+      sorter: (a, b) => a.high_cpc - b.high_cpc,
     },
   ];
   return (
@@ -178,6 +186,7 @@ export function ChatScreenKeywords({
               setSelectedRows(selectedRows);
             },
           }}
+          size="small"
           footer={() => {
             return (
               <Typography.Text
@@ -234,7 +243,10 @@ export function ChatScreenKeywords({
         inputRef={null}
         userQuery={userQuery}
         setUserQuery={setUserQuery}
-        handleSendMessage={() => {}}
+        handleSendMessage={() => {
+          handleSuggestChanges(userQuery);
+          setUserQuery("");
+        }}
         placeholder="Suggest Changes..."
         isFollowupDisabled={false}
         width={"60vw"}

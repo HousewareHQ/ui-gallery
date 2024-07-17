@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Flex, InputRef, Typography } from "antd";
 
 import React, { useRef, useState } from "react";
@@ -10,18 +11,26 @@ export interface WelcomeScreenAdsProps {
   handleSendMessage: (userQuery: string) => void;
   heading: string;
   subHeading: string;
-  placeholders: {
-    inputPlaceholder: string;
-    country: string;
-    language: string;
-  };
+  inputPlaceholder?: string;
+  countries: Array<{ value: string; label: string }>;
+  handleChangeCountry: (country: string) => void;
+  handleChangeLanguage: (language: string) => void;
+  countrySelected: string;
+  languageSelected: string;
+  languages: Array<{ value: string; label: string }>;
 }
 
 export const WelcomeScreenAds: React.FC<WelcomeScreenAdsProps> = ({
   handleSendMessage,
   heading,
   subHeading,
-  placeholders,
+  inputPlaceholder,
+  countries = [],
+  languages = [],
+  handleChangeCountry,
+  handleChangeLanguage,
+  countrySelected,
+  languageSelected,
 }: WelcomeScreenAdsProps) => {
   const [userQuery, setUserQuery] = useState("");
 
@@ -71,7 +80,13 @@ export const WelcomeScreenAds: React.FC<WelcomeScreenAdsProps> = ({
           handleSendMessage(userQuery);
           setUserQuery("");
         }}
-        placeholders={placeholders}
+        inputPlaceholder={inputPlaceholder}
+        countries={countries}
+        languages={languages}
+        countrySelected={countrySelected}
+        languageSelected={languageSelected}
+        handleChangeCountry={handleChangeCountry}
+        handleChangeLanguage={handleChangeLanguage}
       />
     </Flex>
   );

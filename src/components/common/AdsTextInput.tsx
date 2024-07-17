@@ -3,7 +3,7 @@ import {
   PaperPlaneTilt,
   Translate,
 } from "@phosphor-icons/react";
-import { Button, Card, Flex, Input, InputRef, Typography } from "antd";
+import { Button, Card, Flex, Input, InputRef, Select, Typography } from "antd";
 import * as React from "react";
 import { LegacyRef } from "react";
 
@@ -14,11 +14,13 @@ export interface AdsTextInputProps {
   setUserQuery: React.Dispatch<React.SetStateAction<string>>;
   handleSendMessage: () => void;
   isFollowupDisabled?: boolean;
-  placeholders?: {
-    inputPlaceholder: string;
-    country: string;
-    language: string;
-  };
+  inputPlaceholder?: string;
+  countries: Array<{ value: string; label: string }>;
+  handleChangeCountry: (country: string) => void;
+  handleChangeLanguage: (language: string) => void;
+  countrySelected: string;
+  languageSelected: string;
+  languages: Array<{ value: string; label: string }>;
 }
 
 export const AdsTextInput: React.FC<AdsTextInputProps> = ({
@@ -26,12 +28,15 @@ export const AdsTextInput: React.FC<AdsTextInputProps> = ({
   userQuery,
   setUserQuery,
   handleSendMessage,
-  placeholders = {
-    inputPlaceholder: "Describe your product campaign here...",
-    country: "United States",
-    language: "English",
-  },
+  inputPlaceholder = "Describe your product campaign here...",
+
   isFollowupDisabled = false,
+  countries = [],
+  languages = [],
+  handleChangeCountry,
+  handleChangeLanguage,
+  countrySelected,
+  languageSelected,
 }: AdsTextInputProps) => {
   const isButtonDisabled = userQuery.trim().length === 0 || isFollowupDisabled;
 
@@ -39,7 +44,7 @@ export const AdsTextInput: React.FC<AdsTextInputProps> = ({
     <Flex
       vertical
       style={{
-        width: "40vw",
+        width: "50vw",
       }}
     >
       <Card
@@ -78,7 +83,7 @@ export const AdsTextInput: React.FC<AdsTextInputProps> = ({
                 value={userQuery}
                 size="large"
                 variant="outlined"
-                placeholder={placeholders.inputPlaceholder}
+                placeholder={inputPlaceholder}
                 onPressEnter={handleSendMessage}
               />
             </Flex>
@@ -92,16 +97,17 @@ export const AdsTextInput: React.FC<AdsTextInputProps> = ({
                 >
                   Targetting users in
                 </Typography.Text>
-                <Button
-                  type="text"
-                  style={{
-                    fontSize: "0.8rem",
-                  }}
+
+                <Select
                   size="small"
-                  icon={<GlobeHemisphereWest />}
-                >
-                  {placeholders.country}
-                </Button>
+                  variant="borderless"
+                  suffixIcon={<GlobeHemisphereWest />}
+                  value={countrySelected}
+                  onChange={handleChangeCountry}
+                  options={countries}
+                  popupMatchSelectWidth={false}
+                  showSearch
+                />
                 <Typography.Text
                   type="secondary"
                   style={{
@@ -110,16 +116,16 @@ export const AdsTextInput: React.FC<AdsTextInputProps> = ({
                 >
                   speaking
                 </Typography.Text>
-                <Button
-                  type="text"
-                  style={{
-                    fontSize: "0.8rem",
-                  }}
+                <Select
                   size="small"
-                  icon={<Translate />}
-                >
-                  {placeholders.language}
-                </Button>
+                  variant="borderless"
+                  suffixIcon={<Translate />}
+                  value={languageSelected}
+                  onChange={handleChangeLanguage}
+                  options={languages}
+                  popupMatchSelectWidth={false}
+                  showSearch
+                />
               </Flex>
               <Button
                 disabled={isButtonDisabled}
