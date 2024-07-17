@@ -6,6 +6,7 @@ import {
   Button,
   Card,
   Flex,
+  Image,
   List,
   message,
   Modal,
@@ -40,7 +41,7 @@ export default function AiMessageTable({
   rowData,
   columnDefs,
 }: AiMessageTableProps) {
-  const [ellipsis, setEllipsis] = useState(true);
+  const [ellipsis] = useState(true);
   const [showSqlModal, setShowSqlModal] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -49,22 +50,18 @@ export default function AiMessageTable({
       itemLayout="horizontal"
       dataSource={[
         {
-          text: 'Braze',
-          img: '',
+          text: 'HubSpot',
+          img: '/hubspot.svg',
         },
         {
-          text: 'HubSpot',
-          img: '',
+          text: 'Braze',
+          img: '/braze.svg',
         },
       ]}
-      renderItem={(item, index) => (
+      renderItem={(item) => (
         <List.Item>
           <List.Item.Meta
-            avatar={
-              <Avatar
-                src={`https://api.dicebear.com/7.x/miniavs/svg?seed=${index}`}
-              />
-            }
+            avatar={<Image preview={false} width={26} src={item.img} />}
             title={<a href="https://ant.design">{item.text}</a>}
           />
         </List.Item>
@@ -167,7 +164,7 @@ export default function AiMessageTable({
               <strong>Description:</strong> {description}
             </Paragraph>
             <Text>
-              <strong>Segment size:</strong> {segmentSize ?? 128}
+              <strong>Segment size:</strong> {segmentSize || rowData?.length}
             </Text>
           </Flex>
         </Flex>
