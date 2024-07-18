@@ -3,7 +3,9 @@ import {
   PaperPlaneTilt,
   Translate,
 } from "@phosphor-icons/react";
-import { Button, Card, Flex, Input, InputRef, Select, Typography } from "antd";
+import { Button, Card, Flex, InputRef, Select, Typography } from "antd";
+import TextArea from "antd/es/input/TextArea";
+
 import * as React from "react";
 import { LegacyRef } from "react";
 
@@ -40,6 +42,16 @@ export const AdsTextInput: React.FC<AdsTextInputProps> = ({
 }: AdsTextInputProps) => {
   const isButtonDisabled = userQuery.trim().length === 0 || isFollowupDisabled;
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.stopPropagation();
+      e.preventDefault();
+      if (!isButtonDisabled) {
+        handleSendMessage();
+      }
+    }
+  };
+
   return (
     <Flex
       vertical
@@ -60,7 +72,7 @@ export const AdsTextInput: React.FC<AdsTextInputProps> = ({
         }}
       >
         <Flex justify="space-between" gap={12}>
-          <Flex vertical style={{ width: "100%" }} gap={24}>
+          <Flex vertical style={{ width: "100%" }} gap={16}>
             <Flex
               vertical
               gap={4}
@@ -76,16 +88,44 @@ export const AdsTextInput: React.FC<AdsTextInputProps> = ({
               >
                 I want to run my campaign for
               </Typography.Text>
-              <Input
+              <TextArea
                 style={{ width: "100%" }}
                 ref={inputRef}
                 onChange={(e) => setUserQuery(e.target.value)}
                 value={userQuery}
+                autoSize={{ minRows: 1, maxRows: 8 }}
                 size="large"
                 variant="outlined"
                 placeholder={inputPlaceholder}
-                onPressEnter={handleSendMessage}
+                onKeyDown={handleKeyDown}
               />
+              <Flex align="flex-end" justify="flex-end">
+                <Typography.Text
+                  type="secondary"
+                  style={{
+                    fontWeight: 500,
+                    fontSize: "0.6rem",
+
+                    visibility:
+                      userQuery.trim().length > 0 ? "visible" : "hidden",
+                  }}
+                >
+                  Use{" "}
+                  <Typography.Text
+                    type="secondary"
+                    style={{
+                      backgroundColor: "var(--background)",
+                      fontWeight: 500,
+                      fontSize: "0.6rem",
+                      padding: "3px 6px",
+                      borderRadius: 4,
+                    }}
+                  >
+                    shift + enter
+                  </Typography.Text>{" "}
+                  for new line
+                </Typography.Text>
+              </Flex>
             </Flex>
             <Flex align="center" justify="space-between">
               <Flex gap={4} align="center">
