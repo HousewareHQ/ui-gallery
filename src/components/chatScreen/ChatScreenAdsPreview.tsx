@@ -15,6 +15,7 @@ import {
   Progress,
   Select,
   Space,
+  Spin,
   Tag,
   Tooltip,
   Typography,
@@ -45,6 +46,8 @@ export interface ChatScreenAdsPreviewProps {
   handleChangeHeadings: (headings: string[]) => void;
   handleChangeDescriptions: (descriptions: string[]) => void;
   adStrength: number;
+  isForecastLoading: boolean;
+  areHeadingsDescriptionsLoading: boolean;
 }
 
 const SuffixForSelect = ({
@@ -85,6 +88,8 @@ export function ChatScreenAdsPreview({
   handleStartFresh,
   handleChangeHeadings,
   handleChangeDescriptions,
+  isForecastLoading,
+  areHeadingsDescriptionsLoading,
   adStrength,
 }: ChatScreenAdsPreviewProps) {
   const [previewHeadline, setPreviewHeadline] = useState(
@@ -152,79 +157,81 @@ export function ChatScreenAdsPreview({
         justify="flex-start"
         gap={24}
       >
-        <Card
-          size="small"
-          style={{
-            width: "100%",
-          }}
-          styles={{
-            body: {
-              padding: "16px 24px 4px",
-            },
-          }}
-        >
-          <Flex vertical gap={12}>
-            <Descriptions
-              layout="vertical"
-              column={6}
-              size="small"
-              colon={false}
-              contentStyle={{
-                fontSize: "1.5rem",
-              }}
-              title={
-                <Typography.Title level={5}>
-                  Forecast for {forecast.date_range}
-                </Typography.Title>
-              }
-              items={[
-                {
-                  label: "Clicks",
-                  children: forecast.clicks,
-                },
-                {
-                  label: "Impressions",
-                  children: forecast.impressions,
-                },
-                {
-                  label: "Cost",
-                  children: forecast.cost,
-                },
-                {
-                  label: "Avg. CPC",
-                  children: forecast.average_cpc,
-                },
-                {
-                  label: "Daily Budget",
-                  children: forecast.daily_budget,
-                },
-                {
-                  label: "CTR",
-                  children: forecast.click_through_rate,
-                },
-              ]}
-            />
-            {/* <Divider
+        <Spin spinning={isForecastLoading}>
+          <Card
+            size="small"
+            style={{
+              width: "100%",
+            }}
+            styles={{
+              body: {
+                padding: "16px 24px 4px",
+              },
+            }}
+          >
+            <Flex vertical gap={12}>
+              <Descriptions
+                layout="vertical"
+                column={6}
+                size="small"
+                colon={false}
+                contentStyle={{
+                  fontSize: "1.5rem",
+                }}
+                title={
+                  <Typography.Title level={5}>
+                    Forecast for {forecast.date_range}
+                  </Typography.Title>
+                }
+                items={[
+                  {
+                    label: "Clicks",
+                    children: forecast.clicks,
+                  },
+                  {
+                    label: "Impressions",
+                    children: forecast.impressions,
+                  },
+                  {
+                    label: "Cost",
+                    children: forecast.cost,
+                  },
+                  {
+                    label: "Avg. CPC",
+                    children: forecast.average_cpc,
+                  },
+                  {
+                    label: "Daily Budget",
+                    children: forecast.daily_budget,
+                  },
+                  {
+                    label: "CTR",
+                    children: forecast.click_through_rate,
+                  },
+                ]}
+              />
+              {/* <Divider
             style={{
               margin: 0,
             }}
           /> */}
-            <Descriptions
-              colon={false}
-              size="small"
-              items={[
-                {
-                  label: "Location",
-                  children: forecast.country,
-                },
-                {
-                  label: "Language",
-                  children: forecast.language,
-                },
-              ]}
-            />
-          </Flex>
-        </Card>
+              <Descriptions
+                colon={false}
+                size="small"
+                items={[
+                  {
+                    label: "Location",
+                    children: forecast.country,
+                  },
+                  {
+                    label: "Language",
+                    children: forecast.language,
+                  },
+                ]}
+              />
+            </Flex>
+          </Card>
+        </Spin>
         <Flex
           vertical
           align="flex-start"
@@ -302,15 +309,25 @@ export function ChatScreenAdsPreview({
                   <Flex vertical gap={8}>
                     <Typography.Text>Headlines</Typography.Text>
                     <Select
+                      loading={areHeadingsDescriptionsLoading}
                       mode="tags"
                       maxCount={15}
                       style={{ width: "100%" }}
+                      disabled={areHeadingsDescriptionsLoading}
                       value={headings}
                       onChange={(values) => {
                         handleChangeHeadings(values);
                       }}
-                      suffixIcon={<CaretDown />}
-                      placeholder="Choose your headlines"
+                      suffixIcon={
+                        areHeadingsDescriptionsLoading ? undefined : (
+                          <CaretDown />
+                        )
+                      }
+                      placeholder={
+                        areHeadingsDescriptionsLoading
+                          ? "Getting your headings..."
+                          : "Choose your headlines"
+                      }
                       options={headings.map((heading) => ({
                         label: heading,
                         value: heading,
@@ -321,15 +338,25 @@ export function ChatScreenAdsPreview({
                   <Flex vertical gap={8}>
                     <Typography.Text>Descriptions</Typography.Text>
                     <Select
+                      loading={areHeadingsDescriptionsLoading}
                       mode="tags"
                       maxCount={4}
+                      disabled={areHeadingsDescriptionsLoading}
                       value={descriptions}
                       onChange={(values) => {
                         handleChangeDescriptions(values);
                       }}
-                      suffixIcon={<CaretDown />}
+                      suffixIcon={
+                        areHeadingsDescriptionsLoading ? undefined : (
+                          <CaretDown />
+                        )
+                      }
                       style={{ width: "100%" }}
-                      placeholder="Choose your descriptions"
+                      placeholder={
+                        areHeadingsDescriptionsLoading
+                          ? "Getting your descriptions..."
+                          : "Choose your descriptions"
+                      }
                       options={descriptions.map((description) => ({
                         label: description,
                         value: description,

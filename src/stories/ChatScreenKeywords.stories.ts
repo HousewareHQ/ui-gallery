@@ -175,3 +175,11 @@ export const Default: Story = {
     ],
   },
 };
+
+export const Loading: Story = {
+  args: {
+    ...Default.args,
+    areKeywordsLoading: true,
+    keywordsData: [],
+  },
+};

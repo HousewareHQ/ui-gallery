@@ -47,6 +47,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
         marginLeft: "auto",
         marginRight: "auto",
         width: width,
+        zIndex: 2,
       }}
     >
       <div

@@ -32,6 +32,7 @@ export interface ChatScreenKeywordsProps {
     language: string;
   };
   handleSuggestChanges: (userQuery: string) => void;
+  areKeywordsLoading: boolean;
 }
 
 export function ChatScreenKeywords({
@@ -41,6 +42,7 @@ export function ChatScreenKeywords({
   handleProceed,
   productCampaign,
   handleSuggestChanges,
+  areKeywordsLoading,
 }: ChatScreenKeywordsProps) {
   const [userQuery, setUserQuery] = useState("");
   const [selectedRows, setSelectedRows] = useState<DataType[]>([]);
@@ -49,17 +51,20 @@ export function ChatScreenKeywords({
     {
       title: "Keyword",
       dataIndex: "keyword",
+      width: "10rem",
     },
     {
       title: "Avg. Monthly Searches",
       dataIndex: "average_monthly_searches",
       align: "center",
+      render: (value) => value.toLocaleString(),
       sorter: (a, b) => a.average_monthly_searches - b.average_monthly_searches,
     },
     {
       title: "CPC",
       dataIndex: "cpc",
       align: "center",
+      render: (value) => `₹${value}`,
       sorter: (a, b) => a.cpc - b.cpc,
     },
     {
@@ -78,12 +83,14 @@ export function ChatScreenKeywords({
       title: "Low Bid",
       dataIndex: "low_cpc",
       align: "center",
+      render: (value) => `₹${value}`,
       sorter: (a, b) => a.low_cpc - b.low_cpc,
     },
     {
       title: "High Bid",
       dataIndex: "high_cpc",
       align: "center",
+      render: (value) => `₹${value}`,
       sorter: (a, b) => a.high_cpc - b.high_cpc,
     },
   ];
@@ -162,6 +169,7 @@ export function ChatScreenKeywords({
             width: "100%",
           }}
           dataSource={keywordsData}
+          loading={areKeywordsLoading}
           columns={columns}
           rowSelection={{
             type: "checkbox",
@@ -234,7 +242,7 @@ export function ChatScreenKeywords({
           setUserQuery("");
         }}
         placeholder="Suggest Changes..."
-        isFollowupDisabled={false}
+        isFollowupDisabled={areKeywordsLoading}
         width={"60vw"}
       />
     </Flex>

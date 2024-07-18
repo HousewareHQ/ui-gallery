@@ -83,5 +83,24 @@ export const Default: Story = {
     finalURL: "https://www.google.com",
     displayLink: ["www.google.com", "www.google.com"],
     adStrength: 20,
+    isForecastLoading: false,
+    areHeadingsDescriptionsLoading: false,
+  },
+};
+
+export const ForecastLoading: Story = {
+  args: {
+    ...Default.args,
+    isForecastLoading: true,
+    forecast: {},
+  },
+};
+
+export const HeadingsDescriptionsLoading: Story = {
+  args: {
+    ...Default.args,
+    areHeadingsDescriptionsLoading: true,
+    headings: [],
+    descriptions: [],
   },
 };
