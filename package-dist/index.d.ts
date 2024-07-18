@@ -12,6 +12,7 @@ export { ChatScreenKeywords } from './chatScreen/ChatScreenKeywords';
 export type { ChatScreenKeywordsProps } from './chatScreen/ChatScreenKeywords';
 export { default as AiMessageTable } from './AiMessageTable';
 export type { AiMessageTableProps } from './AiMessageTable';
+export { SegmentMetricsCard } from './AiMessageTable';
 export { HousewareBranding } from './common/HousewareBranding';
 export { ThemeToggle } from './common/ThemeToggle';
 export { default as AppThemeProvider } from './AppThemeProvider';

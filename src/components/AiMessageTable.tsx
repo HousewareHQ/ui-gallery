@@ -32,6 +32,39 @@ export interface AiMessageTableProps {
   }[];
 }
 
+export const SegmentMetricsCard = ({
+  name,
+  segmentMetricsData,
+}: {
+  name: string;
+  segmentMetricsData: { title: string; value: string }[];
+}) => {
+  return (
+    <Card
+      style={{ backgroundColor: 'var(--foreground)' }}
+      hoverable
+      size="small"
+      title={<Typography.Title level={3}>Segment Metrics</Typography.Title>}
+    >
+      <Flex vertical gap={6}>
+        <Typography>
+          <strong>Segment name:</strong> {name}
+        </Typography>
+        <Flex gap={20} wrap>
+          {segmentMetricsData.map((metric) => (
+            <Flex vertical gap={6} key={metric.title}>
+              <Text>{metric.title}</Text>
+              <Text>
+                <strong>{metric.value}</strong>
+              </Text>
+            </Flex>
+          ))}
+        </Flex>
+      </Flex>
+    </Card>
+  );
+};
+
 export default function AiMessageTable({
   title,
   summary,

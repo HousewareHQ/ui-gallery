@@ -10,4 +10,11 @@ export interface AiMessageTableProps {
         field: string;
     }[];
 }
+export declare const SegmentMetricsCard: ({ name, segmentMetricsData, }: {
+    name: string;
+    segmentMetricsData: {
+        title: string;
+        value: string;
+    }[];
+}) => import("react/jsx-runtime").JSX.Element;
 export default function AiMessageTable({ title, summary, segmentSize, description, sequelQuery, rowData, columnDefs, }: AiMessageTableProps): import("react/jsx-runtime").JSX.Element;
