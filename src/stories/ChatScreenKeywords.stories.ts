@@ -32,7 +32,8 @@ export const Default: Story = {
   args: {
     pageHeading: "Campagin on Sustainable Products",
     productCampaign: {
-      description: "Sustainable Shoes",
+      description:
+        "Sustainable Shoes Sustainable Shoes Sustainable Shoes Sustainable Shoes Sustainable Shoes Sustainable Shoes Sustainable Shoes ",
       language: "English",
       country: "United States",
     },
@@ -49,7 +50,7 @@ export const Default: Story = {
       {
         average_monthly_searches: 110000,
         competition: "Medium",
-        key: "1",
+        key: "2",
         cpc: 202.29,
         high_cpc: 162.16,
         keyword: "black boots",
@@ -58,7 +59,7 @@ export const Default: Story = {
       {
         average_monthly_searches: 74000,
         competition: "Low",
-        key: "1",
+        key: "3",
         cpc: 144.61,
         high_cpc: 123.71,
         keyword: "western clothes near me",
@@ -67,7 +68,7 @@ export const Default: Story = {
       {
         average_monthly_searches: 74000,
         competition: "High",
-        key: "1",
+        key: "4",
         cpc: 144.61,
         high_cpc: 123.71,
         keyword: "cowboy clothes near me",
@@ -76,7 +77,7 @@ export const Default: Story = {
       {
         average_monthly_searches: 74000,
         competition: "Low",
-        key: "1",
+        key: "5",
         cpc: 144.61,
         high_cpc: 123.71,
         keyword: "western clothes store near me",
@@ -85,7 +86,7 @@ export const Default: Story = {
       {
         average_monthly_searches: 60500,
         competition: "Low",
-        key: "1",
+        key: "6",
         cpc: 213.99,
         high_cpc: 183.06,
         keyword: "booties",
@@ -94,7 +95,7 @@ export const Default: Story = {
       {
         average_monthly_searches: 49500,
         competition: "Low",
-        key: "1",
+        key: "7",
         cpc: 159.66,
         high_cpc: 132.07,
         keyword: "ankle boots",
@@ -103,7 +104,7 @@ export const Default: Story = {
       {
         average_monthly_searches: 49500,
         competition: "Low",
-        key: "1",
+        key: "8",
         cpc: 189.65,
         high_cpc: 157.05,
         keyword: "black boots women",
@@ -112,7 +113,7 @@ export const Default: Story = {
       {
         average_monthly_searches: 49500,
         competition: "Low",
-        key: "1",
+        key: "9",
         cpc: 159.66,
         high_cpc: 132.07,
         keyword: "boot for ankle",
@@ -121,7 +122,7 @@ export const Default: Story = {
       {
         average_monthly_searches: 33100,
         competition: "Low",
-        key: "1",
+        key: "10",
         cpc: 201.8,
         high_cpc: 175.89,
         keyword: "men's winter boots",
@@ -130,7 +131,7 @@ export const Default: Story = {
       {
         average_monthly_searches: 33100,
         competition: "Low",
-        key: "1",
+        key: "11",
         cpc: 171.36,
         high_cpc: 143.77,
         keyword: "chelsea boots women",
@@ -139,7 +140,7 @@ export const Default: Story = {
       {
         average_monthly_searches: 33100,
         competition: "Low",
-        key: "1",
+        key: "12",
         cpc: 176.37,
         high_cpc: 150.46,
         keyword: "mens snow boots",
@@ -148,7 +149,7 @@ export const Default: Story = {
       {
         average_monthly_searches: 33100,
         competition: "Low",
-        key: "1",
+        key: "13",
         cpc: 148.79,
         high_cpc: 121.21,
         keyword: "booties for women",
@@ -157,7 +158,7 @@ export const Default: Story = {
       {
         average_monthly_searches: 33100,
         competition: "Low",
-        key: "1",
+        key: "14",
         cpc: 201.8,
         high_cpc: 175.89,
         keyword: "mens winter snow boots",
@@ -166,7 +167,7 @@ export const Default: Story = {
       {
         average_monthly_searches: 33100,
         competition: "Low",
-        key: "1",
+        key: "15",
         cpc: 176.37,
         high_cpc: 150.46,
         keyword: "mens snowmobile boots",

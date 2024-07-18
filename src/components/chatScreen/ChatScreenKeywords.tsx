@@ -1,5 +1,19 @@
-import { GlobeHemisphereWest, Translate } from "@phosphor-icons/react";
-import { Button, Flex, Popconfirm, TableColumnsType, Typography } from "antd";
+import {
+  CheckCircle,
+  Copy,
+  GlobeHemisphereWest,
+  Translate,
+} from "@phosphor-icons/react";
+import {
+  Button,
+  Card,
+  Divider,
+  Flex,
+  Popconfirm,
+  TableColumnsType,
+  Tooltip,
+  Typography,
+} from "antd";
 import { useState } from "react";
 import { ChatInput } from "../common/ChatInput";
 import CustomTable from "../common/CustomTable";
@@ -46,7 +60,7 @@ export function ChatScreenKeywords({
 }: ChatScreenKeywordsProps) {
   const [userQuery, setUserQuery] = useState("");
   const [selectedRows, setSelectedRows] = useState<DataType[]>([]);
-
+  const [areKeywordsCopied, setAreKeywordsCopied] = useState(false);
   const columns: TableColumnsType<DataType> = [
     {
       title: "Keyword",
@@ -94,6 +108,15 @@ export function ChatScreenKeywords({
       sorter: (a, b) => a.high_cpc - b.high_cpc,
     },
   ];
+
+  const handleCopyKeywords = () => {
+    const keywords = selectedRows.map((row) => row.keyword).join(", ");
+    navigator.clipboard.writeText(keywords);
+    setAreKeywordsCopied(true);
+    setTimeout(() => {
+      setAreKeywordsCopied(false);
+    }, 2000);
+  };
   return (
     <Flex
       style={{
@@ -134,81 +157,144 @@ export function ChatScreenKeywords({
           style={{
             width: "100%",
           }}
-          align="flex-start"
+          align="center"
         >
-          <Typography.Title level={5} style={{ margin: 0 }}>
-            {productCampaign.description}
-          </Typography.Title>
-
-          <Flex gap={4} align="center">
-            <Button
-              type="text"
+          <Flex gap={24} align="center">
+            <Typography.Title
+              level={5}
               style={{
-                fontSize: "0.8rem",
+                margin: 0,
+                maxWidth: "20vw",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
               }}
-              size="small"
-              icon={<GlobeHemisphereWest />}
             >
-              {productCampaign.country}
-            </Button>
-
-            <Button
-              type="text"
-              style={{
-                fontSize: "0.8rem",
-              }}
-              size="small"
-              icon={<Translate />}
-            >
-              {productCampaign.language}
-            </Button>
-          </Flex>
-        </Flex>
-        <CustomTable
-          style={{
-            width: "100%",
-          }}
-          dataSource={keywordsData}
-          loading={areKeywordsLoading}
-          columns={columns}
-          rowSelection={{
-            type: "checkbox",
-            onChange: (
-              _selectedRowKeys: React.Key[],
-              selectedRows: DataType[]
-            ) => {
-              setSelectedRows(selectedRows);
-            },
-          }}
-          size="small"
-          footer={() => {
-            return (
-              <Typography.Text
-                type="secondary"
+              {productCampaign.description}
+            </Typography.Title>
+            <Flex gap={4}>
+              <Button
+                type="text"
                 style={{
-                  fontSize: "0.7rem",
+                  fontSize: "0.8rem",
                 }}
+                size="small"
+                icon={<GlobeHemisphereWest />}
               >
-                Powered by Google Ads, Semrush
-              </Typography.Text>
-            );
-          }}
-        />
-        <Flex
-          justify="flex-end"
-          style={{
-            width: "100%",
-          }}
-        >
+                {productCampaign.country}
+              </Button>
+
+              <Button
+                type="text"
+                style={{
+                  fontSize: "0.8rem",
+                }}
+                size="small"
+                icon={<Translate />}
+              >
+                {productCampaign.language}
+              </Button>
+            </Flex>
+          </Flex>
           <Button
             type="primary"
             onClick={() => {
               handleProceed(selectedRows);
             }}
             disabled={selectedRows.length === 0}
+            iconPosition="end"
           >
             Proceed
           </Button>
+        </Flex>
+
+        <Flex
+          vertical
+          gap={12}
+          style={{
+            width: "100%",
+          }}
+        >
+          {selectedRows.length > 0 && (
+            <Card
+              size="small"
+              style={{
+                width: "100%",
+              }}
+            >
+              <Flex justify="space-between" align="center">
+                <Flex align="center">
+                  <Typography.Text>
+                    {selectedRows?.length} selected
+                  </Typography.Text>
+                  <Divider type="vertical" />
+                  <Button
+                    size="small"
+                    onClick={() => {
+                      setSelectedRows(keywordsData);
+                    }}
+                  >
+                    Select All {keywordsData?.length}
+                  </Button>
+                </Flex>
+                <Flex align="center" gap={8}>
+                  <Tooltip title="Copy selected keywords">
+                    <Button
+                      size="small"
+                      type="text"
+                      onClick={handleCopyKeywords}
+                    >
+                      {areKeywordsCopied ? (
+                        <CheckCircle weight="duotone" />
+                      ) : (
+                        <Copy />
+                      )}
+                    </Button>
+                  </Tooltip>
+                  <Button
+                    size="small"
+                    onClick={() => {
+                      setSelectedRows([]);
+                    }}
+                  >
+                    Clear All
+                  </Button>
+                </Flex>
+              </Flex>
+            </Card>
+          )}
+
+          <CustomTable
+            style={{
+              width: "100%",
+            }}
+            dataSource={keywordsData}
+            loading={areKeywordsLoading}
+            columns={columns}
+            rowSelection={{
+              type: "checkbox",
+              onChange: (
+                _selectedRowKeys: React.Key[],
+                selectedRows: DataType[]
+              ) => {
+                setSelectedRows(selectedRows);
+              },
+              selectedRowKeys: selectedRows.map((row) => row.key),
+            }}
+            size="small"
+            footer={() => {
+              return (
+                <Typography.Text
+                  type="secondary"
+                  style={{
+                    fontSize: "0.7rem",
+                  }}
+                >
+                  Powered by Google Ads, Semrush
+                </Typography.Text>
+              );
+            }}
+          />
         </Flex>
       </Flex>
       <Flex

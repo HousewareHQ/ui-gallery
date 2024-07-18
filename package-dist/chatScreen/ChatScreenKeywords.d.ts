@@ -22,6 +22,7 @@ export interface ChatScreenKeywordsProps {
         language: string;
     };
     handleSuggestChanges: (userQuery: string) => void;
+    areKeywordsLoading: boolean;
 }
-export declare function ChatScreenKeywords({ pageHeading, keywordsData, handleStartFresh, handleProceed, productCampaign, handleSuggestChanges, }: ChatScreenKeywordsProps): import("react/jsx-runtime").JSX.Element;
+export declare function ChatScreenKeywords({ pageHeading, keywordsData, handleStartFresh, handleProceed, productCampaign, handleSuggestChanges, areKeywordsLoading, }: ChatScreenKeywordsProps): import("react/jsx-runtime").JSX.Element;
 export {};

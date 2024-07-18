@@ -21,5 +21,7 @@ export interface ChatScreenAdsPreviewProps {
     handleChangeHeadings: (headings: string[]) => void;
     handleChangeDescriptions: (descriptions: string[]) => void;
     adStrength: number;
+    isForecastLoading: boolean;
+    areHeadingsDescriptionsLoading: boolean;
 }
-export declare function ChatScreenAdsPreview({ pageHeading, forecast, keywords, headings, descriptions, finalURL, displayLink, handleGoBack, handleStartFresh, handleChangeHeadings, handleChangeDescriptions, adStrength, }: ChatScreenAdsPreviewProps): import("react/jsx-runtime").JSX.Element;
+export declare function ChatScreenAdsPreview({ pageHeading, forecast, keywords, headings, descriptions, finalURL, displayLink, handleGoBack, handleStartFresh, handleChangeHeadings, handleChangeDescriptions, isForecastLoading, areHeadingsDescriptionsLoading, adStrength, }: ChatScreenAdsPreviewProps): import("react/jsx-runtime").JSX.Element;
