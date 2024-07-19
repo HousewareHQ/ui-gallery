@@ -60,7 +60,6 @@ export function ChatScreenAdsPreview({
         height: "100vh",
         overflow: "hidden",
         padding: 16,
-        paddingBottom: "20vh",
       }}
       justify="flex-start"
       vertical
@@ -79,8 +78,8 @@ export function ChatScreenAdsPreview({
       </Typography.Title>
       <Flex
         style={{
-          width: "80vw",
-          padding: "1vh 10vw 10vh",
+          width: "70vw",
+          padding: "1vh 16px 20vh",
           overflowY: "auto",
         }}
         vertical
@@ -238,7 +237,7 @@ export function ChatScreenAdsPreview({
         }}
         placeholder={inputPlaceholder}
         isFollowupDisabled={false}
-        width={"60vw"}
+        width={"70vw"}
       />
     </Flex>
   );
