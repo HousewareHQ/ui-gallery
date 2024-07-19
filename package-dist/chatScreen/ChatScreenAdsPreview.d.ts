@@ -1,3 +1,5 @@
+import { AdGroup } from './components/AdGroupWrapper';
+
 export interface ChatScreenAdsPreviewProps {
     handleGoBack: () => void;
     handleStartFresh: () => void;
@@ -13,16 +15,14 @@ export interface ChatScreenAdsPreviewProps {
         country: string;
         language: string;
     };
-    keywords: string[];
-    headings: string[];
-    descriptions: string[];
-    finalURL: string;
-    displayLink: [string, string];
+    adGroups: AdGroup[];
     handleChangeHeadings: (headings: string[]) => void;
     handleChangeDescriptions: (descriptions: string[]) => void;
-    adStrength: number;
+    handleUpdateAdGroups: (adGroups: AdGroup[]) => void;
     isForecastLoading: boolean;
-    areHeadingsDescriptionsLoading: boolean;
+    areHeadingsDescriptionsLoading: Array<boolean>;
     handleCreateCampaign: () => void;
+    handleSuggestChanges: (userQuery: string) => void;
+    inputPlaceholder?: string;
 }
-export declare function ChatScreenAdsPreview({ pageHeading, forecast, keywords, headings, descriptions, finalURL, displayLink, handleGoBack, handleStartFresh, handleChangeHeadings, handleChangeDescriptions, isForecastLoading, areHeadingsDescriptionsLoading, adStrength, handleCreateCampaign, }: ChatScreenAdsPreviewProps): import("react/jsx-runtime").JSX.Element;
+export declare function ChatScreenAdsPreview({ pageHeading, forecast, adGroups, handleGoBack, handleStartFresh, handleUpdateAdGroups, isForecastLoading, areHeadingsDescriptionsLoading, handleCreateCampaign, handleSuggestChanges, inputPlaceholder, }: ChatScreenAdsPreviewProps): import("react/jsx-runtime").JSX.Element;
