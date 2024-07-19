@@ -48,6 +48,7 @@ export interface ChatScreenAdsPreviewProps {
   adStrength: number;
   isForecastLoading: boolean;
   areHeadingsDescriptionsLoading: boolean;
+  handleCreateCampaign: () => void;
 }
 
 const SuffixForSelect = ({
@@ -91,6 +92,7 @@ export function ChatScreenAdsPreview({
   isForecastLoading,
   areHeadingsDescriptionsLoading,
   adStrength,
+  handleCreateCampaign,
 }: ChatScreenAdsPreviewProps) {
   const [previewHeadline, setPreviewHeadline] = useState(
     headings[0] || "Headline"
@@ -135,6 +137,7 @@ export function ChatScreenAdsPreview({
       justify="flex-start"
       vertical
       align="center"
+      gap={24}
     >
       <Typography.Title
         level={3}
@@ -416,14 +419,7 @@ export function ChatScreenAdsPreview({
             </Flex>
           </Card>
         </Flex>
-        <Flex
-          justify="flex-end"
-          style={{
-            width: "100%",
-          }}
-        >
-          <Button type="primary">Create Campaign</Button>
-        </Flex>
+
         <Flex
           style={{
             position: "absolute",
@@ -432,7 +428,6 @@ export function ChatScreenAdsPreview({
           }}
           gap={12}
         >
-          <Button onClick={handleGoBack}>Go Back</Button>
           <Popconfirm
             title="You'll lose your current progress"
             description="Are you sure you want to start from fresh?"
@@ -446,6 +441,18 @@ export function ChatScreenAdsPreview({
             <Button type="primary">Start fresh</Button>
           </Popconfirm>
         </Flex>
+      </Flex>
+      <Flex
+        justify="flex-end"
+        style={{
+          width: "75vw",
+        }}
+        gap={16}
+      >
+        <Button onClick={handleGoBack}>Go Back</Button>
+        <Button type="primary" onClick={handleCreateCampaign}>
+          Create Campaign
+        </Button>
       </Flex>
     </Flex>
   );

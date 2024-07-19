@@ -7,6 +7,7 @@ const ActionsData = {
   handleStartFresh: fn(),
   handleChangeHeadings: fn(),
   handleChangeDescriptions: fn(),
+  handleCreateCampaign: fn(),
 };
 
 const meta: Meta<typeof ChatScreenAdsPreview> = {
