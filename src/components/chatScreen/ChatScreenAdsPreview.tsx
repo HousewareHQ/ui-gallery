@@ -4,6 +4,7 @@ import {
   Descriptions,
   Flex,
   Popconfirm,
+  Skeleton,
   Spin,
   Typography,
 } from "antd";
@@ -28,8 +29,6 @@ export interface ChatScreenAdsPreviewProps {
     language: string;
   };
   adGroups: AdGroup[];
-  handleChangeHeadings: (headings: string[]) => void;
-  handleChangeDescriptions: (descriptions: string[]) => void;
   handleUpdateAdGroups: (adGroups: AdGroup[]) => void;
   isForecastLoading: boolean;
   areHeadingsDescriptionsLoading: Array<boolean>;
@@ -173,7 +172,7 @@ export function ChatScreenAdsPreview({
           gap={4}
         >
           <Typography.Text type="secondary">Your Ad Groups</Typography.Text>
-
+          {adGroups?.length === 0 && <Skeleton active />}
           {adGroups?.map((adGroup, index) => {
             return (
               <AdGroupWrapper

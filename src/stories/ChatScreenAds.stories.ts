@@ -111,3 +111,10 @@ export const HeadingsDescriptionsLoading: Story = {
     areHeadingsDescriptionsLoading: [true],
   },
 };
+
+export const AdGroupsLoading: Story = {
+  args: {
+    ...Default.args,
+    adGroups: [],
+  },
+};

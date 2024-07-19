@@ -16,8 +16,6 @@ export interface ChatScreenAdsPreviewProps {
         language: string;
     };
     adGroups: AdGroup[];
-    handleChangeHeadings: (headings: string[]) => void;
-    handleChangeDescriptions: (descriptions: string[]) => void;
     handleUpdateAdGroups: (adGroups: AdGroup[]) => void;
     isForecastLoading: boolean;
     areHeadingsDescriptionsLoading: Array<boolean>;
