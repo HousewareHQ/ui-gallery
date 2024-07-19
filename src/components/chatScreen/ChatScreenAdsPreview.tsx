@@ -57,10 +57,10 @@ export function ChatScreenAdsPreview({
     <Flex
       style={{
         width: "100vw",
-        height: "78vh",
+        height: "100vh",
         overflow: "hidden",
         padding: 16,
-        paddingBottom: "22vh",
+        paddingBottom: "20vh",
       }}
       justify="flex-start"
       vertical
@@ -79,8 +79,8 @@ export function ChatScreenAdsPreview({
       </Typography.Title>
       <Flex
         style={{
-          width: "90vw",
-          padding: "1vh 16px 5vh",
+          width: "80vw",
+          padding: "1vh 10vw 10vh",
           overflowY: "auto",
         }}
         vertical
@@ -193,7 +193,18 @@ export function ChatScreenAdsPreview({
             );
           })}
         </Flex>
-
+        <Flex
+          justify="flex-end"
+          style={{
+            width: "100%",
+          }}
+          gap={16}
+        >
+          <Button onClick={handleGoBack}>Go Back</Button>
+          <Button type="primary" onClick={handleCreateCampaign}>
+            Create Campaign
+          </Button>
+        </Flex>
         <Flex
           style={{
             position: "absolute",
@@ -216,18 +227,7 @@ export function ChatScreenAdsPreview({
           </Popconfirm>
         </Flex>
       </Flex>
-      <Flex
-        justify="flex-end"
-        style={{
-          width: "90vw",
-        }}
-        gap={16}
-      >
-        <Button onClick={handleGoBack}>Go Back</Button>
-        <Button type="primary" onClick={handleCreateCampaign}>
-          Create Campaign
-        </Button>
-      </Flex>
+
       <ChatInput
         inputRef={null}
         userQuery={userQuery}
