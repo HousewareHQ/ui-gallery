@@ -47,6 +47,7 @@ export interface ChatScreenKeywordsProps {
   };
   handleSuggestChanges: (userQuery: string) => void;
   areKeywordsLoading: boolean;
+  currencySymbol?: string;
 }
 
 export function ChatScreenKeywords({
@@ -57,6 +58,7 @@ export function ChatScreenKeywords({
   productCampaign,
   handleSuggestChanges,
   areKeywordsLoading,
+  currencySymbol = "₹",
 }: ChatScreenKeywordsProps) {
   const [userQuery, setUserQuery] = useState("");
   const [selectedRows, setSelectedRows] = useState<DataType[]>([]);
@@ -78,7 +80,7 @@ export function ChatScreenKeywords({
       title: "CPC",
       dataIndex: "cpc",
       align: "center",
-      render: (value) => `₹${value}`,
+      render: (value) => `${currencySymbol}${value}`,
       sorter: (a, b) => a.cpc - b.cpc,
     },
     {
@@ -97,14 +99,14 @@ export function ChatScreenKeywords({
       title: "Low Bid",
       dataIndex: "low_cpc",
       align: "center",
-      render: (value) => `₹${value}`,
+      render: (value) => `${currencySymbol}${value}`,
       sorter: (a, b) => a.low_cpc - b.low_cpc,
     },
     {
       title: "High Bid",
       dataIndex: "high_cpc",
       align: "center",
-      render: (value) => `₹${value}`,
+      render: (value) => `${currencySymbol}${value}`,
       sorter: (a, b) => a.high_cpc - b.high_cpc,
     },
   ];
