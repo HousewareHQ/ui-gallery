@@ -19,8 +19,10 @@ export interface ChatScreenAdsPreviewProps {
     handleUpdateAdGroups: (adGroups: AdGroup[]) => void;
     isForecastLoading: boolean;
     areHeadingsDescriptionsLoading: Array<boolean>;
-    handleCreateCampaign: () => void;
+    handleReviewCampaign: () => void;
     handleSuggestChanges: (userQuery: string) => void;
     inputPlaceholder?: string;
+    areAdGroupsLoading?: boolean;
+    handleUpdateCampaignName: (name: string) => void;
 }
-export declare function ChatScreenAdsPreview({ pageHeading, forecast, adGroups, handleGoBack, handleStartFresh, handleUpdateAdGroups, isForecastLoading, areHeadingsDescriptionsLoading, handleCreateCampaign, handleSuggestChanges, inputPlaceholder, }: ChatScreenAdsPreviewProps): import("react/jsx-runtime").JSX.Element;
+export declare function ChatScreenAdsPreview({ pageHeading, forecast, adGroups, handleGoBack, handleStartFresh, handleUpdateAdGroups, isForecastLoading, areHeadingsDescriptionsLoading, handleReviewCampaign, handleSuggestChanges, inputPlaceholder, areAdGroupsLoading, handleUpdateCampaignName, }: ChatScreenAdsPreviewProps): import("react/jsx-runtime").JSX.Element;

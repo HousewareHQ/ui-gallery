@@ -1,27 +1,37 @@
-import { CheckFat } from "@phosphor-icons/react";
-import { Button, Card, Descriptions, Flex, Tag, Typography } from "antd";
+import { Button, Card, Flex, Typography } from "antd";
 import { useState } from "react";
 import Markdown from "react-markdown";
 import { ChatInput } from "../common/ChatInput";
 
 export interface CampaignSuggestChangesProps {
   campaignName: string;
-  suggestions: string;
+  suggestions?: string;
   countrySelected: string;
   languageSelected: string;
-  keywordsSelected: string[];
+
   handleSuggestChanges: (userQuery: string) => void;
   inputPlaceholder?: string;
+  handleGoBack: () => void;
+  handleCreateCampaign: () => void;
+  channelType: string;
+  deliveryMethod: string;
+  budget: string;
 }
 
 export function CampaignSuggestChangesScreen({
   campaignName,
+  channelType,
+
   suggestions,
   countrySelected,
   languageSelected,
-  keywordsSelected,
+
+  deliveryMethod,
+  budget,
   handleSuggestChanges,
   inputPlaceholder = "Type your message here",
+  handleGoBack,
+  handleCreateCampaign,
 }: CampaignSuggestChangesProps) {
   const [userQuery, setUserQuery] = useState("");
   return (
@@ -38,7 +48,7 @@ export function CampaignSuggestChangesScreen({
       gap={24}
     >
       <Typography.Title level={3} style={{ fontFamily: "Sedan" }}>
-        Your campaign is created! <CheckFat color={"var(--primary-color)"} />
+        Review Campaign
       </Typography.Title>
 
       <Flex
@@ -50,7 +60,7 @@ export function CampaignSuggestChangesScreen({
         }}
         gap={24}
       >
-        <Card>
+        {/* <Card>
           <Flex vertical gap={24}>
             <Flex justify="space-between" align="center">
               <Flex align="center" gap={12}>
@@ -85,16 +95,141 @@ export function CampaignSuggestChangesScreen({
               ]}
             />
           </Flex>
+        </Card> */}
+
+        <Typography.Title level={4}>Campaign Details</Typography.Title>
+
+        <Card size="small">
+          <Flex gap={24} align="center">
+            <Typography.Title
+              level={5}
+              style={{
+                margin: 0,
+                width: "20rem",
+                textOverflow: "ellipsis",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Advertising Channel Type
+            </Typography.Title>
+
+            <Typography.Text strong>{channelType}</Typography.Text>
+          </Flex>
+        </Card>
+        <Card size="small">
+          <Flex gap={24} align="center">
+            <Typography.Title
+              level={5}
+              style={{
+                margin: 0,
+                width: "20rem",
+                textOverflow: "ellipsis",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Campaign Name
+            </Typography.Title>
+
+            <Typography.Text strong>{campaignName}</Typography.Text>
+          </Flex>
+        </Card>
+        <Card size="small">
+          <Flex gap={24} align="center">
+            <Typography.Title
+              level={5}
+              style={{
+                margin: 0,
+                width: "20rem",
+                textOverflow: "ellipsis",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Delivery Method
+            </Typography.Title>
+
+            <Typography.Text strong>{deliveryMethod}</Typography.Text>
+          </Flex>
         </Card>
 
-        <Typography.Title level={5}>
-          {" "}
-          Suggestions on your campaign -
-        </Typography.Title>
-        <Markdown>{suggestions}</Markdown>
+        <Card size="small">
+          <Flex gap={24} align="center">
+            <Typography.Title
+              level={5}
+              style={{
+                margin: 0,
+                width: "20rem",
+                textOverflow: "ellipsis",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Campaign Budget Amount
+            </Typography.Title>
 
-        <Flex>
-          <Button type="primary">Launch Campaign</Button>
+            <Typography.Text strong>{budget}</Typography.Text>
+          </Flex>
+        </Card>
+        <Card size="small">
+          <Flex gap={24} align="center">
+            <Typography.Title
+              level={5}
+              style={{
+                margin: 0,
+                width: "20rem",
+                textOverflow: "ellipsis",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Location Target
+            </Typography.Title>
+
+            <Typography.Text strong>{countrySelected}</Typography.Text>
+          </Flex>
+        </Card>
+        <Card size="small">
+          <Flex gap={24} align="center">
+            <Typography.Title
+              level={5}
+              style={{
+                margin: 0,
+                width: "20rem",
+                textOverflow: "ellipsis",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Language
+            </Typography.Title>
+
+            <Typography.Text strong>{languageSelected}</Typography.Text>
+          </Flex>
+        </Card>
+
+        {suggestions && (
+          <>
+            <Typography.Title level={5}>
+              {" "}
+              Suggestions on your campaign -
+            </Typography.Title>
+            <Markdown>{suggestions}</Markdown>
+          </>
+        )}
+
+        <Flex
+          justify="flex-end"
+          style={{
+            width: "100%",
+          }}
+          gap={16}
+        >
+          <Button onClick={handleGoBack}>Review your Ad groups</Button>
+          <Button type="primary" onClick={handleCreateCampaign}>
+            Create Campaign
+          </Button>
         </Flex>
       </Flex>
 

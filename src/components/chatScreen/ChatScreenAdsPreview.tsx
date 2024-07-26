@@ -1,3 +1,4 @@
+import { PenNib } from "@phosphor-icons/react";
 import {
   Button,
   Card,
@@ -32,9 +33,11 @@ export interface ChatScreenAdsPreviewProps {
   handleUpdateAdGroups: (adGroups: AdGroup[]) => void;
   isForecastLoading: boolean;
   areHeadingsDescriptionsLoading: Array<boolean>;
-  handleCreateCampaign: () => void;
+  handleReviewCampaign: () => void;
   handleSuggestChanges: (userQuery: string) => void;
   inputPlaceholder?: string;
+  areAdGroupsLoading?: boolean;
+  handleUpdateCampaignName: (name: string) => void;
 }
 
 export function ChatScreenAdsPreview({
@@ -46,9 +49,11 @@ export function ChatScreenAdsPreview({
   handleUpdateAdGroups,
   isForecastLoading,
   areHeadingsDescriptionsLoading,
-  handleCreateCampaign,
+  handleReviewCampaign,
   handleSuggestChanges,
   inputPlaceholder = "Type your message here",
+  areAdGroupsLoading = false,
+  handleUpdateCampaignName,
 }: ChatScreenAdsPreviewProps) {
   const [userQuery, setUserQuery] = useState("");
 
@@ -71,6 +76,19 @@ export function ChatScreenAdsPreview({
           width: "30vw",
           textAlign: "center",
           fontFamily: "Sedan",
+        }}
+        editable={{
+          onChange: (e) => handleUpdateCampaignName?.(e),
+          icon: (
+            <PenNib
+              size={"1rem"}
+              color="var(--secondary-text)"
+              style={{
+                marginLeft: "8px",
+                cursor: "pointer",
+              }}
+            />
+          ),
         }}
       >
         {pageHeading}
@@ -172,24 +190,29 @@ export function ChatScreenAdsPreview({
           gap={4}
         >
           <Typography.Text type="secondary">Your Ad Groups</Typography.Text>
-          {adGroups?.length === 0 && <Skeleton active />}
-          {adGroups?.map((adGroup, index) => {
-            return (
-              <AdGroupWrapper
-                adGroup={adGroup}
-                areHeadingsDescriptionsLoading={
-                  areHeadingsDescriptionsLoading[index]
-                }
-                handleUpdateAdGroup={(updatedAdGroup) => {
-                  handleUpdateAdGroups([
-                    ...adGroups.slice(0, index),
-                    updatedAdGroup,
-                    ...adGroups.slice(index + 1),
-                  ]);
-                }}
-              />
-            );
-          })}
+          {areAdGroupsLoading ? (
+            <Skeleton active />
+          ) : (
+            <Flex vertical gap={24}>
+              {adGroups?.map((adGroup, index) => {
+                return (
+                  <AdGroupWrapper
+                    adGroup={adGroup}
+                    areHeadingsDescriptionsLoading={
+                      areHeadingsDescriptionsLoading[index]
+                    }
+                    handleUpdateAdGroup={(updatedAdGroup) => {
+                      handleUpdateAdGroups([
+                        ...adGroups.slice(0, index),
+                        updatedAdGroup,
+                        ...adGroups.slice(index + 1),
+                      ]);
+                    }}
+                  />
+                );
+              })}
+            </Flex>
+          )}
         </Flex>
         <Flex
           justify="flex-end"
@@ -199,8 +222,8 @@ export function ChatScreenAdsPreview({
           gap={16}
         >
           <Button onClick={handleGoBack}>Go Back</Button>
-          <Button type="primary" onClick={handleCreateCampaign}>
-            Create Campaign
+          <Button type="primary" onClick={handleReviewCampaign}>
+            Review Campaign
           </Button>
         </Flex>
         <Flex

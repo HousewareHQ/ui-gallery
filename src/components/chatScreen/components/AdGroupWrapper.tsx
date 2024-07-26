@@ -10,7 +10,6 @@ import {
   Divider,
   Flex,
   Input,
-  Progress,
   Select,
   Space,
   Tag,
@@ -114,10 +113,10 @@ export default function AdGroupWrapper({
           justify="space-between"
         >
           <Typography.Title level={5}>{adGroup?.name}</Typography.Title>
-          <Flex gap={8}>
+          {/* <Flex gap={8}>
             <Progress type="circle" percent={adGroup.adStrength} size={20} />
             <Typography.Text>Ad Strength</Typography.Text>
-          </Flex>
+          </Flex> */}
         </Flex>
         <Flex wrap gap={4}>
           {adGroup.keywords.map((keyword) => (
@@ -280,7 +279,8 @@ export default function AdGroupWrapper({
               <Flex vertical>
                 <Typography.Title level={5}>Sponsored</Typography.Title>
                 <Typography.Text>
-                  <Globe /> {adGroup?.url}
+                  <Globe /> {adGroup?.url}/{adGroup?.sub_urls[0]}/
+                  {adGroup?.sub_urls[1]}
                 </Typography.Text>
 
                 <Typography.Title

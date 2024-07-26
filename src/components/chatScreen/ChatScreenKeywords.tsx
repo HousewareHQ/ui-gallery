@@ -2,6 +2,7 @@ import {
   CheckCircle,
   Copy,
   GlobeHemisphereWest,
+  PenNib,
   Translate,
 } from "@phosphor-icons/react";
 import {
@@ -48,6 +49,7 @@ export interface ChatScreenKeywordsProps {
   handleSuggestChanges: (userQuery: string) => void;
   areKeywordsLoading: boolean;
   currencySymbol?: string;
+  handleUpdateCampaignName?: (name: string) => void;
 }
 
 export function ChatScreenKeywords({
@@ -59,6 +61,7 @@ export function ChatScreenKeywords({
   handleSuggestChanges,
   areKeywordsLoading,
   currencySymbol = "₹",
+  handleUpdateCampaignName,
 }: ChatScreenKeywordsProps) {
   const [userQuery, setUserQuery] = useState("");
   const [selectedRows, setSelectedRows] = useState<DataType[]>([]);
@@ -88,11 +91,10 @@ export function ChatScreenKeywords({
       dataIndex: "competition",
       align: "center",
       sorter: (a, b) => {
-        const sortOrder = ["low", "medium", "high", "unknown"];
-        const aIndex = sortOrder.indexOf(a.competition.toLowerCase());
-        const bIndex = sortOrder.indexOf(b.competition.toLowerCase());
+        const aValue = parseInt(a.competition.split("/")[0]);
+        const bValue = parseInt(b.competition.split("/")[0]);
 
-        return aIndex - bIndex;
+        return aValue - bValue;
       },
     },
     {
@@ -137,6 +139,19 @@ export function ChatScreenKeywords({
           width: "30vw",
           textAlign: "center",
           fontFamily: "Sedan",
+        }}
+        editable={{
+          onChange: (e) => handleUpdateCampaignName?.(e),
+          icon: (
+            <PenNib
+              size={"1rem"}
+              color="var(--secondary-text)"
+              style={{
+                marginLeft: "8px",
+                cursor: "pointer",
+              }}
+            />
+          ),
         }}
       >
         {pageHeading}

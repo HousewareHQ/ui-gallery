@@ -6,6 +6,7 @@ const ActionsData = {
   handleStartFresh: fn(),
   handleProceed: fn(),
   handleSuggestChanges: fn(),
+  handleUpdateCampaignName: fn(),
 };
 
 const meta: Meta<typeof ChatScreenKeywords> = {
@@ -174,6 +175,7 @@ export const Default: Story = {
         low_cpc: 25.91,
       },
     ],
+    currencySymbol: "b",
   },
 };
 
