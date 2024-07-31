@@ -32,8 +32,10 @@ export { default as AppThemeProvider } from "./AppThemeProvider";
 
 export { useThemeManager } from "./useThemeManager";
 
-export { default as Piechart } from "../components/charts/Piechart";
-export type { PiechartProps } from "../components/charts/Piechart";
+export { default as Piechart } from "./charts/Piechart/Piechart";
+export type { PiechartProps } from "./charts/Piechart/Piechart";
+
+export { default as Metric } from "./charts/Metric/Metric";
 
 // Import CSS files
 import "../customStyles.css";
