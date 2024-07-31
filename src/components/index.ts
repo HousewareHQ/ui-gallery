@@ -31,6 +31,7 @@ export { ThemeToggle } from "./common/ThemeToggle";
 export { default as AppThemeProvider } from "./AppThemeProvider";
 
 export { useThemeManager } from "./useThemeManager";
+export { SpotlightGrid } from "./welcomeScreen/SpotlightGrid";
 
 export { default as Piechart } from "./charts/Piechart/Piechart";
 export type { PiechartProps } from "./charts/Piechart/Piechart";
