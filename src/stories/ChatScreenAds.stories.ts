@@ -45,6 +45,7 @@ export const Default: Story = {
       country: "United States",
       language: "English",
       daily_budget: "211",
+      disclaimer: "This is a forecast and not a guarantee.",
     },
     adGroups: [
       {

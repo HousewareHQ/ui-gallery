@@ -80,7 +80,7 @@ export function ChatScreenKeywords({
       sorter: (a, b) => a.average_monthly_searches - b.average_monthly_searches,
     },
     {
-      title: "CPC",
+      title: "Estimated CPC",
       dataIndex: "cpc",
       align: "center",
       render: (value) => `${currencySymbol}${value}`,
@@ -91,8 +91,9 @@ export function ChatScreenKeywords({
       dataIndex: "competition",
       align: "center",
       sorter: (a, b) => {
-        const aValue = parseInt(a.competition.split("/")[0]);
-        const bValue = parseInt(b.competition.split("/")[0]);
+        const competitions = ["low", "medium", "high"];
+        const aValue = competitions.indexOf(a.competition.toLowerCase());
+        const bValue = competitions.indexOf(b.competition.toLowerCase());
 
         return aValue - bValue;
       },
@@ -307,7 +308,7 @@ export function ChatScreenKeywords({
                     fontSize: "0.7rem",
                   }}
                 >
-                  Powered by Google Ads, Semrush
+                  Powered by Google Ads
                 </Typography.Text>
               );
             }}

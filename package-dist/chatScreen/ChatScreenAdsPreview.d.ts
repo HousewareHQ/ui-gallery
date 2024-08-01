@@ -14,6 +14,7 @@ export interface ChatScreenAdsPreviewProps {
         impressions: string;
         country: string;
         language: string;
+        disclaimer: string;
     };
     adGroups: AdGroup[];
     handleUpdateAdGroups: (adGroups: AdGroup[]) => void;
