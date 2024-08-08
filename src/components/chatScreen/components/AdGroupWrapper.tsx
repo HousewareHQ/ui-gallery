@@ -133,7 +133,7 @@ export default function AdGroupWrapper({
             <Typography.Text>Ad Strength</Typography.Text>
           </Flex> */}
         </Flex>
-        <Flex align="flex-start">
+        <Flex align="flex-start" justify="space-between">
           <Flex wrap gap={4}>
             {adGroup.keywords.map((keyword) => (
               <Tag key={keyword}>{keyword}</Tag>
