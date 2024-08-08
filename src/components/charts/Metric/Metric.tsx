@@ -6,7 +6,7 @@ export type MetricProps = {
     title: string;
     value: number;
     valuePrefix?: string;
-    change: number;
+    change?: number;
     changeType?: "up" | "down";
 }
 
@@ -19,12 +19,15 @@ export default function Metric({ title, value, change, valuePrefix, changeType }
                     {valuePrefix && `${valuePrefix} `}
                     {value}
                 </Typography.Text>
-                <Flex align="center">
-                    <Typography.Text>
-                        {change}
-                    </Typography.Text>
-                    {changeType === "up" ? <ArrowUp /> : <ArrowDown />}
-                </Flex>
+                {typeof change !== "undefined" && (
+                    <Flex align="center">
+                        <Typography.Text>
+                            {change}
+                        </Typography.Text>
+                        {changeType === "up" ? <ArrowUp /> : <ArrowDown />}
+                    </Flex>
+                )}
+
             </Flex>
         </Card>
     )
