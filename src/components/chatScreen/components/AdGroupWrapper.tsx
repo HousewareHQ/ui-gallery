@@ -29,6 +29,10 @@ export type AdGroup = {
   negative_keywords: string[];
   keywords: string[];
   name: string;
+  dislikes: {
+    headlines: string[];
+    descriptions: string[];
+  };
 };
 
 const SuffixForSelect = ({
@@ -211,6 +215,15 @@ export default function AdGroupWrapper({
                 style={{ width: "100%" }}
                 disabled={areHeadingsDescriptionsLoading}
                 value={adGroup?.headlines}
+                onDeselect={(value) => {
+                  handleUpdateAdGroup({
+                    ...adGroup,
+                    dislikes: {
+                      headlines: [...adGroup.dislikes.headlines, value],
+                      descriptions: adGroup.dislikes.descriptions,
+                    },
+                  });
+                }}
                 onChange={(values) => {
                   handleUpdateAdGroup({
                     ...adGroup,
@@ -240,6 +253,15 @@ export default function AdGroupWrapper({
                 maxCount={4}
                 disabled={areHeadingsDescriptionsLoading}
                 value={adGroup?.descriptions}
+                onDeselect={(value) => {
+                  handleUpdateAdGroup({
+                    ...adGroup,
+                    dislikes: {
+                      headlines: adGroup.dislikes.headlines,
+                      descriptions: [...adGroup.dislikes.descriptions, value],
+                    },
+                  });
+                }}
                 onChange={(values) => {
                   handleUpdateAdGroup({
                     ...adGroup,

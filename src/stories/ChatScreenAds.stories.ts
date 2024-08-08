@@ -91,6 +91,10 @@ export const Default: Story = {
         url: "https://www.google.com Something",
         sub_urls: ["www.google.com", "www.google.com"],
         name: "Something",
+        dislikes: {
+          headlines: [],
+          descriptions: [],
+        },
       },
       {
         headlines: [
@@ -135,6 +139,10 @@ export const Default: Story = {
         url: "https://www.google.com Something",
         sub_urls: ["www.google.com", "www.google.com"],
         name: "Something",
+        dislikes: {
+          headlines: [],
+          descriptions: [],
+        },
       },
     ],
 

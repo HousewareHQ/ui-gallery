@@ -7,6 +7,10 @@ export type AdGroup = {
     negative_keywords: string[];
     keywords: string[];
     name: string;
+    dislikes: {
+        headlines: string[];
+        descriptions: string[];
+    };
 };
 export default function AdGroupWrapper({ adGroup, handleUpdateAdGroup, areHeadingsDescriptionsLoading, }: {
     adGroup: AdGroup;
