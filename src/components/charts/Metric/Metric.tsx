@@ -20,7 +20,7 @@ export default function Metric({ title, value, change, valuePrefix, changeType }
                     {value}
                 </Typography.Text>
                 <Flex align="center">
-                    <Typography.Text type="success">
+                    <Typography.Text>
                         {change}
                     </Typography.Text>
                     {changeType === "up" ? <ArrowUp /> : <ArrowDown />}
