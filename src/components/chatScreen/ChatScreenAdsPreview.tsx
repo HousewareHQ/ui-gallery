@@ -39,6 +39,7 @@ export interface ChatScreenAdsPreviewProps {
   inputPlaceholder?: string;
   areAdGroupsLoading?: boolean;
   handleUpdateCampaignName: (name: string) => void;
+  isReviewCampaignDisabled?: boolean;
 }
 
 export function ChatScreenAdsPreview({
@@ -55,6 +56,7 @@ export function ChatScreenAdsPreview({
   inputPlaceholder = "Type your message here",
   areAdGroupsLoading = false,
   handleUpdateCampaignName,
+  isReviewCampaignDisabled = false,
 }: ChatScreenAdsPreviewProps) {
   const [userQuery, setUserQuery] = useState("");
 
@@ -231,7 +233,11 @@ export function ChatScreenAdsPreview({
           gap={16}
         >
           <Button onClick={handleGoBack}>Go Back</Button>
-          <Button type="primary" onClick={handleReviewCampaign}>
+          <Button
+            disabled={isReviewCampaignDisabled}
+            type="primary"
+            onClick={handleReviewCampaign}
+          >
             Review Campaign
           </Button>
         </Flex>

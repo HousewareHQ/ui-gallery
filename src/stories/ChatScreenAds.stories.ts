@@ -164,3 +164,10 @@ export const AdGroupsLoading: Story = {
     areAdGroupsLoading: true,
   },
 };
+
+export const DisabledNextSteps: Story = {
+  args: {
+    ...Default.args,
+    isReviewCampaignDisabled: true,
+  },
+};

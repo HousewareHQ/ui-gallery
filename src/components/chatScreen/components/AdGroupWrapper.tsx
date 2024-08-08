@@ -1,5 +1,7 @@
 import {
   CaretDown,
+  CheckCircle,
+  Clipboard,
   Globe,
   PauseCircle,
   PlayCircle,
@@ -71,6 +73,7 @@ export default function AdGroupWrapper({
   const [previewDescription, setPreviewDescription] = useState(
     adGroup?.descriptions[0] || "Description"
   );
+  const [isCopied, setIsCopied] = useState(false);
 
   const [shouldStartPreview, setShouldStartPreview] = useState(false);
 
@@ -99,6 +102,14 @@ export default function AdGroupWrapper({
     };
   }, [shouldStartPreview, handleRandomizePreview]);
 
+  const handleCopyKeywords = () => {
+    navigator.clipboard.writeText(adGroup.keywords.join("\n "));
+    setIsCopied(true);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 2000);
+  };
+
   return (
     <Card
       style={{
@@ -118,10 +129,15 @@ export default function AdGroupWrapper({
             <Typography.Text>Ad Strength</Typography.Text>
           </Flex> */}
         </Flex>
-        <Flex wrap gap={4}>
-          {adGroup.keywords.map((keyword) => (
-            <Tag key={keyword}>{keyword}</Tag>
-          ))}
+        <Flex align="flex-start">
+          <Flex wrap gap={4}>
+            {adGroup.keywords.map((keyword) => (
+              <Tag key={keyword}>{keyword}</Tag>
+            ))}
+          </Flex>
+          <Button type="text" size="small" onClick={handleCopyKeywords}>
+            {isCopied ? <CheckCircle /> : <Clipboard />}
+          </Button>
         </Flex>
         <Divider
           style={{
