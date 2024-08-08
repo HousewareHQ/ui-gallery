@@ -218,6 +218,9 @@ export default function AdGroupWrapper({
                 onDeselect={(value) => {
                   handleUpdateAdGroup({
                     ...adGroup,
+                    headlines: adGroup.headlines.filter(
+                      (headline) => headline !== value
+                    ),
                     dislikes: {
                       headlines: [...adGroup.dislikes.headlines, value],
                       descriptions: adGroup.dislikes.descriptions,
@@ -253,19 +256,22 @@ export default function AdGroupWrapper({
                 maxCount={4}
                 disabled={areHeadingsDescriptionsLoading}
                 value={adGroup?.descriptions}
-                onDeselect={(value) => {
-                  handleUpdateAdGroup({
-                    ...adGroup,
-                    dislikes: {
-                      headlines: adGroup.dislikes.headlines,
-                      descriptions: [...adGroup.dislikes.descriptions, value],
-                    },
-                  });
-                }}
                 onChange={(values) => {
                   handleUpdateAdGroup({
                     ...adGroup,
                     descriptions: values,
+                  });
+                }}
+                onDeselect={(value) => {
+                  handleUpdateAdGroup({
+                    ...adGroup,
+                    descriptions: adGroup.descriptions.filter(
+                      (desc) => desc !== value
+                    ),
+                    dislikes: {
+                      headlines: adGroup.dislikes.headlines,
+                      descriptions: [...adGroup.dislikes.descriptions, value],
+                    },
                   });
                 }}
                 suffixIcon={
