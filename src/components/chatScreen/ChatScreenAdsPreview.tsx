@@ -1,4 +1,4 @@
-import { PenNib } from "@phosphor-icons/react";
+import { Info, PenNib } from "@phosphor-icons/react";
 import {
   Button,
   Card,
@@ -28,6 +28,7 @@ export interface ChatScreenAdsPreviewProps {
     impressions: string;
     country: string;
     language: string;
+    disclaimer: string;
   };
   adGroups: AdGroup[];
   handleUpdateAdGroups: (adGroups: AdGroup[]) => void;
@@ -126,9 +127,10 @@ export function ChatScreenAdsPreview({
                   fontSize: "1.5rem",
                 }}
                 title={
-                  <Typography.Title level={5}>
+                  <Flex vertical>
                     Forecast for {forecast.date_range}
-                  </Typography.Title>
+                    <Typography.Title level={5}></Typography.Title>
+                  </Flex>
                 }
                 items={[
                   {
@@ -146,10 +148,6 @@ export function ChatScreenAdsPreview({
                   {
                     label: "Avg. CPC",
                     children: forecast.average_cpc,
-                  },
-                  {
-                    label: "Daily Budget",
-                    children: forecast.daily_budget,
                   },
                   {
                     label: "CTR",
@@ -176,6 +174,17 @@ export function ChatScreenAdsPreview({
                   },
                 ]}
               />
+
+              <Typography.Text
+                type="secondary"
+                style={{
+                  fontSize: "0.7rem",
+                  fontWeight: "400",
+                  alignSelf: "flex-end",
+                }}
+              >
+                <Info /> {forecast.disclaimer}
+              </Typography.Text>
             </Flex>
           </Card>
         </Spin>

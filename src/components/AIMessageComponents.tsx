@@ -70,7 +70,6 @@ export function AIMessageComponents<T extends BaseMessage>({
         );
     }
   };
-  debugger;
 
   return (
     <Flex
