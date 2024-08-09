@@ -3,6 +3,9 @@ import { Button, Flex, Image, Typography } from "antd";
 import * as React from "react";
 
 export const HousewareBranding: React.FC = () => {
+  const logoLink =
+    window?.location?.hostname === "localhost" ? "/" : `${window.location}/`;
+
   return (
     <>
       <Flex
@@ -18,7 +21,12 @@ export const HousewareBranding: React.FC = () => {
           window.open("https://houseware.io", "_blank");
         }}
       >
-        <Image src="/app-logo.png" height={30} width={30} preview={false} />
+        <Image
+          src={`${logoLink}app-logo.png`}
+          height={30}
+          width={30}
+          preview={false}
+        />
         <Typography.Title
           style={{
             fontFamily: "Libre Franklin, sans-serif",
