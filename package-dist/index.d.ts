@@ -25,3 +25,5 @@ export { SpotlightGrid } from './welcomeScreen/SpotlightGrid';
 export { default as Piechart } from './charts/Piechart/Piechart';
 export type { PiechartProps } from './charts/Piechart/Piechart';
 export { default as Metric } from './charts/Metric/Metric';
+export { AIMessageComponents } from './AIMessageComponents';
+export { UserMessage } from './UserMessage';
