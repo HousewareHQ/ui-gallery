@@ -1,4 +1,4 @@
-import { Button, Flex, Popconfirm, Typography } from 'antd';
+import { Button, Flex, Popconfirm } from 'antd';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import AILoader from '../AILoader';
 import { AIMessageComponents } from '../AIMessageComponents';
@@ -41,6 +41,8 @@ export interface ChatScreenPAProps<T> {
   hideActionCardItems?: ('copy' | 'regenerate')[];
   customMessageComponent?: CustomMessageComponentProp<T>;
   customMessageActionCardItem?: ReactNode[];
+  hideNewChatButton?: boolean;
+  emptyChatComponent?: ReactNode;
 }
 
 export function ChatScreenPA<T extends BaseMessage>({
@@ -52,6 +54,8 @@ export function ChatScreenPA<T extends BaseMessage>({
   hideActionCardItems = [],
   customMessageComponent,
   customMessageActionCardItem,
+  hideNewChatButton = false,
+  emptyChatComponent,
 }: ChatScreenPAProps<T>) {
   const [userQuery, setUserQuery] = useState('');
   const chatsContainerRef = useRef<HTMLDivElement | null>(null);
@@ -78,27 +82,30 @@ export function ChatScreenPA<T extends BaseMessage>({
       align="center"
       justify="flex-start"
     >
-      <Popconfirm
-        title="You'll lose your current chat history."
-        description="Are you sure you want to start a new chat?"
-        placement="bottomLeft"
-        okText="Yes"
-        cancelText="No"
-        onConfirm={() => {
-          setMessages([]);
-        }}
-      >
-        <Button
-          type="primary"
-          style={{
-            position: 'absolute',
-            top: 16,
-            right: 32,
+      {!hideNewChatButton && (
+        <Popconfirm
+          title="You'll lose your current chat history."
+          description="Are you sure you want to start a new chat?"
+          placement="bottomLeft"
+          okText="Yes"
+          cancelText="No"
+          onConfirm={() => {
+            setMessages([]);
           }}
         >
-          Start new chat
-        </Button>
-      </Popconfirm>
+          <Button
+            type="primary"
+            style={{
+              position: 'absolute',
+              top: 16,
+              right: 32,
+            }}
+          >
+            Start new chat
+          </Button>
+        </Popconfirm>
+      )}
+
       <Flex
         ref={chatsContainerRef}
         vertical
@@ -115,6 +122,9 @@ export function ChatScreenPA<T extends BaseMessage>({
         rootClassName="chat-container"
         gap={48}
       >
+        {!shouldShowLoader && messages.length === 0 && emptyChatComponent && (
+          emptyChatComponent
+        )}
         {messages.filter(Boolean).map((message, index) => {
           if (message.type === 'ai') {
             return (
