@@ -31,6 +31,8 @@ export function AIMessageComponents<T extends BaseMessage>({
     regenerateResponse?: boolean,
   ) => void;
 }) {
+  const logoLink =
+    window?.location?.hostname === 'localhost' ? '/' : `${window.location}`;
   const content = messages[index]?.content;
   const isLastMessage = messages?.length - 1 === index;
   const shouldShowActionCardItems = isLastMessage && showMessageActionCard;
@@ -79,7 +81,7 @@ export function AIMessageComponents<T extends BaseMessage>({
       className="ai-message-wrapper"
     >
       <Image
-        src="/ai-icon.svg"
+        src={`${logoLink}/ai-icon.svg`}
         height={40}
         width={40}
         style={{
