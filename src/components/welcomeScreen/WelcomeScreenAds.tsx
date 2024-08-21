@@ -18,6 +18,7 @@ export interface WelcomeScreenAdsProps {
   countrySelected: string;
   languageSelected: string;
   languages: Array<{ value: string; label: string }>;
+  showSpotlightGrid?: boolean;
 }
 
 export const WelcomeScreenAds: React.FC<WelcomeScreenAdsProps> = ({
@@ -31,6 +32,7 @@ export const WelcomeScreenAds: React.FC<WelcomeScreenAdsProps> = ({
   handleChangeLanguage,
   countrySelected,
   languageSelected,
+  showSpotlightGrid = true,
 }: WelcomeScreenAdsProps) => {
   const [userQuery, setUserQuery] = useState("");
 
@@ -43,7 +45,7 @@ export const WelcomeScreenAds: React.FC<WelcomeScreenAdsProps> = ({
       vertical
       style={{ height: "100vh" }}
     >
-      <SpotlightGrid />
+      {showSpotlightGrid && <SpotlightGrid />}
       <Flex
         vertical
         align="center"

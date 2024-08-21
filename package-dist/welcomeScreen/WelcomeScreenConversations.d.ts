@@ -8,5 +8,6 @@ export interface WelcomeScreenConversationsProps {
     }>;
     heading: string;
     subHeading: string;
+    showSpotlightGrid?: boolean;
 }
 export declare const WelcomeScreenConversations: React.FC<WelcomeScreenConversationsProps>;
