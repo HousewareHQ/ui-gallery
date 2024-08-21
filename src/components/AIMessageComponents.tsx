@@ -32,7 +32,7 @@ export function AIMessageComponents<T extends BaseMessage>({
   ) => void;
 }) {
   const logoLink =
-    window?.location?.hostname === 'localhost' ? '/' : `${window.location}`;
+    window?.location?.hostname === 'localhost' ? '' : `${window.location}`;
   const content = messages[index]?.content;
   const isLastMessage = messages?.length - 1 === index;
   const shouldShowActionCardItems = isLastMessage && showMessageActionCard;
