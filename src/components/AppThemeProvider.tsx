@@ -27,13 +27,15 @@ export const ThemeContext = createContext<AppThemeContext | undefined>(
   undefined
 );
 
+export type AppThemeProviderProps = {
+  children: ReactNode;
+  appTheme?: Record<AppThemeModeType, Theme>;
+};
+
 export default function AppThemeProvider({
   children,
   appTheme = defaultAppTheme,
-}: {
-  children: ReactNode;
-  appTheme?: Record<AppThemeModeType, Theme>;
-}) {
+}: AppThemeProviderProps) {
   const initialThemeMode =
     (localStorage?.getItem("appThemeMode") as AppThemeModeType) || "light";
   const [selectedThemeMode, setSelectedThemeMode] =

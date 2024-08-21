@@ -4,15 +4,17 @@ import {
   CustomMessageComponentProp,
 } from './chatScreen/ChatScreenPA';
 
+export type UserMessageProps<T extends BaseMessage> = {
+  messages: T[];
+  index: number;
+  customMessageComponent?: CustomMessageComponentProp<T>;
+};
+
 export function UserMessage<T extends BaseMessage>({
   messages,
   index,
   customMessageComponent,
-}: {
-  messages: T[];
-  index: number;
-  customMessageComponent?: CustomMessageComponentProp<T>;
-}) {
+}: UserMessageProps<T>) {
   const CustomComponent = customMessageComponent?.component;
   const renderCustomMessageComponent = ({
     messages,

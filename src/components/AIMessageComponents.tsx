@@ -11,6 +11,20 @@ import {
 } from './chatScreen/ChatScreenPA';
 import MessageActionCard from './MessageActionCard';
 
+
+export type AIMessageComponentsProps<T extends BaseMessage> = {
+  index: number;
+  messages: T[];
+  showMessageActionCard?: boolean;
+  hideActionCardItems?: ('copy' | 'regenerate')[];
+  handleRegenerateResponse: (
+    userQuery: string,
+    regenerateResponse?: boolean,
+  ) => void;
+  customMessageComponent?: CustomMessageComponentProp<T>;
+  customMessageActionCardItem?: ReactNode[];
+};
+
 export function AIMessageComponents<T extends BaseMessage>({
   index,
   messages,
@@ -19,18 +33,7 @@ export function AIMessageComponents<T extends BaseMessage>({
   handleRegenerateResponse,
   customMessageComponent,
   customMessageActionCardItem,
-}: {
-  index: number;
-  messages: T[];
-  hideActionCardItems?: ('copy' | 'regenerate')[];
-  showMessageActionCard?: boolean;
-  customMessageComponent?: CustomMessageComponentProp<T>;
-  customMessageActionCardItem?: ReactNode[];
-  handleRegenerateResponse: (
-    userQuery: string,
-    regenerateResponse?: boolean,
-  ) => void;
-}) {
+}: AIMessageComponentsProps<T>) {
   const logoLink =
     window?.location?.hostname === 'localhost' ? '' : `${window.location}`;
   const content = messages[index]?.content;

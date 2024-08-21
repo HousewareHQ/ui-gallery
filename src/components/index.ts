@@ -34,6 +34,7 @@ export { HousewareBranding } from "./common/HousewareBranding";
 export { ThemeToggle } from "./common/ThemeToggle";
 
 export { default as AppThemeProvider } from "./AppThemeProvider";
+export type { AppThemeProviderProps } from "./AppThemeProvider";
 
 export { useThemeManager } from "./useThemeManager";
 export { SpotlightGrid } from "./welcomeScreen/SpotlightGrid";
@@ -42,9 +43,13 @@ export { default as Piechart } from "./charts/Piechart/Piechart";
 export type { PiechartProps } from "./charts/Piechart/Piechart";
 
 export { default as Metric } from "./charts/Metric/Metric";
+export type { MetricProps } from "./charts/Metric/Metric";
 
 export { AIMessageComponents } from "./AIMessageComponents";
+export type { AIMessageComponentsProps } from "./AIMessageComponents";
+
 export { UserMessage } from "./UserMessage";
+export type { UserMessageProps } from "./UserMessage";
 
 // Import CSS files
 import "../customStyles.css";
