@@ -2,6 +2,7 @@ import {
   CaretDown,
   CheckCircle,
   Clipboard,
+  CopySimple,
   Globe,
   PauseCircle,
   PlayCircle,
@@ -12,6 +13,7 @@ import {
   Divider,
   Flex,
   Input,
+  message,
   Select,
   Space,
   Tag,
@@ -245,6 +247,42 @@ export default function AdGroupWrapper({
                   label: headline,
                   value: headline,
                 }))}
+                dropdownStyle={{
+                  display: "none",
+                }}
+                tagRender={(props) => (
+                  <Tag
+                    closable
+                    onClose={(e) => {
+                      props.onClose(e);
+                    }}
+                    style={{
+                      width: "max-content",
+                      padding: "4px",
+                      margin: 4,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 8,
+                    }}
+                  >
+                    <Tooltip title="Copy Headline">
+                      <CopySimple
+                        size={"0.8rem"}
+                        style={{
+                          cursor: "pointer",
+                        }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          e.preventDefault();
+                          navigator.clipboard.writeText(props.label as string);
+                          message.success("Copied to clipboard!");
+                        }}
+                      />
+                    </Tooltip>
+                    {"  "}
+                    {props.label}
+                  </Tag>
+                )}
               />
               <SuffixForSelect maxCount={15} data={adGroup?.headlines} />
             </Flex>
@@ -287,6 +325,45 @@ export default function AdGroupWrapper({
                   label: description,
                   value: description,
                 }))}
+                dropdownStyle={{
+                  display: "none",
+                }}
+                tagRender={(props) => (
+                  <Tag
+                    closable
+                    onClose={(e) => {
+                      props.onClose(e);
+                    }}
+                    style={{
+                      padding: "4px",
+                      margin: 4,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 8,
+                      whiteSpace: "wrap",
+                      width: "100%",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    <Tooltip title="Copy Description">
+                      <CopySimple
+                        size={"0.8rem"}
+                        style={{
+                          cursor: "pointer",
+                        }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          e.preventDefault();
+                          navigator.clipboard.writeText(props.label as string);
+                          message.success("Copied to clipboard!");
+                        }}
+                      />
+                    </Tooltip>
+                    {"  "}
+                    {props.label}
+                  </Tag>
+                )}
               />
               <SuffixForSelect maxCount={4} data={adGroup?.descriptions} />
             </Flex>
