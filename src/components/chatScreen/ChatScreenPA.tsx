@@ -43,6 +43,7 @@ export interface ChatScreenPAProps<T> {
   customMessageActionCardItem?: ReactNode[];
   hideNewChatButton?: boolean;
   emptyChatComponent?: ReactNode;
+
 }
 
 export function ChatScreenPA<T extends BaseMessage>({

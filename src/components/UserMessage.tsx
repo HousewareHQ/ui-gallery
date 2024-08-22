@@ -1,4 +1,5 @@
 import { Card, Flex, Typography } from 'antd';
+import Markdown from 'react-markdown';
 import {
   BaseMessage,
   CustomMessageComponentProp,
@@ -49,7 +50,9 @@ export function UserMessage<T extends BaseMessage>({
               index,
             })
           ) : (
-            <Typography>{messages[index]?.content as string}</Typography>
+            <Typography>
+              <Markdown>{messages[index]?.content as string}</Markdown>
+            </Typography>
           )}
         </Card>
       </Flex>
