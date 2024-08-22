@@ -17,5 +17,6 @@ export interface WelcomeScreenAdsProps {
         value: string;
         label: string;
     }>;
+    showSpotlightGrid?: boolean;
 }
 export declare const WelcomeScreenAds: React.FC<WelcomeScreenAdsProps>;

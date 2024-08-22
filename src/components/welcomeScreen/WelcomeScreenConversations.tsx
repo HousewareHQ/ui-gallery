@@ -15,6 +15,7 @@ export interface WelcomeScreenConversationsProps {
   }>;
   heading: string;
   subHeading: string;
+  showSpotlightGrid?: boolean;
 }
 
 export const WelcomeScreenConversations: React.FC<
@@ -24,6 +25,7 @@ export const WelcomeScreenConversations: React.FC<
   handleSendMessage,
   heading,
   subHeading,
+  showSpotlightGrid = true,
 }: WelcomeScreenConversationsProps) => {
   const [userQuery, setUserQuery] = useState("");
   const { themeColors } = useThemeManager();
@@ -36,7 +38,7 @@ export const WelcomeScreenConversations: React.FC<
       vertical
       style={{ height: "90vh" }}
     >
-      <SpotlightGrid />
+      {showSpotlightGrid && <SpotlightGrid />}
       <Flex
         vertical
         align="center"

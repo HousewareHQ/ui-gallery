@@ -7,6 +7,7 @@ import {
   Popconfirm,
   Skeleton,
   Spin,
+  Tooltip,
   Typography,
 } from "antd";
 import { useState } from "react";
@@ -129,9 +130,11 @@ export function ChatScreenAdsPreview({
                   fontSize: "1.5rem",
                 }}
                 title={
-                  <Flex vertical>
+                  <Flex align="center" gap={8}>
                     Forecast for {forecast.date_range}
-                    <Typography.Title level={5}></Typography.Title>
+                    <Tooltip placement="right" title={forecast.disclaimer}>
+                      <Info />
+                    </Tooltip>
                   </Flex>
                 }
                 items={[
@@ -176,17 +179,6 @@ export function ChatScreenAdsPreview({
                   },
                 ]}
               />
-
-              <Typography.Text
-                type="secondary"
-                style={{
-                  fontSize: "0.7rem",
-                  fontWeight: "400",
-                  alignSelf: "flex-end",
-                }}
-              >
-                <Info /> {forecast.disclaimer}
-              </Typography.Text>
             </Flex>
           </Card>
         </Spin>
@@ -233,13 +225,18 @@ export function ChatScreenAdsPreview({
           gap={16}
         >
           <Button onClick={handleGoBack}>Go Back</Button>
-          <Button
-            disabled={isReviewCampaignDisabled}
-            type="primary"
-            onClick={handleReviewCampaign}
+          <Tooltip
+            placement="right"
+            title={isReviewCampaignDisabled ? "Coming Soon!" : undefined}
           >
-            Review Campaign
-          </Button>
+            <Button
+              disabled={isReviewCampaignDisabled}
+              type="primary"
+              onClick={handleReviewCampaign}
+            >
+              Review Campaign
+            </Button>
+          </Tooltip>
         </Flex>
         <Flex
           style={{
