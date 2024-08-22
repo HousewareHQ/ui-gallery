@@ -9,5 +9,6 @@ export interface WelcomeScreenConversationsProps {
     heading: string;
     subHeading: string;
     showSpotlightGrid?: boolean;
+    inputPlaceholder?: string;
 }
 export declare const WelcomeScreenConversations: React.FC<WelcomeScreenConversationsProps>;
