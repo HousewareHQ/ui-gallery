@@ -23,5 +23,6 @@ export interface ChatScreenPAProps<T> {
     customMessageActionCardItem?: ReactNode[];
     hideNewChatButton?: boolean;
     emptyChatComponent?: ReactNode;
+    disableScrollNewMessageToTop?: boolean;
 }
-export declare function ChatScreenPA<T extends BaseMessage>({ messages, handleSendFollowupMessage, isMessageLoading, setMessages, showMessageActionCard, hideActionCardItems, customMessageComponent, customMessageActionCardItem, hideNewChatButton, emptyChatComponent, }: ChatScreenPAProps<T>): import("react/jsx-runtime").JSX.Element;
+export declare function ChatScreenPA<T extends BaseMessage>({ messages, handleSendFollowupMessage, isMessageLoading, setMessages, showMessageActionCard, hideActionCardItems, customMessageComponent, customMessageActionCardItem, hideNewChatButton, emptyChatComponent, disableScrollNewMessageToTop }: ChatScreenPAProps<T>): import("react/jsx-runtime").JSX.Element;

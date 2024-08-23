@@ -43,7 +43,7 @@ export interface ChatScreenPAProps<T> {
   customMessageActionCardItem?: ReactNode[];
   hideNewChatButton?: boolean;
   emptyChatComponent?: ReactNode;
-
+  disableScrollNewMessageToTop?: boolean;
 }
 
 export function ChatScreenPA<T extends BaseMessage>({
@@ -57,16 +57,17 @@ export function ChatScreenPA<T extends BaseMessage>({
   customMessageActionCardItem,
   hideNewChatButton = false,
   emptyChatComponent,
+  disableScrollNewMessageToTop = false
 }: ChatScreenPAProps<T>) {
   const [userQuery, setUserQuery] = useState('');
   const chatsContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const element = chatsContainerRef.current;
-    if (element) {
+    if (element && !disableScrollNewMessageToTop) {
       element.scrollTop = element.scrollHeight;
     }
-  }, [messages]);
+  }, [messages, disableScrollNewMessageToTop]);
 
   const shouldShowLoader =
     (messages.length > 1 && isMessageLoading) || messages.length === 1;
