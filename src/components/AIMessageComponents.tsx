@@ -35,7 +35,7 @@ export function AIMessageComponents<T extends BaseMessage>({
   customMessageActionCardItem,
 }: AIMessageComponentsProps<T>) {
   const logoLink =
-    window?.location?.hostname === 'localhost' ? '' : `${window.location}`;
+    window?.location?.hostname === 'localhost' ? '' : `${location.href.replace(location.search, '')}`;
   const content = messages[index]?.content;
   const isLastMessage = messages?.length - 1 === index;
   const shouldShowActionCardItems = isLastMessage && showMessageActionCard;
