@@ -1,7 +1,10 @@
 import {
+  CaretDoubleLeft,
+  CaretDoubleRight,
   CheckCircle,
   Copy,
-  GlobeHemisphereWest,
+  DownloadSimple,
+  GlobeHemisphereEast,
   PenNib,
   Translate,
 } from "@phosphor-icons/react";
@@ -9,12 +12,14 @@ import {
   Button,
   Card,
   Divider,
+  Dropdown,
   Flex,
   Popconfirm,
   TableColumnsType,
   Tooltip,
   Typography,
 } from "antd";
+import { MenuProps } from "rc-menu";
 import { useState } from "react";
 import { ChatInput } from "../common/ChatInput";
 import CustomTable from "../common/CustomTable";
@@ -122,6 +127,64 @@ export function ChatScreenKeywords({
       setAreKeywordsCopied(false);
     }, 2000);
   };
+
+  function generateCSV(data: DataType[]): void {
+    const headers = [
+      "Keyword",
+      "Average Monthly Searches",
+      "Competition",
+      "High CPC",
+      "Low CPC",
+      "CPC",
+    ];
+
+    // Create CSV content
+    let csvContent = headers.join(",") + "\n";
+
+    // Add data rows
+    data.forEach((row) => {
+      const rowData = [
+        escapeCsvValue(row.keyword),
+        row.average_monthly_searches,
+        escapeCsvValue(row.competition),
+        `${currencySymbol}${row.high_cpc.toFixed(2)}`,
+        `${currencySymbol}${row.low_cpc.toFixed(2)}`,
+        `${currencySymbol}${row.cpc.toFixed(2)}`,
+      ];
+      csvContent += rowData.join(",") + "\n";
+    });
+
+    // Create Blob and download file
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    if (link.download !== undefined) {
+      const url = URL.createObjectURL(blob);
+      link.setAttribute("href", url);
+      link.setAttribute("download", "keywords.csv");
+      link.style.visibility = "hidden";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  }
+
+  // Helper function to escape special characters in CSV
+  function escapeCsvValue(value: string): string {
+    if (value.includes(",") || value.includes('"') || value.includes("\n")) {
+      return `"${value.replace(/"/g, '""')}"`;
+    }
+    return value;
+  }
+
+  const handleDownloadKeywords: MenuProps["onClick"] = (e) => {
+    if (e.key === "download_all") {
+      generateCSV(keywordsData);
+    }
+
+    if (e.key === "download_selected") {
+      generateCSV(selectedRows);
+    }
+  };
   return (
     <Flex
       style={{
@@ -137,7 +200,7 @@ export function ChatScreenKeywords({
       <Typography.Title
         level={3}
         style={{
-          width: "30vw",
+          width: "40vw",
           textAlign: "center",
           fontFamily: "Sedan",
         }}
@@ -158,6 +221,63 @@ export function ChatScreenKeywords({
         {pageHeading}
       </Typography.Title>
       <Flex
+        justify="space-between"
+        style={{
+          width: "calc(60vw - 49px)",
+          paddingRight: "24px",
+          paddingBottom: "16px",
+        }}
+        align="center"
+      >
+        <Flex gap={24} align="center">
+          <Typography.Title
+            level={5}
+            style={{
+              margin: 0,
+              maxWidth: "20vw",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+            }}
+          >
+            {productCampaign.description}
+          </Typography.Title>
+          <Flex gap={4}>
+            <Button
+              type="text"
+              style={{
+                fontSize: "0.8rem",
+              }}
+              size="small"
+              icon={<GlobeHemisphereEast />}
+            >
+              {productCampaign.country}
+            </Button>
+
+            <Button
+              type="text"
+              style={{
+                fontSize: "0.8rem",
+              }}
+              size="small"
+              icon={<Translate />}
+            >
+              {productCampaign.language}
+            </Button>
+          </Flex>
+        </Flex>
+        <Button
+          type="primary"
+          onClick={() => {
+            handleProceed(selectedRows);
+          }}
+          disabled={selectedRows.length === 0}
+          iconPosition="end"
+        >
+          Proceed
+        </Button>
+      </Flex>
+      <Flex
         style={{
           height: "100%",
           width: "calc(60vw - 38px)",
@@ -171,116 +291,87 @@ export function ChatScreenKeywords({
         gap={24}
       >
         <Flex
-          justify="space-between"
-          style={{
-            width: "100%",
-          }}
-          align="center"
-        >
-          <Flex gap={24} align="center">
-            <Typography.Title
-              level={5}
-              style={{
-                margin: 0,
-                maxWidth: "20vw",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-              }}
-            >
-              {productCampaign.description}
-            </Typography.Title>
-            <Flex gap={4}>
-              <Button
-                type="text"
-                style={{
-                  fontSize: "0.8rem",
-                }}
-                size="small"
-                icon={<GlobeHemisphereWest />}
-              >
-                {productCampaign.country}
-              </Button>
-
-              <Button
-                type="text"
-                style={{
-                  fontSize: "0.8rem",
-                }}
-                size="small"
-                icon={<Translate />}
-              >
-                {productCampaign.language}
-              </Button>
-            </Flex>
-          </Flex>
-          <Button
-            type="primary"
-            onClick={() => {
-              handleProceed(selectedRows);
-            }}
-            disabled={selectedRows.length === 0}
-            iconPosition="end"
-          >
-            Proceed
-          </Button>
-        </Flex>
-
-        <Flex
           vertical
           gap={12}
           style={{
             width: "100%",
           }}
+          align="center"
         >
-          {selectedRows.length > 0 && (
-            <Card
-              size="small"
-              style={{
-                width: "100%",
-              }}
-            >
-              <Flex justify="space-between" align="center">
-                <Flex align="center">
-                  <Typography.Text>
-                    {selectedRows?.length} selected
-                  </Typography.Text>
-                  <Divider type="vertical" />
-                  <Button
-                    size="small"
-                    onClick={() => {
-                      setSelectedRows(keywordsData);
+          <Card
+            size="small"
+            style={{
+              width: "100%",
+            }}
+          >
+            <Flex justify="space-between" align="center">
+              <Flex align="center">
+                <Typography.Text>
+                  {selectedRows?.length} selected
+                </Typography.Text>
+                <Divider type="vertical" />
+                <Button
+                  size="small"
+                  onClick={() => {
+                    setSelectedRows(keywordsData);
+                  }}
+                >
+                  Select All {keywordsData?.length}
+                </Button>
+              </Flex>
+              <Flex align="center" gap={8}>
+                <Tooltip title={"Download keywords"}>
+                  <Dropdown
+                    trigger={["click"]}
+                    placement="bottomRight"
+                    menu={{
+                      items: [
+                        {
+                          label: "Download all keywords",
+                          key: "download_all",
+                        },
+                        {
+                          label: "Download selected keywords",
+                          key: "download_selected",
+                          disabled: selectedRows?.length === 0,
+                        },
+                      ],
+                      onClick: handleDownloadKeywords,
                     }}
                   >
-                    Select All {keywordsData?.length}
-                  </Button>
-                </Flex>
-                <Flex align="center" gap={8}>
-                  <Tooltip title="Copy selected keywords">
                     <Button
                       size="small"
                       type="text"
-                      onClick={handleCopyKeywords}
-                    >
-                      {areKeywordsCopied ? (
-                        <CheckCircle weight="duotone" />
-                      ) : (
-                        <Copy />
-                      )}
-                    </Button>
-                  </Tooltip>
+                      icon={<DownloadSimple />}
+                    />
+                  </Dropdown>
+                </Tooltip>
+                <Tooltip title={"Copy selected keywords"}>
                   <Button
                     size="small"
-                    onClick={() => {
-                      setSelectedRows([]);
-                    }}
+                    type="text"
+                    onClick={handleCopyKeywords}
+                    disabled={selectedRows?.length === 0}
                   >
-                    Clear All
+                    {areKeywordsCopied ? (
+                      <CheckCircle weight="duotone" />
+                    ) : (
+                      <Copy />
+                    )}
                   </Button>
-                </Flex>
+                </Tooltip>
+                <Button
+                  disabled={selectedRows?.length === 0}
+                  size="small"
+                  onClick={() => {
+                    setSelectedRows([]);
+                  }}
+                >
+                  Clear All
+                </Button>
               </Flex>
-            </Card>
-          )}
+            </Flex>
+          </Card>
 
           <CustomTable
             style={{
@@ -289,6 +380,18 @@ export function ChatScreenKeywords({
             dataSource={keywordsData}
             loading={areKeywordsLoading}
             columns={columns}
+            onRowClick={(record) => {
+              const isSelected = selectedRows.some(
+                (row) => row.key === record.key
+              );
+              if (isSelected) {
+                setSelectedRows(
+                  selectedRows.filter((row) => row.key !== record.key)
+                );
+              } else {
+                setSelectedRows([...selectedRows, record as DataType]);
+              }
+            }}
             rowSelection={{
               type: "checkbox",
               onChange: (
@@ -300,19 +403,56 @@ export function ChatScreenKeywords({
               selectedRowKeys: selectedRows.map((row) => row.key),
             }}
             size="small"
-            footer={() => {
-              return (
-                <Typography.Text
-                  type="secondary"
-                  style={{
-                    fontSize: "0.7rem",
-                  }}
-                >
-                  Powered by Google Ads
-                </Typography.Text>
-              );
+            pagination={{
+              style: {
+                width: "100%",
+                display: "flex",
+                justifyItems: "flex-end",
+                gap: "0.5rem",
+                padding: "10px",
+                background: "var(--foreground)",
+                marginTop: 0,
+                borderBottomRightRadius: 8,
+                borderBottomLeftRadius: 8,
+              },
+              showSizeChanger: false,
+              simple: true,
+              itemRender: (_, type, originalElement) => {
+                if (type === "prev") {
+                  return (
+                    <Button size="small" type="text">
+                      <CaretDoubleLeft />
+                    </Button>
+                  );
+                }
+                if (type === "next") {
+                  return (
+                    <Button size="small" type="text">
+                      <CaretDoubleRight />
+                    </Button>
+                  );
+                }
+                return originalElement;
+              },
             }}
           />
+          <Flex
+            style={{
+              width: "95%",
+              marginTop: "calc(-16px - 12px - 0.7rem - 0.5rem - 0.7rem)",
+              zIndex: 1,
+              pointerEvents: "none",
+            }}
+          >
+            <Typography.Text
+              type="secondary"
+              style={{
+                fontSize: "0.7rem",
+              }}
+            >
+              Powered by Google Ads
+            </Typography.Text>
+          </Flex>
         </Flex>
       </Flex>
       <Flex
