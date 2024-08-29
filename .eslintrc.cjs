@@ -15,6 +15,16 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
-    "no-unused-vars": ["error", { varsIgnorePattern: "^React$" }],
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        vars: "all",
+        args: "none",
+        ignoreRestSiblings: false,
+        varsIgnorePattern: "^_",
+        argsIgnorePattern: "^_",
+        caughtErrors: "none",
+      },
+    ],
   },
 };
