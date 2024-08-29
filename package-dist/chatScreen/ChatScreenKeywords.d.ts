@@ -18,13 +18,25 @@ export interface ChatScreenKeywordsProps {
     handleProceed: (selectedRows: DataType[]) => void;
     productCampaign: {
         description: string;
-        country: string;
-        language: string;
+        countrySelected: string;
+        languageSelected: string;
+        countries: Array<{
+            value: string;
+            label: string;
+        }>;
+        languages: Array<{
+            value: string;
+            label: string;
+        }>;
     };
     handleSuggestChanges: (userQuery: string) => void;
     areKeywordsLoading: boolean;
     currencySymbol?: string;
     handleUpdateCampaignName?: (name: string) => void;
+    handleChangeCountry: (country: string) => void;
+    handleChangeLanguage: (language: string) => void;
+    handleRefreshTable: () => void;
+    refreshTableText?: string;
 }
-export declare function ChatScreenKeywords({ pageHeading, keywordsData, handleStartFresh, handleProceed, productCampaign, handleSuggestChanges, areKeywordsLoading, currencySymbol, handleUpdateCampaignName, }: ChatScreenKeywordsProps): import("react/jsx-runtime").JSX.Element;
+export declare function ChatScreenKeywords({ pageHeading, keywordsData, handleStartFresh, handleProceed, productCampaign, handleSuggestChanges, areKeywordsLoading, currencySymbol, handleUpdateCampaignName, handleChangeCountry, handleChangeLanguage, handleRefreshTable, refreshTableText, }: ChatScreenKeywordsProps): import("react/jsx-runtime").JSX.Element;
 export {};

@@ -7,6 +7,9 @@ const ActionsData = {
   handleProceed: fn(),
   handleSuggestChanges: fn(),
   handleUpdateCampaignName: fn(),
+  handleChangeCountry: fn(),
+  handleChangeLanguage: fn(),
+  handleRefreshTable: fn(),
 };
 
 const meta: Meta<typeof ChatScreenKeywords> = {
@@ -32,11 +35,32 @@ type Story = StoryObj<typeof ChatScreenKeywords>;
 export const Default: Story = {
   args: {
     pageHeading: "Campagin on Sustainable Products",
+
     productCampaign: {
       description:
         "Sustainable Shoes Sustainable Shoes Sustainable Shoes Sustainable Shoes Sustainable Shoes Sustainable Shoes Sustainable Shoes ",
-      language: "English",
-      country: "United States",
+      countrySelected: "united arab emirates",
+      languageSelected: "oman",
+      countries: [
+        { value: "saint kitts and nevis", label: "Saint Kitts and Nevis" },
+        { value: "saint lucia", label: "Saint Lucia" },
+        { value: "saint martin", label: "Saint Martin" },
+        {
+          value: "saint pierre and miquelon",
+          label: "Saint Pierre and Miquelon",
+        },
+        {
+          value: "united arab emirates",
+          label: "United arab emirates",
+        },
+      ],
+      languages: [
+        { value: "mozambique", label: "Mozambique" },
+        { value: "oman", label: "Oman" },
+        { value: "namibia", label: "Namibia" },
+        { value: "nauru", label: "Nauru" },
+        { value: "nepal", label: "Nepal" },
+      ],
     },
     keywordsData: [
       {
@@ -184,5 +208,13 @@ export const Loading: Story = {
     ...Default.args,
     areKeywordsLoading: true,
     keywordsData: [],
+  },
+};
+
+export const OutdatedTable: Story = {
+  args: {
+    ...Default.args,
+    refreshTableText:
+      "This table is outdated. Please refresh to get the latest data.",
   },
 };

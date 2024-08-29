@@ -1,10 +1,11 @@
 import {
+  ArrowClockwise,
   CaretDoubleLeft,
   CaretDoubleRight,
   CheckCircle,
   Copy,
   DownloadSimple,
-  GlobeHemisphereEast,
+  GlobeHemisphereWest,
   PenNib,
   Translate,
 } from "@phosphor-icons/react";
@@ -15,6 +16,7 @@ import {
   Dropdown,
   Flex,
   Popconfirm,
+  Select,
   TableColumnsType,
   Tooltip,
   Typography,
@@ -48,13 +50,19 @@ export interface ChatScreenKeywordsProps {
   handleProceed: (selectedRows: DataType[]) => void;
   productCampaign: {
     description: string;
-    country: string;
-    language: string;
+    countrySelected: string;
+    languageSelected: string;
+    countries: Array<{ value: string; label: string }>;
+    languages: Array<{ value: string; label: string }>;
   };
   handleSuggestChanges: (userQuery: string) => void;
   areKeywordsLoading: boolean;
   currencySymbol?: string;
   handleUpdateCampaignName?: (name: string) => void;
+  handleChangeCountry: (country: string) => void;
+  handleChangeLanguage: (language: string) => void;
+  handleRefreshTable: () => void;
+  refreshTableText?: string;
 }
 
 export function ChatScreenKeywords({
@@ -67,6 +75,10 @@ export function ChatScreenKeywords({
   areKeywordsLoading,
   currencySymbol = "₹",
   handleUpdateCampaignName,
+  handleChangeCountry,
+  handleChangeLanguage,
+  handleRefreshTable,
+  refreshTableText,
 }: ChatScreenKeywordsProps) {
   const [userQuery, setUserQuery] = useState("");
   const [selectedRows, setSelectedRows] = useState<DataType[]>([]);
@@ -200,9 +212,10 @@ export function ChatScreenKeywords({
       <Typography.Title
         level={3}
         style={{
-          width: "40vw",
+          width: "50vw",
           textAlign: "center",
           fontFamily: "Sedan",
+          marginBottom: 32,
         }}
         editable={{
           onChange: (e) => handleUpdateCampaignName?.(e),
@@ -221,61 +234,97 @@ export function ChatScreenKeywords({
         {pageHeading}
       </Typography.Title>
       <Flex
-        justify="space-between"
+        vertical
         style={{
           width: "calc(60vw - 49px)",
           paddingRight: "24px",
           paddingBottom: "16px",
         }}
-        align="center"
+        align="flex-start"
+        gap={8}
       >
-        <Flex gap={24} align="center">
-          <Typography.Title
-            level={5}
-            style={{
-              margin: 0,
-              maxWidth: "20vw",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-            }}
-          >
-            {productCampaign.description}
-          </Typography.Title>
-          <Flex gap={4}>
-            <Button
-              type="text"
-              style={{
-                fontSize: "0.8rem",
-              }}
-              size="small"
-              icon={<GlobeHemisphereEast />}
-            >
-              {productCampaign.country}
-            </Button>
-
-            <Button
-              type="text"
-              style={{
-                fontSize: "0.8rem",
-              }}
-              size="small"
-              icon={<Translate />}
-            >
-              {productCampaign.language}
-            </Button>
-          </Flex>
-        </Flex>
-        <Button
-          type="primary"
-          onClick={() => {
-            handleProceed(selectedRows);
+        <Flex
+          justify="space-between"
+          align="center"
+          style={{
+            width: "100%",
           }}
-          disabled={selectedRows.length === 0}
-          iconPosition="end"
         >
-          Proceed
-        </Button>
+          <Flex gap={24} align="center">
+            <Typography.Title
+              level={5}
+              style={{
+                margin: 0,
+                maxWidth: "15vw",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+              }}
+            >
+              {productCampaign.description}
+            </Typography.Title>
+            <Flex gap={4}>
+              <Select
+                size="small"
+                variant="borderless"
+                suffixIcon={<GlobeHemisphereWest />}
+                value={productCampaign?.countrySelected}
+                onChange={handleChangeCountry}
+                options={productCampaign.countries}
+                popupMatchSelectWidth={false}
+                showSearch
+              />
+
+              <Select
+                size="small"
+                variant="borderless"
+                suffixIcon={<Translate />}
+                value={productCampaign?.languageSelected}
+                onChange={handleChangeLanguage}
+                options={productCampaign?.languages}
+                popupMatchSelectWidth={false}
+                showSearch
+              />
+            </Flex>
+          </Flex>
+          <Tooltip
+            placement="bottomRight"
+            title={
+              selectedRows.length === 0
+                ? "Select keywords to proceed"
+                : "Proceed with selected keywords"
+            }
+          >
+            <Button
+              type="primary"
+              onClick={() => {
+                handleProceed(selectedRows);
+              }}
+              disabled={selectedRows.length === 0}
+              iconPosition="end"
+            >
+              Proceed
+            </Button>
+          </Tooltip>
+        </Flex>
+        {refreshTableText && (
+          <Flex gap={4} align="center">
+            <Typography.Text
+              type="secondary"
+              style={{
+                fontSize: "0.8rem",
+              }}
+            >
+              {refreshTableText}
+            </Typography.Text>
+            <Button
+              size="small"
+              type="text"
+              icon={<ArrowClockwise />}
+              onClick={handleRefreshTable}
+            />
+          </Flex>
+        )}
       </Flex>
       <Flex
         style={{
@@ -283,7 +332,7 @@ export function ChatScreenKeywords({
           width: "calc(60vw - 38px)",
 
           overflowY: "auto",
-          padding: "2vh 24px 20vh 0",
+          padding: "0 24px 20vh 0",
         }}
         vertical
         align="center"
