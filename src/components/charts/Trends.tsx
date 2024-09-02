@@ -1,8 +1,9 @@
-import { Card, Flex, Typography } from "antd";
+import { Card, Flex, Typography, Tag } from "antd";
 import ReactECharts from "echarts-for-react";
 import Markdown from "react-markdown";
 import { useThemeManager } from "../useThemeManager";
 import { getTrendsChartOptions } from "./getTrendsChartOptions";
+import { CalendarOutlined } from "@ant-design/icons";
 
 export function Trends({
   chartResponse,
@@ -19,6 +20,9 @@ export function Trends({
     themeMode: currentTheme,
   });
 
+  const startDate = queryConfiguration?.time?.start_date;
+  const endDate = queryConfiguration?.time?.end_date;
+
   return (
     <Flex
       vertical
@@ -34,6 +38,11 @@ export function Trends({
           width: "100%",
         }}
       >
+        <Flex justify="flex-end" align="center" style={{ marginBottom: 16 }}>
+          <Tag icon={<CalendarOutlined />} color="blue">
+            {startDate} - {endDate}
+          </Tag>
+        </Flex>
         <ReactECharts
           style={{ height: "40vh", width: "100%" }}
           option={chartOptions}
