@@ -75,7 +75,10 @@ export default function AiMessageTable({
   columnDefs,
 }: AiMessageTableProps) {
   const logoLink =
-    window?.location?.hostname === 'localhost' ? '/' : `${window.location}`;
+    window?.location?.hostname === 'localhost'
+      ? `${window.location.pathname}`
+      : `${window.location.origin}${window.location.pathname}`;
+
   const [ellipsis] = useState(true);
   const [showSqlModal, setShowSqlModal] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
@@ -96,7 +99,13 @@ export default function AiMessageTable({
       renderItem={(item) => (
         <List.Item>
           <List.Item.Meta
-            avatar={<Image preview={false} width={26} src={`${logoLink}/${item.img}`} />}
+            avatar={
+              <Image
+                preview={false}
+                width={26}
+                src={`${logoLink}/${item.img}`}
+              />
+            }
             title={<a href="https://ant.design">{item.text}</a>}
           />
         </List.Item>

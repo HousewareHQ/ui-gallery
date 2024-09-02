@@ -1,36 +1,29 @@
-import { LinkedinLogo, XLogo, YoutubeLogo } from "@phosphor-icons/react";
-import { Button, Flex, Image, Typography } from "antd";
-import * as React from "react";
+import { LinkedinLogo, XLogo, YoutubeLogo } from '@phosphor-icons/react';
+import { Button, Flex, Image, Typography } from 'antd';
+import * as React from 'react';
+import housewareLogo from '../../assets/app-logo.png';
 
 export const HousewareBranding: React.FC = () => {
-  const logoLink =
-    window?.location?.hostname === "localhost" ? "/" : `${window.location}/`;
-
   return (
     <>
       <Flex
         align="center"
         gap={8}
         style={{
-          position: "absolute",
+          position: 'absolute',
           top: 16,
           left: 16,
-          cursor: "pointer",
+          cursor: 'pointer',
         }}
         onClick={() => {
-          window.open("https://houseware.io", "_blank");
+          window.open('https://houseware.io', '_blank');
         }}
       >
-        <Image
-          src={`${logoLink}app-logo.png`}
-          height={30}
-          width={30}
-          preview={false}
-        />
+        <Image src={housewareLogo} height={30} width={30} preview={false} />
         <Typography.Title
           style={{
-            fontFamily: "Libre Franklin, sans-serif",
-            fontSize: "1rem",
+            fontFamily: 'Libre Franklin, sans-serif',
+            fontSize: '1rem',
             margin: 0,
             fontWeight: 600,
           }}
@@ -42,7 +35,7 @@ export const HousewareBranding: React.FC = () => {
       <Flex
         vertical
         style={{
-          position: "absolute",
+          position: 'absolute',
           bottom: 16,
           right: 16,
           zIndex: 1,
@@ -54,13 +47,13 @@ export const HousewareBranding: React.FC = () => {
           shape="circle"
           type="text"
           onClick={() => {
-            window.open("https://x.com/gethouseware", "_blank");
+            window.open('https://x.com/gethouseware', '_blank');
           }}
           icon={
             <XLogo
-              size={"1.5rem"}
+              size={'1.5rem'}
               weight="duotone"
-              color={"var(--secondary-text)"}
+              color={'var(--secondary-text)'}
             />
           }
         />
@@ -70,15 +63,15 @@ export const HousewareBranding: React.FC = () => {
           type="text"
           onClick={() => {
             window.open(
-              "https://www.linkedin.com/company/gethouseware",
-              "_blank"
+              'https://www.linkedin.com/company/gethouseware',
+              '_blank',
             );
           }}
           icon={
             <LinkedinLogo
-              size={"1.5rem"}
+              size={'1.5rem'}
               weight="duotone"
-              color={"var(--secondary-text)"}
+              color={'var(--secondary-text)'}
             />
           }
         />
@@ -87,13 +80,13 @@ export const HousewareBranding: React.FC = () => {
           shape="circle"
           type="text"
           onClick={() => {
-            window.open("https://www.youtube.com/@getHouseware", "_blank");
+            window.open('https://www.youtube.com/@getHouseware', '_blank');
           }}
           icon={
             <YoutubeLogo
-              size={"1.5rem"}
+              size={'1.5rem'}
               weight="duotone"
-              color={"var(--secondary-text)"}
+              color={'var(--secondary-text)'}
             />
           }
         />

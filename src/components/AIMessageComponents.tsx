@@ -10,7 +10,7 @@ import {
   CustomMessageComponentProp,
 } from './chatScreen/ChatScreenPA';
 import MessageActionCard from './MessageActionCard';
-
+import aiIcon from '../assets/ai-icon.svg';
 
 export type AIMessageComponentsProps<T extends BaseMessage> = {
   index: number;
@@ -34,8 +34,6 @@ export function AIMessageComponents<T extends BaseMessage>({
   customMessageComponent,
   customMessageActionCardItem,
 }: AIMessageComponentsProps<T>) {
-  const logoLink =
-    window?.location?.hostname === 'localhost' ? '' : `${location.href.replace(location.search, '')}`;
   const content = messages[index]?.content;
   const isLastMessage = messages?.length - 1 === index;
   const shouldShowActionCardItems = isLastMessage && showMessageActionCard;
@@ -84,7 +82,7 @@ export function AIMessageComponents<T extends BaseMessage>({
       className="ai-message-wrapper"
     >
       <Image
-        src={`${logoLink}/ai-icon.svg`}
+        src={aiIcon}
         height={40}
         width={40}
         style={{
