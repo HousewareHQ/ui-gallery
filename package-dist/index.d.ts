@@ -21,6 +21,7 @@ export { HousewareBranding } from './common/HousewareBranding';
 export { ThemeToggle } from './common/ThemeToggle';
 export { default as AppThemeProvider } from './AppThemeProvider';
 export type { AppThemeProviderProps } from './AppThemeProvider';
+export { getAntdTheme } from './getAntdTheme';
 export { useThemeManager } from './useThemeManager';
 export { SpotlightGrid } from './welcomeScreen/SpotlightGrid';
 export { default as Piechart } from './charts/Piechart/Piechart';

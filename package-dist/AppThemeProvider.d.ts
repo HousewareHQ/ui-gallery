@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 export type AppThemeModeType = "light" | "dark";
-type Theme = {
+export type Theme = {
     "--primary-color": string;
     "--cta-text": string;
     "--background": string;
@@ -22,4 +22,3 @@ export type AppThemeProviderProps = {
     appTheme?: Record<AppThemeModeType, Theme>;
 };
 export default function AppThemeProvider({ children, appTheme, }: AppThemeProviderProps): import("react/jsx-runtime").JSX.Element;
-export {};

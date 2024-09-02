@@ -2,10 +2,10 @@ import { ReactNode } from 'react';
 
 export interface BaseMessage {
     content: any;
-    type: 'ai' | 'human';
+    type: "ai" | "human";
 }
 export interface CustomMessageComponentProp<T> {
-    type: 'ai' | 'human';
+    type: "ai" | "human";
     component: ({ index, messages, handleSendFollowupMessage, }: {
         messages: T[];
         index: number;
@@ -18,11 +18,12 @@ export interface ChatScreenPAProps<T> {
     isMessageLoading: boolean;
     setMessages: React.Dispatch<React.SetStateAction<T[]>>;
     showMessageActionCard?: boolean;
-    hideActionCardItems?: ('copy' | 'regenerate')[];
+    hideActionCardItems?: ("copy" | "regenerate")[];
     customMessageComponent?: CustomMessageComponentProp<T>;
     customMessageActionCardItem?: ReactNode[];
     hideNewChatButton?: boolean;
     emptyChatComponent?: ReactNode;
     disableScrollNewMessageToTop?: boolean;
+    handleStartNewChat?: () => void;
 }
-export declare function ChatScreenPA<T extends BaseMessage>({ messages, handleSendFollowupMessage, isMessageLoading, setMessages, showMessageActionCard, hideActionCardItems, customMessageComponent, customMessageActionCardItem, hideNewChatButton, emptyChatComponent, disableScrollNewMessageToTop }: ChatScreenPAProps<T>): import("react/jsx-runtime").JSX.Element;
+export declare function ChatScreenPA<T extends BaseMessage>({ messages, handleSendFollowupMessage, isMessageLoading, setMessages, showMessageActionCard, hideActionCardItems, customMessageComponent, customMessageActionCardItem, hideNewChatButton, emptyChatComponent, disableScrollNewMessageToTop, handleStartNewChat, }: ChatScreenPAProps<T>): import("react/jsx-runtime").JSX.Element;
