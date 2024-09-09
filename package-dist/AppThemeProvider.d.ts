@@ -20,5 +20,10 @@ export declare const ThemeContext: import('use-context-selector').Context<AppThe
 export type AppThemeProviderProps = {
     children: ReactNode;
     appTheme?: Record<AppThemeModeType, Theme>;
+    externalTheme?: {
+        themeMode: AppThemeModeType;
+        themeColors: Theme;
+        antdTheme: any;
+    };
 };
-export default function AppThemeProvider({ children, appTheme, }: AppThemeProviderProps): import("react/jsx-runtime").JSX.Element;
+export default function AppThemeProvider({ children, appTheme, externalTheme, }: AppThemeProviderProps): import("react/jsx-runtime").JSX.Element;

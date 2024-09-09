@@ -19,7 +19,6 @@ export type Theme = {
 
 export interface AppThemeContext {
   appThemeMode: AppThemeModeType;
-  // eslint-disable-next-line no-unused-vars
   setAppThemeMode: (themeMode: AppThemeModeType) => void;
   themeColors: Theme;
 }
@@ -31,34 +30,50 @@ export const ThemeContext = createContext<AppThemeContext | undefined>(
 export type AppThemeProviderProps = {
   children: ReactNode;
   appTheme?: Record<AppThemeModeType, Theme>;
+  externalTheme?: {
+    themeMode: AppThemeModeType;
+    themeColors: Theme;
+    antdTheme: any;
+  };
 };
 
 export default function AppThemeProvider({
   children,
   appTheme = defaultAppTheme,
+  externalTheme,
 }: AppThemeProviderProps) {
   const initialThemeMode =
-    (localStorage?.getItem("appThemeMode") as AppThemeModeType) || "light";
+    externalTheme?.themeMode ||
+    (localStorage?.getItem("appThemeMode") as AppThemeModeType) ||
+    "light";
   const [selectedThemeMode, setSelectedThemeMode] =
     useState<AppThemeModeType>(initialThemeMode);
 
-  const themeColors = appTheme[selectedThemeMode];
+  const themeColors = externalTheme?.themeColors || appTheme[selectedThemeMode];
 
   useEffect(() => {
-    Object.entries(themeColors).forEach(([key, value]) => {
-      if (typeof value === "string") {
-        document.documentElement.style.setProperty(`${key}`, value);
-      }
-    });
-  }, [themeColors]);
+    if (!externalTheme) {
+      Object.entries(themeColors).forEach(([key, value]) => {
+        if (typeof value === "string") {
+          document.documentElement.style.setProperty(`${key}`, value);
+        }
+      });
+    }
+  }, [themeColors, externalTheme]);
 
-  const antdTheme = getAntdTheme(themeColors);
+  const antdTheme = externalTheme?.antdTheme || getAntdTheme(themeColors);
+
+  const setAppThemeMode = (themeMode: AppThemeModeType) => {
+    if (!externalTheme) {
+      setSelectedThemeMode(themeMode);
+    }
+  };
 
   return (
     <ThemeContext.Provider
       value={{
         appThemeMode: selectedThemeMode,
-        setAppThemeMode: setSelectedThemeMode,
+        setAppThemeMode,
         themeColors,
       }}
     >
