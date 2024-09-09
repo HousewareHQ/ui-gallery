@@ -43,7 +43,7 @@ export const WelcomeScreenAds: React.FC<WelcomeScreenAdsProps> = ({
       justify="space-evenly"
       align="center"
       vertical
-      style={{ height: "100vh" }}
+      style={{ height: "100%" }}
     >
       {showSpotlightGrid && <SpotlightGrid />}
       <Flex

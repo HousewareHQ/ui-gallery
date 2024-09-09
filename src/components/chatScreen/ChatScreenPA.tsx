@@ -77,8 +77,8 @@ export function ChatScreenPA<T extends BaseMessage>({
   return (
     <Flex
       style={{
-        height: "100vh",
-        width: "100vw",
+        height: "100%",
+        width: "100%",
         padding: 16,
         overflow: "hidden",
       }}
@@ -119,11 +119,11 @@ export function ChatScreenPA<T extends BaseMessage>({
         ref={chatsContainerRef}
         vertical
         style={{
-          width: "58vw",
-          height: "86vh",
+          width: "58%",
+          height: "86%",
           overflowY: "scroll",
           overflowX: "hidden",
-          padding: "0 24px 10vh",
+          padding: "0 24px 10%",
           marginTop: "4vh",
           position: "relative",
         }}
