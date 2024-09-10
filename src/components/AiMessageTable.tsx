@@ -1,8 +1,8 @@
-import { AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-material.css';
+import { Code, Download, ShareFat } from "@phosphor-icons/react";
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-material.css";
+import { AgGridReact } from "ag-grid-react";
 import {
-  Avatar,
   Button,
   Card,
   Flex,
@@ -13,11 +13,10 @@ import {
   Popover,
   Tooltip,
   Typography,
-} from 'antd';
-import { CSVLink } from 'react-csv';
-import { Code, Download, ShareFat } from '@phosphor-icons/react';
-import Markdown from 'react-markdown';
-import { useState } from 'react';
+} from "antd";
+import { useState } from "react";
+import { CSVLink } from "react-csv";
+import Markdown from "react-markdown";
 
 const { Paragraph, Text } = Typography;
 export interface AiMessageTableProps {
@@ -41,7 +40,7 @@ export const SegmentMetricsCard = ({
 }) => {
   return (
     <Card
-      style={{ backgroundColor: 'var(--foreground)' }}
+      style={{ backgroundColor: "var(--light-foreground)" }}
       hoverable
       size="small"
       title={<Typography.Title level={3}>Segment Metrics</Typography.Title>}
@@ -75,7 +74,7 @@ export default function AiMessageTable({
   columnDefs,
 }: AiMessageTableProps) {
   const logoLink =
-    window?.location?.hostname === 'localhost'
+    window?.location?.hostname === "localhost"
       ? `${window.location.pathname}`
       : `${window.location.origin}${window.location.pathname}`;
 
@@ -88,12 +87,12 @@ export default function AiMessageTable({
       itemLayout="horizontal"
       dataSource={[
         {
-          text: 'HubSpot',
-          img: '/hubspot.svg',
+          text: "HubSpot",
+          img: "/hubspot.svg",
         },
         {
-          text: 'Braze',
-          img: '/braze.svg',
+          text: "Braze",
+          img: "/braze.svg",
         },
       ]}
       renderItem={(item) => (
@@ -118,7 +117,7 @@ export default function AiMessageTable({
       vertical
       gap={16}
       style={{
-        width: '100%',
+        width: "100%",
       }}
     >
       <Card
@@ -126,17 +125,17 @@ export default function AiMessageTable({
         bordered
         hoverable
         style={{
-          backgroundColor: 'var(--foreground)',
-          width: '100%',
+          backgroundColor: "var(--light-foreground)",
+          width: "100%",
         }}
         styles={{
           header: {
-            backgroundColor: '#FFF',
+            backgroundColor: "#FFF",
           },
         }}
         title={
-          <Flex justify="space-between" style={{ width: '100%' }}>
-            <Typography style={{ width: '80%', overflow: 'hidden' }}>
+          <Flex justify="space-between" style={{ width: "100%" }}>
+            <Typography style={{ width: "80%", overflow: "hidden" }}>
               {title}
             </Typography>
             <Flex align="center" gap={6}>
@@ -149,7 +148,7 @@ export default function AiMessageTable({
                   onClick={() => setShowSqlModal(true)}
                 />
               </Tooltip>
-              <CSVLink data={rowData} style={{ color: '#3C3838' }}>
+              <CSVLink data={rowData} style={{ color: "#3C3838" }}>
                 <Tooltip title="Download as CSV">
                   <Button
                     type="text"
@@ -179,8 +178,8 @@ export default function AiMessageTable({
           title="Copy SQL Query to clip board"
           open={showSqlModal}
           onOk={() => {
-            navigator.clipboard.writeText(sequelQuery ?? '');
-            messageApi.success('SQL code copied to clipboard');
+            navigator.clipboard.writeText(sequelQuery ?? "");
+            messageApi.success("SQL code copied to clipboard");
             setShowSqlModal(false);
           }}
           okText="Copy"
@@ -193,7 +192,7 @@ export default function AiMessageTable({
         <Flex vertical gap={12}>
           <div
             style={{
-              width: '100%',
+              width: "100%",
               height: 300,
             }}
           >
@@ -202,7 +201,7 @@ export default function AiMessageTable({
           <Flex vertical>
             <Paragraph
               ellipsis={
-                ellipsis ? { rows: 2, expandable: true, symbol: 'more' } : false
+                ellipsis ? { rows: 2, expandable: true, symbol: "more" } : false
               }
             >
               <strong>Description:</strong> {description}

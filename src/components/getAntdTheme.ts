@@ -17,7 +17,7 @@ export const getAntdTheme = (themeColors: Theme): ThemeConfig => ({
   },
   components: {
     Card: {
-      colorBgContainer: themeColors["--foreground"],
+      colorBgContainer: themeColors["--light-foreground"],
       colorBorder: themeColors["--border"],
     },
     Input: {

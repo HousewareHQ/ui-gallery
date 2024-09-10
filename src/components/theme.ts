@@ -1,12 +1,12 @@
 export const defaultAppTheme = {
   light: {
-    "--primary-color": "#49a5aa", // Always keep this in hex format
+    "--primary-color": "#49a5aa", // Always keep this in hex format for the spotlight grid
     "--cta-text": "white",
     "--background": "#FEFBF3",
     "--primary-text": "#3c3838",
     "--border": "#e9e0d6",
     "--secondary-text": "#9D9D9D",
-    "--foreground": "#f9f4e8",
+    "--light-foreground": "#f9f4e8",
     "--chart-colors": [
       "rgb(136, 204, 238)",
       "rgb(204, 102, 119)",
@@ -22,13 +22,13 @@ export const defaultAppTheme = {
     ],
   },
   dark: {
-    "--primary-color": "#76ABAE", // Always keep this in hex format
+    "--primary-color": "#76ABAE", // Always keep this in hex format for the spotlight grid
     "--cta-text": "#222831",
     "--background": "#222831",
     "--primary-text": "#f7f7f7",
     "--border": "#484848",
     "--secondary-text": "#bfbfbf",
-    "--foreground": "#31363F",
+    "--light-foreground": "#31363F",
     "--chart-colors": [
       "rgb(102, 197, 204)",
       "rgb(246, 207, 113)",

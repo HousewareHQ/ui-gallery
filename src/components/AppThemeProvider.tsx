@@ -13,7 +13,7 @@ export type Theme = {
   "--primary-text": string;
   "--border": string;
   "--secondary-text": string;
-  "--foreground": string;
+  "--light-foreground": string;
   "--chart-colors": Array<string>;
 };
 

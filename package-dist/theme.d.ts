@@ -6,7 +6,7 @@ export declare const defaultAppTheme: {
         "--primary-text": string;
         "--border": string;
         "--secondary-text": string;
-        "--foreground": string;
+        "--light-foreground": string;
         "--chart-colors": string[];
     };
     dark: {
@@ -16,7 +16,7 @@ export declare const defaultAppTheme: {
         "--primary-text": string;
         "--border": string;
         "--secondary-text": string;
-        "--foreground": string;
+        "--light-foreground": string;
         "--chart-colors": string[];
     };
 };

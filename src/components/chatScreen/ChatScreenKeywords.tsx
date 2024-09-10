@@ -459,7 +459,7 @@ export function ChatScreenKeywords({
                 justifyItems: "flex-end",
                 gap: "0.5rem",
                 padding: "10px",
-                background: "var(--foreground)",
+                background: "var(--light-foreground)",
                 marginTop: 0,
                 borderBottomRightRadius: 8,
                 borderBottomLeftRadius: 8,

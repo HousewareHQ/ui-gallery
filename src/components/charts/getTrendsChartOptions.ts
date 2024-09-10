@@ -256,7 +256,7 @@ export function getTrendsChartOptions({
       trigger: "axis",
       confine: true,
       order: "valueDesc",
-      backgroundColor: themeColors["--foreground"],
+      backgroundColor: themeColors["--light-foreground"],
       borderColor: themeColors["--border"],
       textStyle: {
         color: themeColors["--secondary-text"],

@@ -1,11 +1,11 @@
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 
 dayjs.extend(advancedFormat);
 
 function getSeriesKey(funnelData: any, funnelsConfiguration: any) {
   const conversionCriteriaLabel = `Overall Conversion (${
-    funnelsConfiguration?.conversion?.criteria || 'Uniques'
+    funnelsConfiguration?.conversion?.criteria || "Uniques"
   })`;
 
   let seriesNameToGroupBy = `${
@@ -13,7 +13,7 @@ function getSeriesKey(funnelData: any, funnelsConfiguration: any) {
       ? funnelData?.cohort_value
         ? `${funnelData.cohort}`
         : `Not in ${funnelData.cohort}`
-      : funnelData?.value === '$all'
+      : funnelData?.value === "$all"
         ? conversionCriteriaLabel
         : funnelData.value
   }`;
@@ -22,17 +22,17 @@ function getSeriesKey(funnelData: any, funnelsConfiguration: any) {
     ? funnelData.cohort_value
       ? `${funnelData.cohort}`
       : `Not in ${funnelData.cohort}`
-    : '';
+    : "";
 
   const dimensions = [...(funnelData?.dimensions ?? [])];
 
   const dimensionPrefix = !!dimensions?.length
-    ? dimensions.map((d) => `${d.name} is ${d.value}`).join(' & ')
-    : '';
+    ? dimensions.map((d) => `${d.name} is ${d.value}`).join(" & ")
+    : "";
 
   if (cohortPefix || dimensionPrefix) {
     seriesNameToGroupBy = `${cohortPefix}${
-      cohortPefix && dimensionPrefix ? ', ' : ''
+      cohortPefix && dimensionPrefix ? ", " : ""
     }${dimensionPrefix}`;
   }
 
@@ -50,7 +50,7 @@ const getEventAndLabelName = ({
   columnFields?: any;
   funnelsConfiguration: any;
 }) => {
-  const stringToSplitEventLabel = '////';
+  const stringToSplitEventLabel = "////";
   const events = funnelsConfiguration?.steps || [];
 
   if (columnFields) {
@@ -59,7 +59,7 @@ const getEventAndLabelName = ({
 
     columnFields.forEach((name: string, index: number) => {
       const eventMatchIndex = events.findIndex(
-        (event: any, idx: any) => !usedIndices.has(idx) && event.name === name,
+        (event: any, idx: any) => !usedIndices.has(idx) && event.name === name
       );
 
       if (eventMatchIndex !== -1) {
@@ -87,17 +87,17 @@ export default function getFunnelsChartOptions({
   chartData: any;
   queryConfiguration: any;
   themeColors: any;
-  themeMode: 'light' | 'dark';
+  themeMode: "light" | "dark";
 }) {
   const chartTitle = queryConfiguration.steps
     .map((step: any) => step.name)
-    .join(' -> ');
+    .join(" -> ");
   const funnelSeries: any[] = chartData.reduce((acc: any, funnelData: any) => {
     let { seriesNameToGroupBy: name, conversionCriteriaLabel } = getSeriesKey(
       funnelData,
-      queryConfiguration,
+      queryConfiguration
     );
-    if (name === '<nil>') {
+    if (name === "<nil>") {
       name = conversionCriteriaLabel;
     }
 
@@ -105,15 +105,15 @@ export default function getFunnelsChartOptions({
       ...acc,
       {
         data: [],
-        type: 'bar',
+        type: "bar",
         zlevel: 1,
         emphasis: {
-          focus: 'series',
+          focus: "series",
         },
         stack: `conversion_funnel_${name}_${funnelData.value}`,
         name: name,
         label:
-          funnelData.dimension !== '$all' || !!chartData[0]?.cohort
+          funnelData.dimension !== "$all" || !!chartData[0]?.cohort
             ? {}
             : {
                 show: funnelData?.dimensions ? false : true,
@@ -123,19 +123,19 @@ export default function getFunnelsChartOptions({
                   return [
                     `{percentage|${Number(conversionPercentage).toFixed(2)}%}`,
                     `{number|${conversionNumber}}`,
-                  ].join('\n');
+                  ].join("\n");
                 },
-                position: 'top',
-                align: 'center',
+                position: "top",
+                align: "center",
                 rich: {
                   percentage: {
-                    color: themeColors['--secondary-text'],
+                    color: themeColors["--secondary-text"],
                     fontWeight: 600,
                     lineHeight: 18,
                     fontSize: 14,
                   },
                   number: {
-                    color: themeColors['--secondary-text'],
+                    color: themeColors["--secondary-text"],
                     fontWeight: 500,
                     lineHeight: 14,
                     fontSize: 11,
@@ -146,10 +146,10 @@ export default function getFunnelsChartOptions({
       {
         name: name,
         data: [],
-        type: 'bar',
+        type: "bar",
         stack: `conversion_funnel_${name}_${funnelData.value}`,
         itemStyle: {
-          color: 'rgba(66,56,202, .1)',
+          color: "rgba(66,56,202, .1)",
         },
       },
     ];
@@ -167,52 +167,52 @@ export default function getFunnelsChartOptions({
       text: `Funnels: ${chartTitle}`,
       left: 20,
       textStyle: {
-        fontFamily: 'HousewareFont',
+        fontFamily: "HousewareFont",
         fontSize: 15,
-        fontWeight: 'bold',
-        color: themeColors['--primary-text'],
+        fontWeight: "bold",
+        color: themeColors["--primary-text"],
       },
     },
     xAxis: {
-      type: 'category',
+      type: "category",
       data: [] as string[],
       axisLabel: {
         interval: 0,
         width: 300,
-        align: 'center',
-        overflow: 'break',
-        color: themeColors['--secondary-text'],
+        align: "center",
+        overflow: "break",
+        color: themeColors["--secondary-text"],
         hideOverlap: true,
         formatter: (value: any) => {
-          return value.split('_').join(' ');
+          return value.split("_").join(" ");
         },
-        fontFamily: 'ChartsFont',
+        fontFamily: "ChartsFont",
         fontSize: 10,
       },
       axisLine: {
         lineStyle: {
-          color: themeColors['--border'],
+          color: themeColors["--border"],
         },
       },
     },
     yAxis: {
-      type: 'value',
-      position: 'left',
+      type: "value",
+      position: "left",
       alignTicks: true,
       axisLine: {
         show: true,
         lineStyle: {
-          color: themeColors['--border'],
+          color: themeColors["--border"],
         },
       },
       axisLabel: {
-        color: themeColors['--secondary-text'],
-        fontFamily: 'ChartsFont',
+        color: themeColors["--secondary-text"],
+        fontFamily: "ChartsFont",
         fontSize: 10,
       },
       splitLine: {
         lineStyle: {
-          color: themeColors['--border'],
+          color: themeColors["--border"],
           width: 0.4,
         },
       },
@@ -223,20 +223,20 @@ export default function getFunnelsChartOptions({
       data: funnelSeries.map((series) => series.name),
       top: 40,
       left: 20,
-      color: themeColors['--secondary-text'],
-      icon: 'circle',
+      color: themeColors["--secondary-text"],
+      icon: "circle",
       textStyle: {
-        color: themeColors['--primary-text'],
+        color: themeColors["--primary-text"],
         fontSize: 12,
-        fontWeight: 'normal',
-        fontFamily: 'HousewareFont',
+        fontWeight: "normal",
+        fontFamily: "HousewareFont",
       },
-      inActiveColor: 'red',
+      inActiveColor: "red",
     },
     toolbox: {
       feature: {
         saveAsImage: {
-          title: 'Download chart',
+          title: "Download chart",
           name: `Funnel Chart - ${chartTitle}`,
           show: true,
           icon: `image://chart-download-${themeMode}-mode.png`,
@@ -244,14 +244,14 @@ export default function getFunnelsChartOptions({
       },
     },
     tooltip: {
-      trigger: 'item',
+      trigger: "item",
       confine: true,
-      order: 'valueDesc',
-      backgroundColor: themeColors['--foreground'],
-      borderColor: themeColors['--border'],
+      order: "valueDesc",
+      backgroundColor: themeColors["--light-foreground"],
+      borderColor: themeColors["--border"],
       textStyle: {
-        color: themeColors['--secondary-text'],
-        fontFamily: 'HousewareFont',
+        color: themeColors["--secondary-text"],
+        fontFamily: "HousewareFont",
       },
       formatter: function ({ data }: { data: any }) {
         const {
@@ -273,13 +273,13 @@ export default function getFunnelsChartOptions({
 
         if (config.start_date) {
           titleLabel = `${titleLabel} (from ${dayjs(config?.start_date).format(
-            'Do MMM YY',
+            "Do MMM YY"
           )}`;
         }
 
         if (config.end_date) {
           titleLabel = `${titleLabel} to ${dayjs(config?.end_date).format(
-            'Do MMM YY',
+            "Do MMM YY"
           )})`;
         }
 
@@ -290,11 +290,11 @@ export default function getFunnelsChartOptions({
           ${seriesLabel}
           </br>
           ${Number(conversionPercentage).toFixed(
-            2,
+            2
           )}% (${conversionNumber.toLocaleString()} of ${totalUsersInFunnel}) converted
           </br>
           ${Number(dropOffPercentage).toFixed(
-            2,
+            2
           )}% (${dropOffNumber.toLocaleString()} of ${totalUsersInFunnel}) drop-off
           `;
       },
@@ -324,7 +324,7 @@ export default function getFunnelsChartOptions({
         dropOffPercentage,
         dropOffNumber,
         conversionPercentage: conversionPercentage,
-        seriesType: 'converted',
+        seriesType: "converted",
         stepIndex,
       });
       funnelsStepsOptions.series[2 * funnelIndex + 1].data.push({
@@ -338,7 +338,7 @@ export default function getFunnelsChartOptions({
         dropOffPercentage,
         conversionNumber: step.value,
         conversionPercentage: conversionPercentage,
-        seriesType: 'dropped off',
+        seriesType: "dropped off",
         stepIndex,
       });
     });
