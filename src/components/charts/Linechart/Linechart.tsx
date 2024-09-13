@@ -2,7 +2,7 @@ import EChartsReact from "echarts-for-react";
 import { useMemo } from "react";
 import echartTheme from "../echartTheme";
 
-export type PiechartProps = {
+export type LinechartProps = {
     series: { name: string, data: Array<number> }[];
     style: React.CSSProperties;
 };
@@ -11,7 +11,7 @@ export type PiechartProps = {
  * A pie chart component that displays data in a pie chart format.
  * 
  */
-export default function Linechart(props: PiechartProps) {
+export default function Linechart(props: LinechartProps) {
     const chartOptions = useMemo(
         () => ({
             ...echartTheme,

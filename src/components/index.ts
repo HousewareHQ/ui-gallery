@@ -41,6 +41,8 @@ export { useThemeManager } from "./useThemeManager";
 
 export { SpotlightGrid } from "./welcomeScreen/SpotlightGrid";
 
+export { default as Linechart } from "./charts/Linechart/Linechart";
+export type { LinechartProps } from "./charts/Linechart/Linechart";
 export { default as Piechart } from "./charts/Piechart/Piechart";
 export type { PiechartProps } from "./charts/Piechart/Piechart";
 
