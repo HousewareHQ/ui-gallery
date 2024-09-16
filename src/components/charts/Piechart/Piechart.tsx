@@ -22,6 +22,7 @@ export default function Piechart(props: PiechartProps) {
                 subtext: props.subtext,
                 ...echartTheme.title,
             },
+            dataZoom: { show: false },
             series: props.series.map((data, i) => ({
                 name: `Series ${i}`,
                 type: "pie",
