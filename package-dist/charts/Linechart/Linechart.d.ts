@@ -1,4 +1,5 @@
 export type LinechartProps = {
+    xAxisLabels: string[];
     series: {
         name: string;
         data: Array<number>;

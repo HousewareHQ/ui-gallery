@@ -25,7 +25,7 @@ export default function Linechart(props: LinechartProps) {
             yAxis: {
                 type: 'value'
             },
-            series: props.series.map((series, i) => ({
+            series: props.series.map((series) => ({
                 name: series.name,
                 type: "line",
                 data: series.data,
