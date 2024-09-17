@@ -22,7 +22,7 @@ export const Default: Story = {
     subtext: "Piechart subtext",
     series: [
       [
-        { value: 1048, name: "Search Engine" },
+        { value: 1608, name: "Search Engine" },
         { value: 735, name: "Direct" },
         { value: 580, name: "Email" },
         { value: 484, name: "Union Ads" },

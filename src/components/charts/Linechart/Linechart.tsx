@@ -3,7 +3,11 @@ import { useMemo } from "react";
 import echartTheme from "../echartTheme";
 
 export type LinechartProps = {
-    series: { name: string, data: Array<number> }[];
+    xAxisLabels: string[];
+    series: {
+        name: string,
+        data: Array<number>
+    }[];
     style: React.CSSProperties;
 };
 
@@ -16,19 +20,19 @@ export default function Linechart(props: LinechartProps) {
         () => ({
             ...echartTheme,
             xAxis: {
-                data: props.series.map(series => series.name),
+                data: props.xAxisLabels,
             },
             yAxis: {
                 type: 'value'
             },
             series: props.series.map((series, i) => ({
-                name: `Series ${i}`,
+                name: series.name,
                 type: "line",
                 data: series.data,
                 smooth: true,
             })),
         }),
-        [props.series]
+        [props.series, props.xAxisLabels]
     );
 
 

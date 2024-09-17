@@ -18,27 +18,20 @@ type Story = StoryObj<typeof Linechart>;
 
 export const Default: Story = {
     args: {
+        xAxisLabels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         series: [
             {
-                name: "Mon",
+                name: "Line 1",
                 data: [120, 132, 101, 134, 90, 230, 210]
             },
             {
-                name: "Tue",
+                name: "Line 2",
                 data: [220, 182, 191, 234, 290, 330, 310]
             },
             {
-                name: "Wed",
+                name: "Line 3",
                 data: [150, 232, 201, 154, 190, 330, 410]
             },
-            {
-                name: "Thu",
-                data: [320, 332, 301, 334, 390, 330, 320]
-            },
-            {
-                name: "Fri",
-                data: [820, 932, 901, 934, 1290, 1330, 1320]
-            }
         ],
         style: { width: "400px", height: "100vh", }
     },
