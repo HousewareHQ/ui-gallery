@@ -28,6 +28,7 @@ export default function Piechart(props: PiechartProps) {
                 type: "pie",
                 radius: "60%",
                 data,
+                label: { show: false },
                 emphasis: {
                     itemStyle: {
                         shadowBlur: 10,

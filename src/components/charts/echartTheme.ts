@@ -181,6 +181,9 @@ const echartTheme: EChartsOption = {
     },
   },
   legend: {
+    type: "scroll",
+    orient: "horizontal",
+    left: "center",
     textStyle: {
       color: "#999999",
     },
