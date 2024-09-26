@@ -11,6 +11,7 @@ export interface WelcomeScreenProps {
   subHeading: string;
   showSpotlightGrid?: boolean;
   customCardBody?: React.ReactNode;
+  cardWidth?: string;
 }
 
 export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
@@ -19,6 +20,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
 
   showSpotlightGrid = false,
   customCardBody,
+  cardWidth = "50vw",
 }: WelcomeScreenProps) => {
   return (
     <Flex
@@ -58,7 +60,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
       <Flex
         vertical
         style={{
-          width: "50vw",
+          width: cardWidth,
         }}
       >
         {customCardBody && (

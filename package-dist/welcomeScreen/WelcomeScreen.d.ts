@@ -5,5 +5,6 @@ export interface WelcomeScreenProps {
     subHeading: string;
     showSpotlightGrid?: boolean;
     customCardBody?: React.ReactNode;
+    cardWidth?: string;
 }
 export declare const WelcomeScreen: React.FC<WelcomeScreenProps>;
