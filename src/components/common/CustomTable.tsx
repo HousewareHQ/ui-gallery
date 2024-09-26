@@ -3,21 +3,23 @@ import { PaginationProps, Table, Typography } from "antd";
 import { AnyObject } from "antd/es/_util/type";
 import { TableProps } from "antd/es/table";
 
-export default function CustomTable({
-  dataSource,
-  columns,
-onRowClick,
-  rowKey,
-  size = "large",
-  ...rest
-}: {
+export type CustomTableProps = {
   dataSource: readonly AnyObject[];
   columns: TableProps<any>["columns"];
   onRowClick?: (record: AnyObject, index: number | undefined) => void;
   rowKey?: string;
 
   size?: "small" | "middle" | "large";
-} & TableProps<any>) {
+} & TableProps<any>;
+
+export const CustomTable: React.FC<CustomTableProps> = ({
+  dataSource,
+  columns,
+  onRowClick,
+  rowKey,
+  size = "large",
+  ...rest
+}: CustomTableProps) => {
   const modifiedColumns = columns?.map((column) => ({
     ...column,
     title: (column?.title as string)?.toUpperCase(),
@@ -83,4 +85,4 @@ onRowClick,
       {...rest}
     />
   );
-}
+};

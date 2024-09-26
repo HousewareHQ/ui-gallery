@@ -4,8 +4,17 @@ export type { ChatInputProps } from "./common/ChatInput";
 export { WelcomeScreenConversations } from "./welcomeScreen/WelcomeScreenConversations";
 export type { WelcomeScreenConversationsProps } from "./welcomeScreen/WelcomeScreenConversations";
 
-export { WelcomeScreenAds } from "./welcomeScreen/WelcomeScreenAds";
-export type { WelcomeScreenAdsProps } from "./welcomeScreen/WelcomeScreenAds";
+export { WelcomeScreen } from "./welcomeScreen/WelcomeScreen";
+export type { WelcomeScreenProps } from "./welcomeScreen/WelcomeScreen";
+
+export { SearchAdsCardBody } from "./common/SearchAdsCardBody";
+export type { SearchAdsCardBodyProps } from "./common/SearchAdsCardBody";
+
+export { CustomTextArea } from "./common/CustomTextArea";
+export type { CustomTextAreaProps } from "./common/CustomTextArea";
+
+export { CustomTable } from "./common/CustomTable";
+export type { CustomTableProps } from "./common/CustomTable";
 
 export { ChatScreenPA } from "./chatScreen/ChatScreenPA";
 export type { ChatScreenPAProps } from "./chatScreen/ChatScreenPA";

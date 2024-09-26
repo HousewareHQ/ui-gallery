@@ -1,8 +1,8 @@
 import { PaperPlaneTilt } from "@phosphor-icons/react";
-import { Button, Card, Flex, InputRef, Typography } from "antd";
-import TextArea from "antd/es/input/TextArea";
+import { Button, Card, Flex, InputRef } from "antd";
 import * as React from "react";
 import { KeyboardEvent, LegacyRef } from "react";
+import { CustomTextArea } from "./CustomTextArea";
 
 export interface ChatInputProps {
   inputRef?: LegacyRef<InputRef> | null;
@@ -72,15 +72,16 @@ export const ChatInput: React.FC<ChatInputProps> = ({
       >
         <Flex vertical gap={16}>
           <Flex align="flex-start" gap={12}>
-            <TextArea
-              ref={inputRef}
-              value={userQuery}
-              onChange={(e) => setUserQuery(e.target.value)}
+            <CustomTextArea
+              inputRef={inputRef}
+              userQuery={userQuery}
+              setUserQuery={setUserQuery}
               autoSize={{ minRows: 1, maxRows: 8 }}
               size="large"
               variant="borderless"
-              placeholder={placeholder}
+              inputPlaceholder={placeholder}
               onKeyDown={handleKeyDown}
+              handlePressEnter={handleSendMessage}
             />
 
             <Button
@@ -92,7 +93,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
               icon={<PaperPlaneTilt weight="bold" />}
             />
           </Flex>
-          <Flex align="flex-end" justify="flex-end">
+          {/* <Flex align="flex-end" justify="flex-end">
             <Typography.Text
               type="secondary"
               style={{
@@ -117,7 +118,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
               </Typography.Text>{" "}
               for new line
             </Typography.Text>
-          </Flex>
+          </Flex> */}
         </Flex>
       </Card>
     </Flex>

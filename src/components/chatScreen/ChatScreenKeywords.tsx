@@ -24,7 +24,7 @@ import {
 import { MenuProps } from "rc-menu";
 import { useState } from "react";
 import { ChatInput } from "../common/ChatInput";
-import CustomTable from "../common/CustomTable";
+import { CustomTable } from "../common/CustomTable";
 
 export interface BaseMessage {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
