@@ -22,7 +22,10 @@ export const CustomTable: React.FC<CustomTableProps> = ({
 }: CustomTableProps) => {
   const modifiedColumns = columns?.map((column) => ({
     ...column,
-    title: (column?.title as string)?.toUpperCase(),
+    title:
+      typeof column?.title === "string"
+        ? (column?.title as string)?.toUpperCase()
+        : column?.title,
   }));
 
   const paginationItemRender: PaginationProps["itemRender"] = (_, type) => {
