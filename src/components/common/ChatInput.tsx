@@ -21,7 +21,6 @@ export const ChatInput: React.FC<ChatInputProps> = ({
   setUserQuery,
   handleSendMessage,
   width = "60vw",
-
   isFollowupDisabled = false,
 }: ChatInputProps) => {
   const isButtonDisabled = userQuery.trim().length === 0 || isFollowupDisabled;

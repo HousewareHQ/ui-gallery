@@ -45,6 +45,8 @@ export interface ChatScreenPAProps<T> {
   emptyChatComponent?: ReactNode;
   disableScrollNewMessageToTop?: boolean;
   handleStartNewChat?: () => void;
+  containerStyles?: React.CSSProperties;
+  chatInputWidth?: React.CSSProperties["width"];
 }
 
 export function ChatScreenPA<T extends BaseMessage>({
@@ -60,6 +62,8 @@ export function ChatScreenPA<T extends BaseMessage>({
   emptyChatComponent,
   disableScrollNewMessageToTop = false,
   handleStartNewChat,
+  containerStyles,
+  chatInputWidth,
 }: ChatScreenPAProps<T>) {
   const [userQuery, setUserQuery] = useState("");
   const chatsContainerRef = useRef<HTMLDivElement | null>(null);
@@ -126,6 +130,7 @@ export function ChatScreenPA<T extends BaseMessage>({
           padding: "0 24px 10%",
           marginTop: "4vh",
           position: "relative",
+          ...containerStyles || {},
         }}
         align="flex-start"
         rootClassName="chat-container"
@@ -181,6 +186,7 @@ export function ChatScreenPA<T extends BaseMessage>({
         }}
         placeholder="Follow up with your question here..."
         isFollowupDisabled={shouldShowLoader}
+        width={chatInputWidth}
       />
     </Flex>
   );
