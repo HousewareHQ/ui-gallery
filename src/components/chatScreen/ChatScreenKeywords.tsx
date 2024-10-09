@@ -214,7 +214,6 @@ export function ChatScreenKeywords({
         style={{
           width: "50vw",
           textAlign: "center",
-          fontFamily: "Sedan",
           marginBottom: 32,
         }}
         editable={{

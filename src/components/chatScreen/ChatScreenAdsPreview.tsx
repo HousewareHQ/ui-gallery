@@ -79,7 +79,6 @@ export function ChatScreenAdsPreview({
         style={{
           width: "30vw",
           textAlign: "center",
-          fontFamily: "Sedan",
         }}
         editable={{
           onChange: (e) => handleUpdateCampaignName?.(e),

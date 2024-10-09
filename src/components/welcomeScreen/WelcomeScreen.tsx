@@ -43,7 +43,6 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
           style={{
             width: "30vw",
             textAlign: "center",
-            fontFamily: "Sedan",
           }}
         >
           {heading}

@@ -47,9 +47,7 @@ export function CampaignSuggestChangesScreen({
       align="center"
       gap={24}
     >
-      <Typography.Title level={3} style={{ fontFamily: "Sedan" }}>
-        Review Campaign
-      </Typography.Title>
+      <Typography.Title level={3}>Review Campaign</Typography.Title>
 
       <Flex
         vertical

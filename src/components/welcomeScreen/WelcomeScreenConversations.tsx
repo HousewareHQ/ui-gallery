@@ -54,7 +54,6 @@ export const WelcomeScreenConversations: React.FC<
           style={{
             width: "30vw",
             textAlign: "center",
-            fontFamily: "Sedan",
           }}
         >
           {heading}
